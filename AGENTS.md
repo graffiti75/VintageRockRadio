@@ -8,25 +8,30 @@
 
 5) This app must use Jetpack Compose with MVI architecture: State classes, ViewModel and onAction classes, like for instance is showed below:
 
---- LoginScreenState.kt
+### LoginScreenState.kt
 
+```
 data class LoginScreenState(
 	val loading : Boolean = true,
 	val alert : MessageAlert? = null,
 	val user : String = "",
 	val userLogged : Boolean = false
 )
+```
 
---- LoginScreenAction.kt
+### LoginScreenAction.kt
 
+```
 sealed interface LoginScreenAction {
 	data class OnLoginClick(val email: String, val password: String) : LoginScreenAction
 	data class OnCreateUser(val email: String, val password: String) : LoginScreenAction
 	data object OnDismissAlert : LoginScreenAction
 }
+```
 
---- LoginScreenViewModel.kt
+### LoginScreenViewModel.kt
 
+```
 @HiltViewModel
 class LoginScreenViewModel @Inject constructor(
 	private val auth: UserAuthentication
@@ -47,9 +52,11 @@ class LoginScreenViewModel @Inject constructor(
 	}
 	...
 }
+```
 
---- LoginScreenRoot.kt
+### LoginScreenRoot.kt
 
+```
 @Composable
 fun LoginScreenRoot(
 	modifier: Modifier = Modifier,
@@ -99,6 +106,7 @@ private fun LoginScreen(
 	}
 	...
 }
+```
 
 6) I don't want you to create a Login app. I just used the examples above to show you the behavior I want into this app.
 
@@ -108,6 +116,7 @@ private fun LoginScreen(
 
 9) This app's source of data (containing Youtube IDs) must be placed in a file called ids.txt. This file, initially, must contain the following infos: Decade;Year;Band;Song;YoutubeID.
 
+```
 70;1975;10cc;I'm Not In Love;OtBHfxU2wmc
 70;1979;ACDC;Highway To Hell;l482T0yNkeo
 70;1976;ACDC;It's A Long Way To The Top;-sUXMzkh-jI
@@ -608,6 +617,7 @@ private fun LoginScreen(
 70;1971;David Bowie;Queen Bitch;S5P63qGTm_g
 70;1971;David Bowie;Song For Bob Dylan;FiK7HcUx_BY
 70;1971;David Bowie;The Bewlay Brothers;aDRi30GNFMc
+```
 
 10) In the main UI, besides the 70's music vintage radio hi-res player, I want you to show in the UI the infos above, for each song: Decade, Year, Band, Song YoutubeID.
 
