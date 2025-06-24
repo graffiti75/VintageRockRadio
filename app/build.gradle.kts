@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vintageradio"
+    namespace = "com.example.vintageradioapp" // Updated namespace
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.vintageradio"
+        applicationId = "com.example.vintageradioapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -40,7 +40,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get() // Using version from TOML
     }
     packaging {
         resources {
@@ -56,14 +56,15 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.ui.tooling.preview) // For @Preview
     implementation(libs.androidx.material3)
-    implementation(libs.youtube.player) // Added YouTube Player dependency
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(libs.youtube.player)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.tooling) // For @Preview
     debugImplementation(libs.androidx.ui.test.manifest)
 }

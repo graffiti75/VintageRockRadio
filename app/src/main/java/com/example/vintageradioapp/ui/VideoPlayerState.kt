@@ -1,15 +1,15 @@
-package com.example.vintageradio.ui
+package com.example.vintageradioapp.ui // Updated package name
 
-import com.example.vintageradio.data.Song
+import com.example.vintageradioapp.data.Song // Updated import
 
 data class VideoPlayerState(
     val songs: List<Song> = emptyList(),
     val currentSongIndex: Int = 0,
     val isPlaying: Boolean = false,
     val currentPlaybackTimeSeconds: Int = 0,
-    val totalDurationSeconds: Int = 0, // It might be useful to store total duration
+    val totalDurationSeconds: Int = 0,
     val isLoading: Boolean = true,
-    val error: String? = null // To display any error messages
+    val error: String? = null
 ) {
     val currentSong: Song?
         get() = songs.getOrNull(currentSongIndex)

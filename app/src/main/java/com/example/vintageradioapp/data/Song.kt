@@ -1,4 +1,4 @@
-package com.example.vintageradio.data
+package com.example.vintageradioapp.data // Updated package name
 
 data class Song(
     val decade: String,

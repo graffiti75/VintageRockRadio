@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.VintageRadioApp" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- For Compose, this typically involves setting system bar colors etc. -->
+        <!-- Or use Theme.AppCompat if Material Components are used for XML views -->
+    </style>
+</resources>
