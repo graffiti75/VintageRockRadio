@@ -1,9 +1,8 @@
-package com.example.vintageradioapp.ui // Updated package name
+package com.example.vintageradioapp.ui
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel // Using AndroidViewModel for Application context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-// import com.example.vintageradioapp.data.Song // Not directly used here
 import com.example.vintageradioapp.data.SongParser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,19 +10,14 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-// @HiltViewModel // If using Hilt for dependency injection
 class VideoPlayerViewModel(
-    application: Application // constructor(application: Application) for AndroidViewModel
+    application: Application
 ) : AndroidViewModel(application) {
 
     private val songParser = SongParser(application)
 
     private val _state = MutableStateFlow(VideoPlayerState())
     val state: StateFlow<VideoPlayerState> = _state.asStateFlow()
-
-    // To command the player (e.g., seek) from the ViewModel if necessary, though direct control from UI is often cleaner
-    // private val _playerCommand = MutableSharedFlow<PlayerCommand>()
-    // val playerCommand = _playerCommand.asSharedFlow()
 
     init {
         loadSongs()
@@ -33,14 +27,21 @@ class VideoPlayerViewModel(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             try {
-                val songs = songParser.parseSongs() // This is now a suspend function
+                val songs = songParser.parseSongs()
                 if (songs.isNotEmpty()) {
                     _state.update {
-                        it.copy(songs = songs, isLoading = false, currentSongIndex = 0, currentPlaybackTimeSeconds = 0)
+                        it.copy(
+                            songs = songs,
+                            isLoading = false,
+                            currentSongIndex = 0,
+                            currentPlaybackTimeSeconds = 0,
+                            totalDurationSeconds = 0, // Will be updated by player
+                            error = null
+                        )
                     }
                 } else {
                     _state.update {
-                        it.copy(isLoading = false, error = "No songs found.")
+                        it.copy(isLoading = false, error = "No songs found in ids.txt.")
                     }
                 }
             } catch (e: Exception) {
@@ -54,56 +55,54 @@ class VideoPlayerViewModel(
     fun onAction(action: VideoPlayerAction) {
         when (action) {
             is VideoPlayerAction.PlayPause -> {
+                if (state.value.songs.isEmpty()) return // No action if no songs
                 _state.update { it.copy(isPlaying = !it.isPlaying) }
             }
             is VideoPlayerAction.NextSong -> {
+                if (state.value.songs.isEmpty()) return
                 _state.update { currentState ->
-                    val nextIndex = if (currentState.songs.isEmpty()) 0 else (currentState.currentSongIndex + 1) % currentState.songs.size
+                    val nextIndex = (currentState.currentSongIndex + 1) % currentState.songs.size
                     currentState.copy(
                         currentSongIndex = nextIndex,
-                        currentPlaybackTimeSeconds = 0,
-                        isPlaying = if (currentState.songs.isNotEmpty()) true else false // Auto-play next if songs available
+                        currentPlaybackTimeSeconds = 0, // Reset time for new song
+                        totalDurationSeconds = 0, // Reset duration for new song
+                        isPlaying = true // Auto-play next song
                     )
                 }
             }
             is VideoPlayerAction.PreviousSong -> {
+                if (state.value.songs.isEmpty()) return
                 _state.update { currentState ->
-                    val prevIndex = if (currentState.songs.isEmpty()) 0 else (currentState.currentSongIndex - 1 + currentState.songs.size) % currentState.songs.size
+                    val prevIndex = (currentState.currentSongIndex - 1 + currentState.songs.size) % currentState.songs.size
                     currentState.copy(
                         currentSongIndex = prevIndex,
-                        currentPlaybackTimeSeconds = 0,
-                        isPlaying = if (currentState.songs.isNotEmpty()) true else false // Auto-play previous if songs available
+                        currentPlaybackTimeSeconds = 0, // Reset time for new song
+                        totalDurationSeconds = 0, // Reset duration for new song
+                        isPlaying = true // Auto-play previous song
                     )
                 }
             }
-            is VideoPlayerAction.SeekTo -> { // User dragged slider
+            is VideoPlayerAction.SeekTo -> { // User finished seeking with slider
+                if (state.value.songs.isEmpty()) return
                 _state.update { it.copy(currentPlaybackTimeSeconds = action.positionSeconds) }
-                // Optionally, if player needs to be commanded from VM:
-                // viewModelScope.launch { _playerCommand.emit(PlayerCommand.Seek(action.positionSeconds.toFloat())) }
-            }
-             is VideoPlayerAction.PlayerSeekTo -> {
-                // This is a command for the player, usually triggered from UI after user finishes seek gesture
-                // The ViewModel doesn't need to do much here other than potentially logging
-                // The actual seek is handled by the UI observing this or a dedicated command flow
+                // The player itself is commanded to seek from the UI (Slider's onValueChangeFinished)
             }
             is VideoPlayerAction.UpdatePlaybackTime -> { // Player reported time
-                // Only update if not actively seeking, to avoid slider jumpiness
-                // This check might be better handled in the UI if slider has its own state
+                 if (state.value.songs.isEmpty()) return
                 _state.update { it.copy(currentPlaybackTimeSeconds = action.timeSeconds) }
             }
             is VideoPlayerAction.UpdateTotalDuration -> {
+                 if (state.value.songs.isEmpty()) return
                 _state.update { it.copy(totalDurationSeconds = action.durationSeconds) }
             }
             is VideoPlayerAction.OnError -> {
-                _state.update { it.copy(error = action.error, isLoading = false) }
+                _state.update { it.copy(error = action.error, isLoading = false, isPlaying = false) }
             }
             is VideoPlayerAction.DismissError -> {
                 _state.update { it.copy(error = null) }
+                // Optionally reload songs or go to a known state if error was critical
+                if (state.value.songs.isEmpty()) loadSongs()
             }
         }
     }
 }
-
-// sealed interface PlayerCommand {
-//     data class Seek(val positionSeconds: Float) : PlayerCommand
-// }

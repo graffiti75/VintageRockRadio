@@ -1,6 +1,6 @@
-package com.example.vintageradioapp.ui // Updated package name
+package com.example.vintageradioapp.ui
 
-import com.example.vintageradioapp.data.Song // Updated import
+import com.example.vintageradioapp.data.Song
 
 data class VideoPlayerState(
     val songs: List<Song> = emptyList(),

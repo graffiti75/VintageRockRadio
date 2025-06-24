@@ -1,6 +1,6 @@
 [versions]
-androidGradlePlugin = "8.2.0" // Or your specific version
-kotlin = "1.9.0" // Or your specific version
+androidGradlePlugin = "8.2.0"
+kotlin = "1.9.0"
 coreKtx = "1.12.0"
 lifecycleRuntimeKtx = "2.6.2"
 activityCompose = "1.8.1"
@@ -8,8 +8,8 @@ composeBom = "2023.10.01"
 junit = "4.13.2"
 androidxTestExtJunit = "1.1.5"
 espressoCore = "3.5.1"
-youtubePlayer = "12.1.0" // com.pierfrancescosoffritti.androidyoutubeplayer:core
-composeCompiler = "1.5.3" // Check for compatibility with your Kotlin version
+youtubePlayer = "12.1.0"
+composeCompiler = "1.5.3" # Matched to Kotlin 1.9.0
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -18,8 +18,8 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" } # For Previews
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" } # For Previews
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
@@ -27,7 +27,6 @@ youtube-player = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:cor
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExtJunit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }

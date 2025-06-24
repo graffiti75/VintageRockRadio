@@ -1,12 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+// Existing plugins block from previous attempt was:
+// plugins {
+//    alias(libs.plugins.androidApplication) apply false
+//    alias(libs.plugins.kotlinAndroid) apply false
+// }
+// However, the libs alias won't be available until libs.versions.toml is sourced by settings.gradle.
+// A common practice for root build.gradle.kts is to define plugin versions directly if not using a plugins block that itself depends on libs.
+// Or, ensure settings.gradle.kts makes libs available.
+// For now, let's keep it simple and assume the plugin versions are managed via settings/libs.versions.toml
+
 plugins {
-    alias(libs.plugins.androidApplication) apply false
-    alias(libs.plugins.kotlinAndroid) apply false
+    id("com.android.application") version "8.2.0" apply false // Match version in libs.versions.toml
+    id("org.jetbrains.kotlin.android") version "1.9.0" apply false // Match version in libs.versions.toml
 }
 
-// It's good practice to define versions in libs.versions.toml,
-// so this file can remain relatively clean.
-// Ensure libs.versions.toml is present, usually in root or ./gradle/
-// For this exercise, I'll create it in the root, as done previously.
-
-Unit // Required for a build.gradle.kts file to be valid if it doesn't have other statements that return Unit.
+Unit

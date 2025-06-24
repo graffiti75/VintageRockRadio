@@ -1,47 +1,42 @@
-package com.example.vintageradioapp.ui.theme // Updated package name
+package com.example.vintageradioapp.ui.theme
 
 import android.app.Activity
-// import android.os.Build // Not strictly needed for this theme setup
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
+// import androidx.compose.foundation.isSystemInDarkTheme // Not used if forcing one theme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// Using only a "dark" vintage theme for this app, as a radio player might typically have a darker aesthetic.
-private val VintageColorScheme = darkColorScheme(
-    primary = VintageOrange, // Accent color
-    onPrimary = Color.Black, // Text/icons on primary
-    secondary = VintageButtonColor, // Buttons or secondary accents
-    onSecondary = VintageCream, // Text/icons on secondary
-    background = VintageBrown, // Main background of the app
-    onBackground = VintageCream, // Text on main background
-    surface = VintageControlPanel, // Background for cards, sheets, menus
-    onSurface = VintageCream, // Text on surfaces
-    error = Color(0xFFCF6679), // Standard error color
-    onError = Color.Black
-    // Define other colors like primaryContainer, secondaryContainer if needed
+// Using a "dark" vintage theme as primary
+private val VintageDarkColorScheme = darkColorScheme(
+    primary = VintageAccent,
+    onPrimary = VintageBrown, // Text/icons on primary accent (e.g., on buttons)
+    secondary = VintageDarkRed, // A secondary accent
+    onSecondary = VintageCream,
+    background = VintageBrown,
+    onBackground = VintageCream,
+    surface = VintageControlPanel, // Background for control area, cards
+    onSurface = VintageCream,
+    error = Color(0xFFCF6679), // Standard Material error red
+    onError = Color(0xFF000000)
 )
 
 @Composable
-fun VintageRadioAppTheme( // Updated theme name
-    darkTheme: Boolean = true, // Forcing dark theme as per vintage radio feel, can be isSystemInDarkTheme()
-    // Dynamic coloring is available on Android 12+
-    // dynamicColor: Boolean = true, // Set to false if you want to strictly use your custom theme
+fun VintageRadioAppTheme(
+    // darkTheme: Boolean = isSystemInDarkTheme(), // Can be used if you want to support light/dark system choice
     content: @Composable () -> Unit
 ) {
-    val colorScheme = VintageColorScheme // Always use our custom vintage scheme
+    val colorScheme = VintageDarkColorScheme // Forcing our vintage dark theme
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.background.toArgb() // colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            window.statusBarColor = colorScheme.background.toArgb() // Set status bar to match app background
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false // Text on status bar is light
         }
     }
 
