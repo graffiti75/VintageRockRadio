@@ -1,0 +1,394 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:2:1-29:12
+MERGED from [androidx.hilt:hilt-navigation-compose:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/37a46cd140d37f5be1fbd211d2addec9/transformed/hilt-navigation-compose-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.hilt:hilt-navigation:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/10eb148c35d72c37f519635b98ad5a94/transformed/hilt-navigation-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.dagger:hilt-android:2.49] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c3c51193c281d182d5bfcedeb81cc356/transformed/hilt-android-2.49/AndroidManifest.xml:16:1-19:12
+MERGED from [androidx.navigation:navigation-compose:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/fe8c8816a4509f44e943f39756af42e3/transformed/navigation-compose-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.compose.material3:material3-android:1.3.2] /Users/graffiti75/.gradle/caches/8.11.1/transforms/ea6780562d04bddc3ec0f36037f10496/transformed/material3-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/3f54b81cc0d2fc729a7accc827e63ea8/transformed/material-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c44016773ec15af8ef6d00ddc303f65a/transformed/material-ripple-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/0714a0ee3e5444cf06296084dce3346c/transformed/foundation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c77a0dbabde31bb5e63e559c6ced4e0c/transformed/foundation-layout-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/3129adb986a76ce96b68871cb2a3fde7/transformed/animation-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cbd894c7d3840bf301cb6345f4146887/transformed/animation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/655accdfa181a0370530e604a45eb97e/transformed/ui-tooling-data-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e7632fb92d38e269294aee2eaa750017/transformed/ui-unit-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7de4ad3792942f0175603b55e0e20c19/transformed/ui-geometry-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/986005a89defb71bfbe4e647c040aaf7/transformed/ui-util-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8fbf893a49342d7105e1dd6e9b65b8c2/transformed/ui-text-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/288a4fa81920efdc6a4f1a5994cfe56b/transformed/ui-tooling-preview-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7613395c5d6ca5a242dedc5843caebd2/transformed/ui-graphics-release/AndroidManifest.xml:2:1-7:12
+MERGED from [com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b404eee639bfc0e0b0f8c95106d113ce/transformed/core-12.1.0/AndroidManifest.xml:2:1-10:12
+MERGED from [androidx.fragment:fragment:1.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f9220c966c9c52112225a25fd6ac36bf/transformed/fragment-1.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d33b9128a6bd502422f5ff9ac4906b5b/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e189dc3df0fe79e0c52cef6554894d8d/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f57845dc1a355546ead65fa44482c896/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9da24e0b8623eb8f7bb61d8cea2d62af/transformed/graphics-path-1.0.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/993219c43c1b0b10823daa3f8d993c7d/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/77717d820454b03536d04c34a3e560cd/transformed/navigation-runtime-ktx-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-runtime:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d410607ced76f13f31e4a2147eac3da3/transformed/navigation-runtime-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d717c1a1da55cd346e49388ffea6bfb9/transformed/navigation-common-ktx-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/80c10ddd9c95399977cc698d1fa45e9e/transformed/navigation-common-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/784e8551bcecd4efd62deb1aed7adc70/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9208d0d5e0fc444978b9d44e9cf13687/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8274c701d885e6ab345b8a0f7813a5b7/transformed/lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/ccacaba9d3124af47717d76d24740cce/transformed/lifecycle-runtime-compose-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/eeaf26583510eb797ffca6534dd267c8/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6880e0d3e1edda0a751aa1646f50aad1/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/51bef9dabc61985c5faac56479368c60/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7dacb288ec25238ecf93b772ca4b4b02/transformed/lifecycle-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/079fa6e2c51d53bbec385c62d011a254/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/81edaf7b018d8325da23d49cd737c99c/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/1c36cb451e1d786c3ce472cf555a5142/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c3ddd771bdc578a8c001dc79a9a8b1b5/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/40cf64c53e4fee4f03e8f23659589794/transformed/lifecycle-viewmodel-compose-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9c6b3b00701cf449df5c6d8352facf4e/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/2977b38a7295f45c8adadd31a28ac26c/transformed/ui-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.activity:activity:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d0d94d81f29131847e4d0ffb4b587daf/transformed/activity-1.10.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/bf6a0f412d0db7025dce0c47490596d2/transformed/activity-ktx-1.10.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-compose:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f7b50fc29dc9ee92f7863f517678890b/transformed/activity-compose-1.10.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/64cf26b25584c2ab5a02b30a7636bc5e/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/40e251c8a1bc61dadc491449bb1b7f37/transformed/core-ktx-1.16.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8f11578cad37c140123286dc6596f8e3/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cb10e93a9046975fc0d9273ef6b0cf01/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/211df9f96bcfc1ba5f0fc89429283f97/transformed/tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b58ada4550b1963527a4f3f48cadb4ac/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.compose.runtime:runtime-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/83724a77b3921b51e5b4c1a08dc06e8b/transformed/runtime-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/01eeabb876462ab0bcfb89b3f1aca089/transformed/runtime-saveable-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d6c3fe77fe65feaa3107341d380c58bb/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/efd09ecc4efd6d7585739c6913820d39/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9098e87e29f720079a0bc08491db9915/transformed/core-viewtree-1.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.dagger:dagger-lint-aar:2.49] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e67f48bb4ae03cf0fa1e12e3103a23f8/transformed/dagger-lint-aar-2.49/AndroidManifest.xml:16:1-19:12
+	package
+		INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:5:5-67
+MERGED from [com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b404eee639bfc0e0b0f8c95106d113ce/transformed/core-12.1.0/AndroidManifest.xml:7:5-67
+MERGED from [com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b404eee639bfc0e0b0f8c95106d113ce/transformed/core-12.1.0/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:5:22-64
+application
+ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:7:5-28:19
+INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:7:5-28:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cb10e93a9046975fc0d9273ef6b0cf01/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cb10e93a9046975fc0d9273ef6b0cf01/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b58ada4550b1963527a4f3f48cadb4ac/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b58ada4550b1963527a4f3f48cadb4ac/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:15:9-35
+	android:label
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:13:9-41
+	android:fullBackupContent
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:11:9-54
+	android:roundIcon
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:14:9-54
+	tools:targetApi
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:17:9-29
+	android:icon
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:12:9-43
+	android:allowBackup
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:16:9-53
+	android:dataExtractionRules
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:10:9-65
+	android:name
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:8:9-35
+activity#com.example.vintageradioapp.MainActivity
+ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:18:9-27:20
+	android:label
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:21:13-45
+	android:exported
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:20:13-36
+	android:theme
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:22:13-57
+	android:name
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:19:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:23:13-26:29
+action#android.intent.action.MAIN
+ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:24:17-69
+	android:name
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:24:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml:25:27-74
+uses-sdk
+INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+MERGED from [androidx.hilt:hilt-navigation-compose:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/37a46cd140d37f5be1fbd211d2addec9/transformed/hilt-navigation-compose-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.hilt:hilt-navigation-compose:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/37a46cd140d37f5be1fbd211d2addec9/transformed/hilt-navigation-compose-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.hilt:hilt-navigation:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/10eb148c35d72c37f519635b98ad5a94/transformed/hilt-navigation-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.hilt:hilt-navigation:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/10eb148c35d72c37f519635b98ad5a94/transformed/hilt-navigation-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.dagger:hilt-android:2.49] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c3c51193c281d182d5bfcedeb81cc356/transformed/hilt-android-2.49/AndroidManifest.xml:18:3-42
+MERGED from [com.google.dagger:hilt-android:2.49] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c3c51193c281d182d5bfcedeb81cc356/transformed/hilt-android-2.49/AndroidManifest.xml:18:3-42
+MERGED from [androidx.navigation:navigation-compose:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/fe8c8816a4509f44e943f39756af42e3/transformed/navigation-compose-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-compose:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/fe8c8816a4509f44e943f39756af42e3/transformed/navigation-compose-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.material3:material3-android:1.3.2] /Users/graffiti75/.gradle/caches/8.11.1/transforms/ea6780562d04bddc3ec0f36037f10496/transformed/material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.3.2] /Users/graffiti75/.gradle/caches/8.11.1/transforms/ea6780562d04bddc3ec0f36037f10496/transformed/material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/3f54b81cc0d2fc729a7accc827e63ea8/transformed/material-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/3f54b81cc0d2fc729a7accc827e63ea8/transformed/material-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c44016773ec15af8ef6d00ddc303f65a/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c44016773ec15af8ef6d00ddc303f65a/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/0714a0ee3e5444cf06296084dce3346c/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/0714a0ee3e5444cf06296084dce3346c/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c77a0dbabde31bb5e63e559c6ced4e0c/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c77a0dbabde31bb5e63e559c6ced4e0c/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/3129adb986a76ce96b68871cb2a3fde7/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/3129adb986a76ce96b68871cb2a3fde7/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cbd894c7d3840bf301cb6345f4146887/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cbd894c7d3840bf301cb6345f4146887/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/655accdfa181a0370530e604a45eb97e/transformed/ui-tooling-data-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/655accdfa181a0370530e604a45eb97e/transformed/ui-tooling-data-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e7632fb92d38e269294aee2eaa750017/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e7632fb92d38e269294aee2eaa750017/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7de4ad3792942f0175603b55e0e20c19/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7de4ad3792942f0175603b55e0e20c19/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/986005a89defb71bfbe4e647c040aaf7/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/986005a89defb71bfbe4e647c040aaf7/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8fbf893a49342d7105e1dd6e9b65b8c2/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8fbf893a49342d7105e1dd6e9b65b8c2/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/288a4fa81920efdc6a4f1a5994cfe56b/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/288a4fa81920efdc6a4f1a5994cfe56b/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7613395c5d6ca5a242dedc5843caebd2/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7613395c5d6ca5a242dedc5843caebd2/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b404eee639bfc0e0b0f8c95106d113ce/transformed/core-12.1.0/AndroidManifest.xml:5:5-44
+MERGED from [com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b404eee639bfc0e0b0f8c95106d113ce/transformed/core-12.1.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f9220c966c9c52112225a25fd6ac36bf/transformed/fragment-1.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f9220c966c9c52112225a25fd6ac36bf/transformed/fragment-1.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d33b9128a6bd502422f5ff9ac4906b5b/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d33b9128a6bd502422f5ff9ac4906b5b/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e189dc3df0fe79e0c52cef6554894d8d/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e189dc3df0fe79e0c52cef6554894d8d/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f57845dc1a355546ead65fa44482c896/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f57845dc1a355546ead65fa44482c896/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9da24e0b8623eb8f7bb61d8cea2d62af/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9da24e0b8623eb8f7bb61d8cea2d62af/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/993219c43c1b0b10823daa3f8d993c7d/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/993219c43c1b0b10823daa3f8d993c7d/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/77717d820454b03536d04c34a3e560cd/transformed/navigation-runtime-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/77717d820454b03536d04c34a3e560cd/transformed/navigation-runtime-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d410607ced76f13f31e4a2147eac3da3/transformed/navigation-runtime-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d410607ced76f13f31e4a2147eac3da3/transformed/navigation-runtime-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common-ktx:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d717c1a1da55cd346e49388ffea6bfb9/transformed/navigation-common-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common-ktx:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d717c1a1da55cd346e49388ffea6bfb9/transformed/navigation-common-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/80c10ddd9c95399977cc698d1fa45e9e/transformed/navigation-common-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.5.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/80c10ddd9c95399977cc698d1fa45e9e/transformed/navigation-common-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/784e8551bcecd4efd62deb1aed7adc70/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/784e8551bcecd4efd62deb1aed7adc70/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9208d0d5e0fc444978b9d44e9cf13687/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9208d0d5e0fc444978b9d44e9cf13687/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8274c701d885e6ab345b8a0f7813a5b7/transformed/lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8274c701d885e6ab345b8a0f7813a5b7/transformed/lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/ccacaba9d3124af47717d76d24740cce/transformed/lifecycle-runtime-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/ccacaba9d3124af47717d76d24740cce/transformed/lifecycle-runtime-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/eeaf26583510eb797ffca6534dd267c8/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/eeaf26583510eb797ffca6534dd267c8/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6880e0d3e1edda0a751aa1646f50aad1/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6880e0d3e1edda0a751aa1646f50aad1/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/51bef9dabc61985c5faac56479368c60/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/51bef9dabc61985c5faac56479368c60/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7dacb288ec25238ecf93b772ca4b4b02/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/7dacb288ec25238ecf93b772ca4b4b02/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/079fa6e2c51d53bbec385c62d011a254/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/079fa6e2c51d53bbec385c62d011a254/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/81edaf7b018d8325da23d49cd737c99c/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/81edaf7b018d8325da23d49cd737c99c/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/1c36cb451e1d786c3ce472cf555a5142/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/1c36cb451e1d786c3ce472cf555a5142/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c3ddd771bdc578a8c001dc79a9a8b1b5/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c3ddd771bdc578a8c001dc79a9a8b1b5/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/40cf64c53e4fee4f03e8f23659589794/transformed/lifecycle-viewmodel-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/40cf64c53e4fee4f03e8f23659589794/transformed/lifecycle-viewmodel-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9c6b3b00701cf449df5c6d8352facf4e/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9c6b3b00701cf449df5c6d8352facf4e/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/2977b38a7295f45c8adadd31a28ac26c/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/2977b38a7295f45c8adadd31a28ac26c/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d0d94d81f29131847e4d0ffb4b587daf/transformed/activity-1.10.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d0d94d81f29131847e4d0ffb4b587daf/transformed/activity-1.10.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/bf6a0f412d0db7025dce0c47490596d2/transformed/activity-ktx-1.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/bf6a0f412d0db7025dce0c47490596d2/transformed/activity-ktx-1.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f7b50fc29dc9ee92f7863f517678890b/transformed/activity-compose-1.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.10.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/f7b50fc29dc9ee92f7863f517678890b/transformed/activity-compose-1.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/64cf26b25584c2ab5a02b30a7636bc5e/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/64cf26b25584c2ab5a02b30a7636bc5e/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/40e251c8a1bc61dadc491449bb1b7f37/transformed/core-ktx-1.16.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/40e251c8a1bc61dadc491449bb1b7f37/transformed/core-ktx-1.16.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8f11578cad37c140123286dc6596f8e3/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/8f11578cad37c140123286dc6596f8e3/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cb10e93a9046975fc0d9273ef6b0cf01/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cb10e93a9046975fc0d9273ef6b0cf01/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/211df9f96bcfc1ba5f0fc89429283f97/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/211df9f96bcfc1ba5f0fc89429283f97/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b58ada4550b1963527a4f3f48cadb4ac/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b58ada4550b1963527a4f3f48cadb4ac/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.runtime:runtime-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/83724a77b3921b51e5b4c1a08dc06e8b/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/83724a77b3921b51e5b4c1a08dc06e8b/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/01eeabb876462ab0bcfb89b3f1aca089/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/01eeabb876462ab0bcfb89b3f1aca089/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d6c3fe77fe65feaa3107341d380c58bb/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d6c3fe77fe65feaa3107341d380c58bb/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/efd09ecc4efd6d7585739c6913820d39/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/efd09ecc4efd6d7585739c6913820d39/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9098e87e29f720079a0bc08491db9915/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/9098e87e29f720079a0bc08491db9915/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.dagger:dagger-lint-aar:2.49] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e67f48bb4ae03cf0fa1e12e3103a23f8/transformed/dagger-lint-aar-2.49/AndroidManifest.xml:18:3-42
+MERGED from [com.google.dagger:dagger-lint-aar:2.49] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e67f48bb4ae03cf0fa1e12e3103a23f8/transformed/dagger-lint-aar-2.49/AndroidManifest.xml:18:3-42
+	android:targetSdkVersion
+		INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/graffiti75/Jules/VintageRockRadio/app/src/main/AndroidManifest.xml
+activity#androidx.compose.ui.tooling.PreviewActivity
+ADDED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/4ab061435e48eb2dada082280cccae53/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b404eee639bfc0e0b0f8c95106d113ce/transformed/core-12.1.0/AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from [com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/b404eee639bfc0e0b0f8c95106d113ce/transformed/core-12.1.0/AndroidManifest.xml:8:22-76
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cb10e93a9046975fc0d9273ef6b0cf01/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/graffiti75/.gradle/caches/8.11.1/transforms/cb10e93a9046975fc0d9273ef6b0cf01/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6cefc077b01a99de2d3073fd58a5e5ce/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:23:9-81
+permission#com.example.vintageradioapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:26:22-94
+uses-permission#com.example.vintageradioapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/c067c9da08199b6d85e811f6a345086e/transformed/core-1.16.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/graffiti75/.gradle/caches/8.11.1/transforms/e0340af30dc95160ccd07845cc331d28/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+activity#androidx.activity.ComponentActivity
+ADDED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.8] /Users/graffiti75/.gradle/caches/8.11.1/transforms/6e7a2fd357ee0bc4b879a46375474bf2/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:24:13-63
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/graffiti75/.gradle/caches/8.11.1/transforms/d1c2da59e8693df12d2f0d7ee3316269/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92

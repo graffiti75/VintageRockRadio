@@ -1,10 +1,35 @@
 package com.example.vintageradioapp.ui
 
-import android.app.Application
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,12 +42,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun VideoPlayerScreen(viewModel: VideoPlayerViewModel) {
@@ -61,10 +85,6 @@ fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerActi
                 onAction(VideoPlayerAction.UpdatePlaybackTime(second.toInt()))
             }
 
-            override fun onVideoEnded(youTubePlayer: YouTubePlayer) {
-                onAction(VideoPlayerAction.NextSong)
-            }
-
             override fun onError(youTubePlayer: YouTubePlayer, error: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerError) {
                 onAction(VideoPlayerAction.OnError("YT Player Error: ${error.name}"))
             }
@@ -72,11 +92,14 @@ fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerActi
             override fun onStateChange(youTubePlayer: YouTubePlayer, playerState: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState) {
                 val currentViewModelIsPlaying = state.isPlaying
                 when (playerState) {
-                    com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState.PLAYING -> {
+                    PlayerConstants.PlayerState.PLAYING -> {
                         if (!currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
                     }
-                    com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState.PAUSED -> {
+                    PlayerConstants.PlayerState.PAUSED -> {
                         if (currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
+                    }
+                    PlayerConstants.PlayerState.ENDED -> {
+                        onAction(VideoPlayerAction.NextSong)
                     }
                     else -> {}
                 }

@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.vintageradioapp.ui.VideoPlayerScreen
 import com.example.vintageradioapp.ui.VideoPlayerViewModel
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
