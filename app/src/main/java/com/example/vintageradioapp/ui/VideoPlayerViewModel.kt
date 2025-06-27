@@ -27,13 +27,13 @@ class VideoPlayerViewModel(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             try {
-                val songs = songParser.parseSongs()
+                val songs = songParser.parseSongs().shuffled() // Shuffle the songs
                 if (songs.isNotEmpty()) {
                     _state.update {
                         it.copy(
                             songs = songs,
                             isLoading = false,
-                            currentSongIndex = 0,
+                            currentSongIndex = 0, // Start with the first song of the shuffled list
                             currentPlaybackTimeSeconds = 0,
                             totalDurationSeconds = 0, // Will be updated by player
                             error = null

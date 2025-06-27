@@ -31,6 +31,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import android.app.Activity
+import android.content.pm.ActivityInfo
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -49,7 +51,22 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 @Composable
+fun LockScreenOrientation(orientation: Int) {
+    val context = LocalContext.current
+    DisposableEffect(Unit) {
+        val activity = context as? Activity ?: return@DisposableEffect onDispose {}
+        val originalOrientation = activity.requestedOrientation
+        activity.requestedOrientation = orientation
+        onDispose {
+            // Restore original orientation when composable leaves the composition
+            activity.requestedOrientation = originalOrientation
+        }
+    }
+}
+
+@Composable
 fun VideoPlayerScreen(viewModel: VideoPlayerViewModel) {
+    LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
     val state by viewModel.state.collectAsState()
     VideoPlayerScreenContent(state = state, onAction = viewModel::onAction)
 }
@@ -68,11 +85,12 @@ fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerActi
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 playerRef = youTubePlayer
                 state.currentSong?.let { song ->
-                    // Auto-play only if isPlaying is true or if it's the initial load of a song in a "play" state
+                    // When player is ready, load or cue based on current isPlaying state.
+                    // This ensures that if a song is selected while paused, it cues; if playing, it loads and plays.
                     if (state.isPlaying) {
-                         youTubePlayer.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+                        youTubePlayer.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
                     } else {
-                         youTubePlayer.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+                        youTubePlayer.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
                     }
                 }
             }
@@ -129,15 +147,20 @@ fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerActi
         }
     }
 
-    // Effect to handle play/pause commands from ViewModel
+    // Effect to handle play/pause commands from ViewModel and song changes.
+    // This uses loadVideo when isPlaying becomes true, which is more assertive for starting playback,
+    // especially after a seek or when a new song is loaded while in play mode.
+    // It's keyed by isPlaying, playerRef (which changes on new song), and currentSong's ID.
     LaunchedEffect(state.isPlaying, playerRef, state.currentSong?.youtubeId) {
         playerRef?.let { player ->
             state.currentSong?.let { song ->
                 if (state.isPlaying) {
-                    // If player is not already playing this song, load it. Otherwise, just play.
-                    // This also handles the case where a song is loaded while isPlaying is already true.
-                     player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat()) // loadVideo also starts playback
+                    // When isPlaying becomes true, or song changes while isPlaying is true,
+                    // load the video from the current playback time.
+                    // This ensures that after a seek and then play, or new song, playback starts correctly.
+                    player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
                 } else {
+                    // If isPlaying is false, ensure the player is paused.
                     player.pause()
                 }
             }
