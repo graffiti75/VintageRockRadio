@@ -78,21 +78,14 @@ fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerActi
     var playerRef by remember { mutableStateOf<YouTubePlayer?>(null) }
 
     val lifecycleOwner = LocalLifecycleOwner.current
+    // Removed var localPlayerRef, it was redundant. playerRef is the correct state holder.
 
-    // Player Lifecycle Management tied to Composable lifecycle & app lifecycle
-    DisposableEffect(key1 = lifecycleOwner, key2 = state.currentSong?.youtubeId) {
+    // One-time setup for the YouTubePlayerView and listeners
+    DisposableEffect(lifecycleOwner) {
         val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                playerRef = youTubePlayer
-                state.currentSong?.let { song ->
-                    // When player is ready, load or cue based on current isPlaying state.
-                    // This ensures that if a song is selected while paused, it cues; if playing, it loads and plays.
-                    if (state.isPlaying) {
-                        youTubePlayer.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-                    } else {
-                        youTubePlayer.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-                    }
-                }
+                playerRef = youTubePlayer // Update the stateful playerRef
+                // Initial song load/cue will be handled by LaunchedEffect(playerRef, state.currentSong)
             }
 
             override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
@@ -147,23 +140,38 @@ fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerActi
         }
     }
 
-    // Effect to handle play/pause commands from ViewModel and song changes.
-    // This uses loadVideo when isPlaying becomes true, which is more assertive for starting playback,
-    // especially after a seek or when a new song is loaded while in play mode.
-    // It's keyed by isPlaying, playerRef (which changes on new song), and currentSong's ID.
-    LaunchedEffect(state.isPlaying, playerRef, state.currentSong?.youtubeId) {
+    // Effect 1: Handles loading/cueing of new songs or initial song when player is ready.
+    LaunchedEffect(playerRef, state.currentSong) {
         playerRef?.let { player ->
             state.currentSong?.let { song ->
-                if (state.isPlaying) {
-                    // When isPlaying becomes true, or song changes while isPlaying is true,
-                    // load the video from the current playback time.
-                    // This ensures that after a seek and then play, or new song, playback starts correctly.
+                // When player is ready, or song changes, load/cue it.
+                // state.currentPlaybackTimeSeconds is relevant here (e.g. 0 for new song from ViewModel).
+                if (state.isPlaying) { // Check current isPlaying state at the moment of song load/change
                     player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
                 } else {
-                    // If isPlaying is false, ensure the player is paused.
+                    player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+                }
+            }
+            // If playerRef is valid but currentSong is null, do nothing. Player would be idle.
+        }
+    }
+
+    // Effect 2: Handles play/pause commands based on state.isPlaying changes.
+    // Uses loadVideo for play to be more assertive, especially after seeks.
+    LaunchedEffect(playerRef, state.isPlaying) {
+        playerRef?.let { player ->
+            state.currentSong?.let { song -> // Ensure currentSong is available for loadVideo
+                if (state.isPlaying) {
+                    // Using loadVideo here to handle playing from specific time (after seek)
+                    // or resuming. This was found to be more robust for the "1-second play" bug.
+                    player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+                } else {
+                    // If isPlaying is false, pause the player.
+                    // Effect 1 handles cueing if the song changes while paused.
                     player.pause()
                 }
             }
+            // If currentSong is null, do nothing.
         }
     }
 
