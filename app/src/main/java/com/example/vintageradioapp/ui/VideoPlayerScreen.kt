@@ -49,6 +49,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import kotlinx.coroutines.delay // Added for the delay workaround
 
 @Composable
 fun LockScreenOrientation(orientation: Int) {
@@ -158,13 +159,19 @@ fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerActi
 
     // Effect 2: Handles play/pause commands based on state.isPlaying changes.
     // Uses loadVideo for play to be more assertive, especially after seeks.
+    // Includes a delay when transitioning to play, as a workaround for potential library bugs.
     LaunchedEffect(playerRef, state.isPlaying) {
         playerRef?.let { player ->
             state.currentSong?.let { song -> // Ensure currentSong is available for loadVideo
                 if (state.isPlaying) {
+                    // Workaround for known library issue: delay before loadVideo after seek/play.
+                    delay(150L) // Delay for 150 milliseconds
                     // Using loadVideo here to handle playing from specific time (after seek)
                     // or resuming. This was found to be more robust for the "1-second play" bug.
-                    player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+                    // Ensure playerRef is still valid after delay, though LaunchedEffect handles cancellation.
+                    if (playerRef != null) { // Re-check playerRef after delay, good practice
+                        player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+                    }
                 } else {
                     // If isPlaying is false, pause the player.
                     // Effect 1 handles cueing if the song changes while paused.
