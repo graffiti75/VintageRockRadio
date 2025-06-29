@@ -73,7 +73,15 @@ class VideoPlayerViewModel(
         when (action) {
             is VideoPlayerAction.PlayPause -> {
                 if (state.value.songs.isEmpty()) return // No action if no songs
-                _state.update { it.copy(isPlaying = !it.isPlaying) }
+                // If already playing, pause. If paused, play.
+                val newIsPlaying = !state.value.isPlaying
+                _state.update { it.copy(isPlaying = newIsPlaying) }
+            }
+            is VideoPlayerAction.SetPlaying -> {
+                if (state.value.songs.isEmpty()) return
+                if (state.value.isPlaying != action.playing) {
+                    _state.update { it.copy(isPlaying = action.playing) }
+                }
             }
             is VideoPlayerAction.NextSong -> {
                 if (state.value.songs.isEmpty()) return

@@ -172,34 +172,57 @@ fun YoutubeListenerDisposableEffect(
 				youTubePlayer: YouTubePlayer,
 				playerState: PlayerConstants.PlayerState
 			) {
-				val isPlayingInViewModel = currentIsPlayingState.value // Use the updated state
+				val isPlayingInViewModel = currentIsPlayingState.value
 				when (playerState) {
 					PlayerConstants.PlayerState.PLAYING -> {
-						if (!isPlayingInViewModel) onAction(VideoPlayerAction.PlayPause)
+						if (!isPlayingInViewModel) {
+							// Player started playing (e.g., due to external interaction or recovery)
+							// Sync ViewModel to playing state
+							onAction(VideoPlayerAction.SetPlaying(true))
+						}
 					}
 					PlayerConstants.PlayerState.PAUSED -> {
-						if (isPlayingInViewModel) onAction(VideoPlayerAction.PlayPause)
+						// Player paused (e.g., due to external interaction or end of buffer)
+						// Sync ViewModel to paused state, but only if VM thought it should be playing
+						if (isPlayingInViewModel) {
+							onAction(VideoPlayerAction.SetPlaying(false))
+						}
 					}
 					PlayerConstants.PlayerState.ENDED -> {
+						// When video ends, go to the next song
 						onAction(VideoPlayerAction.NextSong)
 					}
+					// VIDEO_CUED is a common state after loadVideo with autoplay(0).
+					// UNSTARTED is the initial state.
+					// BUFFERING, UNKNOWN, VIDEO_DATA_LOADED are other states.
+					// We generally don't need to fight these states unless they
+					// contradict our ViewModel's isPlaying expectation for PLAYING/PAUSED.
 					else -> {}
 				}
 			}
 		}
 
 		youTubePlayerView.enableAutomaticInitialization = false
+		// Ensure autoplay(0) is critical here. We control play/pause via LaunchedEffects.
 		val options = IFramePlayerOptions.Builder().controls(0).autoplay(0).build()
 		youTubePlayerView.initialize(youtubePlayerListener, options)
 
 		val lifecycleObserver = LifecycleEventObserver { _, event ->
 			when (event) {
-				Lifecycle.Event.ON_RESUME -> youtubePlayerState.value?.let { player ->
-					if (state.isPlaying) {
-						player.play()
+				Lifecycle.Event.ON_RESUME -> {
+					// When app resumes, if ViewModel indicates playing, ensure player plays.
+					// This is important if player was paused by ON_PAUSE.
+					youtubePlayerState.value?.let { player ->
+						if (state.isPlaying) { // Check current state from VM
+							player.play()
+						}
 					}
 				}
-				Lifecycle.Event.ON_PAUSE -> youtubePlayerState.value?.pause()
+				Lifecycle.Event.ON_PAUSE -> {
+					// When app pauses, always pause the player to save resources and follow platform conventions.
+					// The ViewModel's isPlaying state remains true if it was playing.
+					youtubePlayerState.value?.pause()
+				}
 				else -> {}
 			}
 		}
@@ -295,22 +318,29 @@ private fun RowScope.YoutubePlayerContent(
 ) {
 	Column(
 		modifier = Modifier
-			.weight(0.65f)
-			.fillMaxHeight()
+			.weight(0.65f) // This Column takes 65% of the width
+			.fillMaxHeight() // It will fill the available height
 			.padding(end = 8.dp)
 	) {
+		// Video Player takes a weighted portion of the vertical space
 		AndroidView(
 			factory = { youTubePlayerView },
 			modifier = Modifier
 				.fillMaxWidth()
-				.aspectRatio(16 / 9f)
+				.aspectRatio(16 / 9f) // Maintain aspect ratio
+				.weight(0.7f) // Takes 70% of the vertical space in this Column
 				.background(Color.Black)
 		)
-		Spacer(modifier = Modifier.height(16.dp))
-		currentSong?.let { song ->
-			Column(modifier = Modifier
+		Spacer(modifier = Modifier.height(8.dp))
+
+		// Song details take the remaining weighted portion
+		Column(
+			modifier = Modifier
 				.fillMaxWidth()
-				.padding(8.dp)) {
+				.weight(0.3f) // Takes 30% of the vertical space in this Column
+				.padding(horizontal = 8.dp)
+		) {
+			currentSong?.let { song ->
 				Text(song.band, style = MaterialTheme.typography.displayMedium)
 				Text(song.songTitle, style = MaterialTheme.typography.titleLarge)
 				Spacer(modifier = Modifier.height(4.dp))
@@ -323,19 +353,17 @@ private fun RowScope.YoutubePlayerContent(
 					"ID: ${song.youtubeId}",
 					style = MaterialTheme.typography.bodySmall
 				)
+			} ?: Box( // Placeholder if no song, fills the details section
+				modifier = Modifier
+					.fillMaxSize() // Fill the 30% allocated space
+					.padding(8.dp)
+			) {
+				Text(
+					"No song selected.",
+					style = MaterialTheme.typography.bodyLarge,
+					modifier = Modifier.align(Alignment.Center)
+				)
 			}
-		} ?: Box(
-			modifier = Modifier
-				.fillMaxWidth()
-				.padding(8.dp)
-				.heightIn(min = 100.dp)
-		) {
-			// Ensure some space if no song
-			Text(
-				"No song selected.",
-				style = MaterialTheme.typography.bodyLarge,
-				modifier = Modifier.align(Alignment.Center)
-			)
 		}
 	}
 }
