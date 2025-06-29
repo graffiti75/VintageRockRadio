@@ -99,13 +99,17 @@ fun VideoPlayerScreenContent(
 	)
 
 	// Effect to load/cue videos when the current song changes
-	LaunchedEffect(youtubePlayer, state.currentSong) {
+	LaunchedEffect(key1 = youtubePlayer, key2 = state.currentSong) {
 		youtubePlayer?.let { player ->
 			state.currentSong?.let { song ->
+				// ViewModel resets currentPlaybackTimeSeconds to 0 for new songs.
+				// So, state.currentPlaybackTimeSeconds should be 0 here.
 				if (state.isPlaying) {
-					// If isPlaying is true (e.g., new song from next/prev), load and autoplay.
+					// If isPlaying is true (e.g., new song from next/prev), load and then explicitly play.
 					player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+					player.play() // Explicitly call play
 				} else {
+					// If not playing, just cue the video.
 					player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
 				}
 			}
@@ -113,7 +117,9 @@ fun VideoPlayerScreenContent(
 	}
 
 	// Effect to handle play/pause state changes triggered by UI or other events (like lifecycle)
-	LaunchedEffect(youtubePlayer, state.isPlaying) {
+	// This effect ensures the player's state (play/pause) matches the ViewModel's isPlaying state.
+	// It's important for direct play/pause button clicks and lifecycle events.
+	LaunchedEffect(key1 = youtubePlayer, key2 = state.isPlaying) {
 		youtubePlayer?.let { player ->
 			// This effect ensures the player's state matches the ViewModel's isPlaying state.
 			// This is primarily for when the user clicks Play/Pause or for lifecycle events (handled in DisposableEffect).
@@ -176,16 +182,26 @@ fun YoutubeListenerDisposableEffect(
 				when (playerState) {
 					PlayerConstants.PlayerState.PLAYING -> {
 						if (!isPlayingInViewModel) {
-							// Player started playing (e.g., due to external interaction or recovery)
-							// Sync ViewModel to playing state
 							onAction(VideoPlayerAction.SetPlaying(true))
 						}
 					}
 					PlayerConstants.PlayerState.PAUSED -> {
-						// Player paused (e.g., due to external interaction or end of buffer)
-						// Sync ViewModel to paused state, but only if VM thought it should be playing
+						val isLikelyNewSong = state.currentPlaybackTimeSeconds < 2 // Heuristic for new song
 						if (isPlayingInViewModel) {
-							onAction(VideoPlayerAction.SetPlaying(false))
+							if (isLikelyNewSong) {
+								// If a new song was likely just loaded and meant to play,
+								// but player emits PAUSED, this might be a transient state
+								// before our explicit play() command takes full effect.
+								// Aggressively setting ViewModel's isPlaying to false here
+								// would fight the intention to play.
+								// The LaunchedEffect for state.isPlaying (being true) should
+								// ensure player.play() is called. We let that effect win.
+								// No action here, to avoid counteracting the play command.
+							} else {
+								// Player paused, and it's not immediately after a new song load
+								// intended for playback. Sync ViewModel to paused.
+								onAction(VideoPlayerAction.SetPlaying(false))
+							}
 						}
 					}
 					PlayerConstants.PlayerState.ENDED -> {
