@@ -9,7 +9,8 @@ sealed interface VideoPlayerAction {
     data class UpdateTotalDuration(val durationSeconds: Int) : VideoPlayerAction
     data class OnError(val error: String) : VideoPlayerAction
     data object DismissError : VideoPlayerAction
-    data class SetPlaying(val playing: Boolean) : VideoPlayerAction
+    data class SetPlaying(val playing: Boolean) : VideoPlayerAction // For onStateChange synchronization
     data object AppWentToBackground : VideoPlayerAction
     data object AppCameToForeground : VideoPlayerAction
+    data object RestartTriggerConsumed : VideoPlayerAction
 }

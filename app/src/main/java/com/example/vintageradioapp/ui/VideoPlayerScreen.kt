@@ -98,26 +98,33 @@ fun VideoPlayerScreenContent(
 		youtubePlayerState = youtubePlayerState
 	)
 
-	// Effect to load/cue videos when the current song changes or playback time is reset
-	LaunchedEffect(
-		key1 = youtubePlayer,
-		key2 = state.currentSong,
-		key3 = state.currentPlaybackTimeSeconds // React to playback time changes for restart
-	) {
+	// Effect to load/cue videos when the current song (identified by youtubeId) changes.
+	// This ensures the player is prepared with the new song's content, cued at the start.
+	LaunchedEffect(key1 = youtubePlayer, key2 = state.currentSong?.youtubeId) {
 		youtubePlayer?.let { player ->
 			state.currentSong?.let { song ->
-				// This effect is only responsible for ensuring the correct video is loaded/cued
-				// at the correct time. It does not call play() or pause().
-				// The other LaunchedEffect (keyed on state.isPlaying) will handle playback.
-				player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+				// Cue the new song at the beginning. Actual playback (play/pause)
+				// is handled by other effects (state.isPlaying or state.triggerRestart).
+				player.cueVideo(song.youtubeId, 0f)
 			}
 		}
 	}
 
-	// Effect to handle play/pause state based on ViewModel's isPlaying state
-	LaunchedEffect(key1 = youtubePlayer, key2 = state.isPlaying) {
+	// LaunchedEffect to handle restarting the video
+	LaunchedEffect(key1 = youtubePlayer, key2 = state.triggerRestart) {
+		if (state.triggerRestart && youtubePlayer != null && state.currentSong != null) {
+			youtubePlayer.loadVideo(state.currentSong!!.youtubeId, 0f)
+			youtubePlayer.play()
+			onAction(VideoPlayerAction.RestartTriggerConsumed)
+		}
+	}
+
+	// Effect to handle play/pause state changes triggered by UI or other events (like lifecycle)
+	LaunchedEffect(youtubePlayer, state.isPlaying) {
 		youtubePlayer?.let { player ->
-			if (state.currentSong != null) { // Only attempt to play/pause if a song is available
+			// This effect ensures the player's state matches the ViewModel's isPlaying state.
+			// This is primarily for when the user clicks Play/Pause or for lifecycle events (handled in DisposableEffect).
+			if (state.currentSong != null) { // Only attempt to play/pause if a song is loaded/cued
 				if (state.isPlaying) {
 					player.play()
 				} else {
@@ -176,44 +183,31 @@ fun YoutubeListenerDisposableEffect(
 				when (playerState) {
 					PlayerConstants.PlayerState.PLAYING -> {
 						if (!isPlayingInViewModel) {
-							onAction(VideoPlayerAction.SetPlaying(true))
-						}
+                            onAction(VideoPlayerAction.SetPlaying(true))
+                        }
 					}
 					PlayerConstants.PlayerState.PAUSED -> {
-						val isLikelyNewSong = state.currentPlaybackTimeSeconds < 2 // Heuristic for new song
+						val isLikelyNewSong = state.currentPlaybackTimeSeconds < 2 // Heuristic
 						if (isPlayingInViewModel) {
 							if (isLikelyNewSong) {
-								// If a new song was likely just loaded and meant to play,
-								// but player emits PAUSED, this might be a transient state
-								// before our explicit play() command takes full effect.
-								// Aggressively setting ViewModel's isPlaying to false here
-								// would fight the intention to play.
-								// The LaunchedEffect for state.isPlaying (being true) should
-								// ensure player.play() is called. We let that effect win.
-								// No action here, to avoid counteracting the play command.
+								// New song likely loading and meant to play; player might be PAUSED transiently.
+								// ViewModel's state.isPlaying is true, so LaunchedEffect for it will call play().
+								// Avoid SetPlaying(false) here to prevent fighting that.
 							} else {
-								// Player paused, and it's not immediately after a new song load
-								// intended for playback. Sync ViewModel to paused.
+								// Standard pause (not a new song loading). Sync VM.
 								onAction(VideoPlayerAction.SetPlaying(false))
 							}
 						}
 					}
 					PlayerConstants.PlayerState.ENDED -> {
-						// When video ends, go to the next song
 						onAction(VideoPlayerAction.NextSong)
 					}
-					// VIDEO_CUED is a common state after loadVideo with autoplay(0).
-					// UNSTARTED is the initial state.
-					// BUFFERING, UNKNOWN, VIDEO_DATA_LOADED are other states.
-					// We generally don't need to fight these states unless they
-					// contradict our ViewModel's isPlaying expectation for PLAYING/PAUSED.
 					else -> {}
 				}
 			}
 		}
 
 		youTubePlayerView.enableAutomaticInitialization = false
-		// Ensure autoplay(0) is critical here. We control play/pause via LaunchedEffects.
 		val options = IFramePlayerOptions.Builder().controls(0).autoplay(0).build()
 		youTubePlayerView.initialize(youtubePlayerListener, options)
 
@@ -223,7 +217,7 @@ fun YoutubeListenerDisposableEffect(
 					onAction(VideoPlayerAction.AppCameToForeground)
 				}
 				Lifecycle.Event.ON_PAUSE -> {
-					youtubePlayerState.value?.pause() // Still directly pause the player
+					youtubePlayerState.value?.pause() // Directly pause the player
 					onAction(VideoPlayerAction.AppWentToBackground)
 				}
 				else -> {}
@@ -321,29 +315,22 @@ private fun RowScope.YoutubePlayerContent(
 ) {
 	Column(
 		modifier = Modifier
-			.weight(0.65f) // This Column takes 65% of the width
-			.fillMaxHeight() // It will fill the available height
+			.weight(0.65f)
+			.fillMaxHeight()
 			.padding(end = 8.dp)
 	) {
-		// Video Player takes a weighted portion of the vertical space
 		AndroidView(
 			factory = { youTubePlayerView },
 			modifier = Modifier
 				.fillMaxWidth()
-				.aspectRatio(16 / 9f) // Maintain aspect ratio
-				.weight(0.7f) // Takes 70% of the vertical space in this Column
+				.aspectRatio(16 / 9f)
 				.background(Color.Black)
 		)
-		Spacer(modifier = Modifier.height(8.dp))
-
-		// Song details take the remaining weighted portion
-		Column(
-			modifier = Modifier
+		Spacer(modifier = Modifier.height(16.dp))
+		currentSong?.let { song ->
+			Column(modifier = Modifier
 				.fillMaxWidth()
-				.weight(0.3f) // Takes 30% of the vertical space in this Column
-				.padding(horizontal = 8.dp)
-		) {
-			currentSong?.let { song ->
+				.padding(8.dp)) {
 				Text(song.band, style = MaterialTheme.typography.displayMedium)
 				Text(song.songTitle, style = MaterialTheme.typography.titleLarge)
 				Spacer(modifier = Modifier.height(4.dp))
@@ -356,17 +343,19 @@ private fun RowScope.YoutubePlayerContent(
 					"ID: ${song.youtubeId}",
 					style = MaterialTheme.typography.bodySmall
 				)
-			} ?: Box( // Placeholder if no song, fills the details section
-				modifier = Modifier
-					.fillMaxSize() // Fill the 30% allocated space
-					.padding(8.dp)
-			) {
-				Text(
-					"No song selected.",
-					style = MaterialTheme.typography.bodyLarge,
-					modifier = Modifier.align(Alignment.Center)
-				)
 			}
+		} ?: Box(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(8.dp)
+				.heightIn(min = 100.dp)
+		) {
+			// Ensure some space if no song
+			Text(
+				"No song selected.",
+				style = MaterialTheme.typography.bodyLarge,
+				modifier = Modifier.align(Alignment.Center)
+			)
 		}
 	}
 }

@@ -74,12 +74,10 @@ class VideoPlayerViewModel(
     fun onAction(action: VideoPlayerAction) {
         when (action) {
             is VideoPlayerAction.PlayPause -> {
-                if (state.value.songs.isEmpty()) return // No action if no songs
-                // If already playing, pause. If paused, play.
-                val newIsPlaying = !state.value.isPlaying
-                _state.update { it.copy(isPlaying = newIsPlaying) }
+                if (state.value.songs.isEmpty()) return
+                _state.update { it.copy(isPlaying = !it.isPlaying) }
             }
-            is VideoPlayerAction.SetPlaying -> {
+            is VideoPlayerAction.SetPlaying -> { // Needed for onStateChange synchronization
                 if (state.value.songs.isEmpty()) return
                 if (state.value.isPlaying != action.playing) {
                     _state.update { it.copy(isPlaying = action.playing) }
@@ -92,12 +90,15 @@ class VideoPlayerViewModel(
                 if (wasPlayingBeforeBackground && state.value.currentSong != null) {
                     _state.update {
                         it.copy(
-                            currentPlaybackTimeSeconds = 0, // Restart the song
-                            isPlaying = true // Ensure it plays
+                            triggerRestart = true, // Signal UI to restart
+                            isPlaying = true       // Ensure it plays after restart
                         )
                     }
                 }
                 wasPlayingBeforeBackground = false // Reset flag
+            }
+            is VideoPlayerAction.RestartTriggerConsumed -> {
+                _state.update { it.copy(triggerRestart = false) }
             }
             is VideoPlayerAction.NextSong -> {
                 if (state.value.songs.isEmpty()) return
@@ -107,7 +108,7 @@ class VideoPlayerViewModel(
                 if (state.value.songs.isEmpty()) return
                 goToPreviousSong()
             }
-            is VideoPlayerAction.SeekTo -> { // User finished seeking with slider
+            is VideoPlayerAction.SeekTo -> {
                 if (state.value.songs.isEmpty()) return
                 _state.update {
                     it.copy(
@@ -115,11 +116,13 @@ class VideoPlayerViewModel(
                     )
                 }
             }
-            is VideoPlayerAction.UpdatePlaybackTime -> { // Player reported time
+            is VideoPlayerAction.UpdatePlaybackTime -> {
                  if (state.value.songs.isEmpty()) return
                 _state.update {
                     it.copy(
-                        currentPlaybackTimeSeconds = action.timeSeconds
+                        currentPlaybackTimeSeconds = action.timeSeconds,
+                        // If time is updating, it means restart is done or wasn't triggered
+                        triggerRestart = if (action.timeSeconds > 0) false else state.value.triggerRestart
                     )
                 }
             }
@@ -136,11 +139,13 @@ class VideoPlayerViewModel(
                     it.copy(
                         error = action.error,
                         isLoading = false,
-                        isPlaying = false
+                        isPlaying = false,
+                        triggerRestart = false
                     )
                 }
             }
             is VideoPlayerAction.DismissError -> {
+                _state.update { it.copy(error = null, triggerRestart = false) } // Also clear triggerRestart
                 goToNextSong()
             }
         }
