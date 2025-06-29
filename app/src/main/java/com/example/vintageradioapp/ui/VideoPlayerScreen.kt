@@ -168,19 +168,36 @@ fun VideoPlayerScreenContent(
 	}
 	 //
 
+	// Effect to load/cue videos when the current song changes
 	LaunchedEffect(youtubePlayer, state.currentSong) {
 		youtubePlayer?.let { player ->
 			state.currentSong?.let { song ->
 				if (state.isPlaying) {
+					// If isPlaying is true (e.g., new song from next/prev), load and autoplay
 					player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-//					println("-------------------- !!! Pause")
 				} else {
+					// If isPlaying is false, just cue the video
 					player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-//					println("-------------------- >>> Play")
 				}
 			}
 		}
 	}
+
+	// Effect to handle play/pause state changes triggered by UI or other events (like lifecycle)
+	LaunchedEffect(youtubePlayer, state.isPlaying) {
+		youtubePlayer?.let { player ->
+			// This effect ensures the player's state matches the ViewModel's isPlaying state.
+			// This is primarily for when the user clicks Play/Pause or for lifecycle events (handled in DisposableEffect).
+			if (state.currentSong != null) { // Only attempt to play/pause if a song is loaded/cued
+				if (state.isPlaying) {
+					player.play()
+				} else {
+					player.pause()
+				}
+			}
+		}
+	}
+
 	VideoPlayerContentUI(
 		state = state,
 		onAction = onAction,
