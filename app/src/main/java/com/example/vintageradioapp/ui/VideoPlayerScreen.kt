@@ -45,6 +45,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
@@ -85,33 +86,26 @@ fun VideoPlayerScreenContent(
 ) {
 	val context = LocalContext.current
 	val youTubePlayerView = remember { YouTubePlayerView(context) }
-	// Define the MutableState instance explicitly
 	val youtubePlayerState = remember { mutableStateOf<YouTubePlayer?>(null) }
-	// Use this to access the player instance in LaunchedEffects, etc.
 	val youtubePlayer = youtubePlayerState.value
-	val lifecycleOwner = LocalLifecycleOwner.current
-
-	// Use rememberUpdatedState to ensure the listener always has the latest isPlaying state
-	// without causing the DisposableEffect to re-run unnecessarily.
-	val currentIsPlayingState = rememberUpdatedState(state.isPlaying)
+	val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
 
 	YoutubeListenerDisposableEffect(
 		state = state,
 		onAction = onAction,
 		lifecycleOwner = lifecycleOwner,
 		youTubePlayerView = youTubePlayerView,
-		youtubePlayerState = youtubePlayerState // Pass the actual MutableState instance
+		youtubePlayerState = youtubePlayerState
 	)
 
 	// Effect to load/cue videos when the current song changes
-	LaunchedEffect(youtubePlayer, state.currentSong) { // youtubePlayer here is youtubePlayerState.value
+	LaunchedEffect(youtubePlayer, state.currentSong) {
 		youtubePlayer?.let { player ->
 			state.currentSong?.let { song ->
 				if (state.isPlaying) {
-					// If isPlaying is true (e.g., new song from next/prev), load and autoplay
+					// If isPlaying is true (e.g., new song from next/prev), load and autoplay.
 					player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
 				} else {
-					// If isPlaying is false, just cue the video
 					player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
 				}
 			}
