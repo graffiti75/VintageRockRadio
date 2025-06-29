@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -38,14 +37,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
@@ -344,38 +341,44 @@ private fun RowScope.YoutubePlayerContent(
 			modifier = Modifier
 				.fillMaxWidth()
 				.aspectRatio(16 / 9f) // Maintain aspect ratio
-				.weight(0.7f) // Takes 70% of the vertical space in this Column
+				.weight(0.5f) // Takes 50% of the vertical space in this Column
 				.background(Color.Black)
 		)
-		Spacer(modifier = Modifier.height(8.dp))
+		Spacer(modifier = Modifier.height(48.dp))
 
-		// Song details take the remaining weighted portion
+		// Song details take the remaining weighted portion.
 		Column(
 			modifier = Modifier
 				.fillMaxWidth()
-				.weight(0.3f) // Takes 30% of the vertical space in this Column
+				.weight(0.2f) // Takes 40% of the vertical space in this Column
 				.padding(horizontal = 8.dp)
 		) {
 			currentSong?.let { song ->
-				Text(song.band, style = MaterialTheme.typography.displayMedium)
-				Text(song.songTitle, style = MaterialTheme.typography.titleLarge)
+				Text(
+					text = song.band,
+					style = MaterialTheme.typography.displayMedium
+				)
+				Text(
+					text = song.songTitle,
+					style = MaterialTheme.typography.titleLarge
+				)
 				Spacer(modifier = Modifier.height(4.dp))
 				Text(
-					"Year: ${song.year} (${song.decade}s)",
+					text = "Year: ${song.year} (${song.decade}s)",
 					style = MaterialTheme.typography.bodyMedium
 				)
 				Spacer(modifier = Modifier.height(4.dp))
 				Text(
-					"ID: ${song.youtubeId}",
+					text = "ID: ${song.youtubeId}",
 					style = MaterialTheme.typography.bodySmall
 				)
 			} ?: Box( // Placeholder if no song, fills the details section
 				modifier = Modifier
-					.fillMaxSize() // Fill the 30% allocated space
+					.fillMaxSize() // Fill the 40% allocated space
 					.padding(8.dp)
 			) {
 				Text(
-					"No song selected.",
+					text = "No song selected.",
 					style = MaterialTheme.typography.bodyLarge,
 					modifier = Modifier.align(Alignment.Center)
 				)

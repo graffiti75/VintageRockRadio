@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.collections.get
-import kotlin.text.set
 
 class VideoPlayerViewModel(
     application: Application
@@ -33,12 +31,7 @@ class VideoPlayerViewModel(
                 )
             }
             try {
-                val songs = songParser.parseSongs().shuffled().toMutableList().apply {
-                    if (isNotEmpty()) {
-                        this[0] = this[0].copy(youtubeId = "kDNnARSBamU")
-                    }
-                }
-                println("----- Loaded songs: ${songs}")
+                val songs = songParser.parseSongs().shuffled()
                 if (songs.isNotEmpty()) {
                     _state.update {
                         it.copy(
