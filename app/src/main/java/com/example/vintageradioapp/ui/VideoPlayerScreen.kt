@@ -32,6 +32,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -270,7 +271,6 @@ fun YoutubeListenerDisposableEffect(
 			when (event) {
 				Lifecycle.Event.ON_RESUME -> youtubePlayerState.value?.let { player ->
 					if (state.isPlaying) {
-//						println("-------------------- On Resume, playing again")
 						player.play()
 					}
 				}
@@ -305,10 +305,7 @@ private fun VideoPlayerContentUI(
 				color = MaterialTheme.colorScheme.primary
 			)
 		} else if (state.error != null) {
-			ErrorState(
-				state = state,
-				onAction = onAction
-			)
+			onAction(VideoPlayerAction.DismissError)
 		} else if (state.songs.isEmpty() && !state.isLoading) {
 			RetryState()
 		} else {
@@ -333,30 +330,6 @@ private fun VideoPlayerContentUI(
 					youtubePlayer = youtubePlayer
 				)
 			}
-		}
-	}
-}
-
-@Composable
-private fun ErrorState(
-	state: VideoPlayerState,
-	onAction: (VideoPlayerAction) -> Unit,
-) {
-	Column(
-		modifier = Modifier
-			.fillMaxSize()
-			.padding(16.dp),
-		verticalArrangement = Arrangement.Center,
-		horizontalAlignment = Alignment.CenterHorizontally
-	) {
-		Text(
-			text = "Error: ${state.error}",
-			color = MaterialTheme.colorScheme.error,
-			style = MaterialTheme.typography.bodyLarge
-		)
-		Spacer(modifier = Modifier.height(8.dp))
-		Button(onClick = { onAction(VideoPlayerAction.DismissError) }) {
-			Text("Dismiss", style = MaterialTheme.typography.labelLarge)
 		}
 	}
 }

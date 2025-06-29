@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.collections.get
+import kotlin.text.set
 
 class VideoPlayerViewModel(
     application: Application
@@ -25,9 +27,18 @@ class VideoPlayerViewModel(
 
     private fun loadSongs() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
+            _state.update {
+                it.copy(
+                    isLoading = true
+                )
+            }
             try {
-                val songs = songParser.parseSongs().shuffled() // Shuffle the songs
+                val songs = songParser.parseSongs().shuffled().toMutableList().apply {
+                    if (isNotEmpty()) {
+                        this[0] = this[0].copy(youtubeId = "kDNnARSBamU")
+                    }
+                }
+                println("----- Loaded songs: ${songs}")
                 if (songs.isNotEmpty()) {
                     _state.update {
                         it.copy(
@@ -41,12 +52,18 @@ class VideoPlayerViewModel(
                     }
                 } else {
                     _state.update {
-                        it.copy(isLoading = false, error = "No songs found in ids.txt.")
+                        it.copy(
+                            isLoading = false,
+                            error = "No songs found in ids.txt."
+                        )
                     }
                 }
             } catch (e: Exception) {
                 _state.update {
-                    it.copy(isLoading = false, error = "Error loading songs: ${e.message}")
+                    it.copy(
+                        isLoading = false,
+                        error = "Error loading songs: ${e.message}"
+                    )
                 }
             }
         }
@@ -60,49 +77,74 @@ class VideoPlayerViewModel(
             }
             is VideoPlayerAction.NextSong -> {
                 if (state.value.songs.isEmpty()) return
-                _state.update { currentState ->
-                    val nextIndex = (currentState.currentSongIndex + 1) % currentState.songs.size
-                    currentState.copy(
-                        currentSongIndex = nextIndex,
-                        currentPlaybackTimeSeconds = 0, // Reset time for new song
-                        totalDurationSeconds = 0, // Reset duration for new song
-                        isPlaying = true // Auto-play next song
-                    )
-                }
+                goToNextSong()
             }
             is VideoPlayerAction.PreviousSong -> {
                 if (state.value.songs.isEmpty()) return
-                _state.update { currentState ->
-                    val prevIndex = (currentState.currentSongIndex - 1 + currentState.songs.size) % currentState.songs.size
-                    currentState.copy(
-                        currentSongIndex = prevIndex,
-                        currentPlaybackTimeSeconds = 0, // Reset time for new song
-                        totalDurationSeconds = 0, // Reset duration for new song
-                        isPlaying = true // Auto-play previous song
-                    )
-                }
+                goToPreviousSong()
             }
             is VideoPlayerAction.SeekTo -> { // User finished seeking with slider
                 if (state.value.songs.isEmpty()) return
-                _state.update { it.copy(currentPlaybackTimeSeconds = action.positionSeconds) }
-                // The player itself is commanded to seek from the UI (Slider's onValueChangeFinished)
+                _state.update {
+                    it.copy(
+                        currentPlaybackTimeSeconds = action.positionSeconds
+                    )
+                }
             }
             is VideoPlayerAction.UpdatePlaybackTime -> { // Player reported time
                  if (state.value.songs.isEmpty()) return
-                _state.update { it.copy(currentPlaybackTimeSeconds = action.timeSeconds) }
+                _state.update {
+                    it.copy(
+                        currentPlaybackTimeSeconds = action.timeSeconds
+                    )
+                }
             }
             is VideoPlayerAction.UpdateTotalDuration -> {
                  if (state.value.songs.isEmpty()) return
-                _state.update { it.copy(totalDurationSeconds = action.durationSeconds) }
+                _state.update {
+                    it.copy(
+                        totalDurationSeconds = action.durationSeconds
+                    )
+                }
             }
             is VideoPlayerAction.OnError -> {
-                _state.update { it.copy(error = action.error, isLoading = false, isPlaying = false) }
+                _state.update {
+                    it.copy(
+                        error = action.error,
+                        isLoading = false,
+                        isPlaying = false
+                    )
+                }
             }
             is VideoPlayerAction.DismissError -> {
-                _state.update { it.copy(error = null) }
-                // Optionally reload songs or go to a known state if error was critical
-                if (state.value.songs.isEmpty()) loadSongs()
+                goToNextSong()
             }
+        }
+    }
+
+    private fun goToPreviousSong() {
+        _state.update { currentState ->
+            val prevIndex = (currentState.currentSongIndex - 1 + currentState.songs.size) %
+                currentState.songs.size
+            currentState.copy(
+                currentSongIndex = prevIndex,
+                currentPlaybackTimeSeconds = 0, // Reset time for new song
+                totalDurationSeconds = 0, // Reset duration for new song
+                isPlaying = true // Auto-play previous song
+            )
+        }
+    }
+
+    private fun goToNextSong() {
+        _state.update { currentState ->
+            val nextIndex = (currentState.currentSongIndex + 1) % currentState.songs.size
+            currentState.copy(
+                currentSongIndex = nextIndex,
+                currentPlaybackTimeSeconds = 0, // Reset time for new song
+                totalDurationSeconds = 0, // Reset duration for new song
+                isPlaying = true, // Auto-play next song
+                error = null
+            )
         }
     }
 }
