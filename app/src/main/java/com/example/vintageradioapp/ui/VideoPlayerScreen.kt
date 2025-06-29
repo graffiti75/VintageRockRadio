@@ -1,10 +1,13 @@
 package com.example.vintageradioapp.ui
 
+import android.app.Activity
+import android.content.pm.ActivityInfo
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -24,15 +27,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import android.app.Activity
-import android.content.pm.ActivityInfo
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -42,6 +43,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -49,323 +52,611 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.coroutines.delay // Added for the delay workaround
 
 @Composable
 fun LockScreenOrientation(orientation: Int) {
-    val context = LocalContext.current
-    DisposableEffect(Unit) {
-        val activity = context as? Activity ?: return@DisposableEffect onDispose {}
-        val originalOrientation = activity.requestedOrientation
-        activity.requestedOrientation = orientation
-        onDispose {
-            // Restore original orientation when composable leaves the composition
-            activity.requestedOrientation = originalOrientation
-        }
-    }
+	val context = LocalContext.current
+	DisposableEffect(Unit) {
+		val activity = context as? Activity ?: return@DisposableEffect onDispose {}
+		val originalOrientation = activity.requestedOrientation
+		activity.requestedOrientation = orientation
+		onDispose {
+			// Restore original orientation when composable leaves the composition
+			activity.requestedOrientation = originalOrientation
+		}
+	}
 }
 
 @Composable
 fun VideoPlayerScreen(viewModel: VideoPlayerViewModel) {
-    LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-    val state by viewModel.state.collectAsState()
-    VideoPlayerScreenContent(state = state, onAction = viewModel::onAction)
+	LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+	val state by viewModel.state.collectAsStateWithLifecycle()
+	VideoPlayerScreenContent(
+		state = state,
+		onAction = viewModel::onAction
+	)
 }
 
 @Composable
-fun VideoPlayerScreenContent(state: VideoPlayerState, onAction: (VideoPlayerAction) -> Unit) {
-    val context = LocalContext.current
-    val youTubePlayerView = remember { YouTubePlayerView(context) }
-    var playerRef by remember { mutableStateOf<YouTubePlayer?>(null) }
+fun VideoPlayerScreenContent(
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit
+) {
+	val context = LocalContext.current
+	val youTubePlayerView = remember { YouTubePlayerView(context) }
+	var youtubePlayer by remember { mutableStateOf<YouTubePlayer?>(null) }
+	val lifecycleOwner = LocalLifecycleOwner.current
 
-    val lifecycleOwner = LocalLifecycleOwner.current
-    // Removed var localPlayerRef, it was redundant. playerRef is the correct state holder.
+	/*
+	YoutubeListenerDisposableEffect(
+		state = state,
+		onAction = onAction,
+		lifecycleOwner = lifecycleOwner,
+		youTubePlayerView = youTubePlayerView,
+		youtubePlayerState = remember { mutableStateOf(youtubePlayer) }
+	)
+	 */
 
-    // One-time setup for the YouTubePlayerView and listeners
-    DisposableEffect(lifecycleOwner) {
-        val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                playerRef = youTubePlayer // Update the stateful playerRef
-                // Initial song load/cue will be handled by LaunchedEffect(playerRef, state.currentSong)
-            }
+	//
+	// One-time setup for the YouTubePlayerView and listeners
+	DisposableEffect(lifecycleOwner) {
+		val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
+			override fun onReady(youTubePlayer: YouTubePlayer) {
+				youtubePlayer = youTubePlayer
+				// Initial song load/cue will be handled by LaunchedEffect(youtubePlayer, state.currentSong)
+			}
 
-            override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
-                onAction(VideoPlayerAction.UpdateTotalDuration(duration.toInt()))
-            }
+			override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
+				onAction(VideoPlayerAction.UpdateTotalDuration(duration.toInt()))
+			}
 
-            override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
-                onAction(VideoPlayerAction.UpdatePlaybackTime(second.toInt()))
-            }
+			override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
+				onAction(VideoPlayerAction.UpdatePlaybackTime(second.toInt()))
+			}
 
-            override fun onError(youTubePlayer: YouTubePlayer, error: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerError) {
-                onAction(VideoPlayerAction.OnError("YT Player Error: ${error.name}"))
-            }
+			override fun onError(
+				youTubePlayer: YouTubePlayer,
+				error: PlayerConstants.PlayerError
+			) {
+				onAction(VideoPlayerAction.OnError("YT Player Error: ${error.name}"))
+			}
 
-            override fun onStateChange(youTubePlayer: YouTubePlayer, playerState: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState) {
-                val currentViewModelIsPlaying = state.isPlaying
-                when (playerState) {
-                    PlayerConstants.PlayerState.PLAYING -> {
-                        if (!currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
-                    }
-                    PlayerConstants.PlayerState.PAUSED -> {
-                        if (currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
-                    }
-                    PlayerConstants.PlayerState.ENDED -> {
-                        onAction(VideoPlayerAction.NextSong)
-                    }
-                    else -> {}
-                }
-            }
-        }
+			override fun onStateChange(
+				youTubePlayer: YouTubePlayer,
+				playerState: PlayerConstants.PlayerState
+			) {
+				val currentViewModelIsPlaying = state.isPlaying
+				when (playerState) {
+					PlayerConstants.PlayerState.PLAYING -> {
+						if (!currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
+					}
+					PlayerConstants.PlayerState.PAUSED -> {
+						if (currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
+					}
+					PlayerConstants.PlayerState.ENDED -> {
+						onAction(VideoPlayerAction.NextSong)
+					}
+					else -> {}
+				}
+			}
+		}
 
-        youTubePlayerView.enableAutomaticInitialization = false
-        // Controls=0: Disable native controls. Autoplay=0: Don't autoplay unless logic dictates.
-        val options = IFramePlayerOptions.Builder().controls(0).autoplay(0).build()
-        youTubePlayerView.initialize(youtubePlayerListener, options)
+		youTubePlayerView.enableAutomaticInitialization = false
+		// Controls=0: Disable native controls.
+		// Autoplay=0: Don't autoplay unless logic dictates.
+		val options = IFramePlayerOptions.Builder().controls(0).autoplay(0).build()
+		youTubePlayerView.initialize(youtubePlayerListener, options)
 
+		val lifecycleObserver = LifecycleEventObserver { _, event ->
+			when (event) {
+				Lifecycle.Event.ON_RESUME -> youtubePlayer?.let {
+					if (state.isPlaying) it.play()
+				}
+				// Always pause when app is paused
+				Lifecycle.Event.ON_PAUSE -> youtubePlayer?.pause()
+				// ON_DESTROY is handled by onDispose
+				else -> {}
+			}
+		}
+		lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+		onDispose {
+			youtubePlayer = null
+			// Release player resources
+			youTubePlayerView.release()
+			lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
+		}
+	}
+	 //
 
-        val lifecycleObserver = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_RESUME -> playerRef?.let { if (state.isPlaying) it.play() }
-                Lifecycle.Event.ON_PAUSE -> playerRef?.pause() // Always pause when app is paused
-                // ON_DESTROY is handled by onDispose
-                else -> {}
-            }
-        }
-        lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+	LaunchedEffect(youtubePlayer, state.currentSong) {
+		youtubePlayer?.let { player ->
+			state.currentSong?.let { song ->
+				if (state.isPlaying) {
+					player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+//					println("-------------------- !!! Pause")
+				} else {
+					player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+//					println("-------------------- >>> Play")
+				}
+			}
+		}
+	}
+	VideoPlayerContentUI(
+		state = state,
+		onAction = onAction,
+		youTubePlayerView = youTubePlayerView,
+		youtubePlayer = youtubePlayer
+	)
+}
 
-        onDispose {
-            playerRef = null
-            youTubePlayerView.release() // Release player resources
-            lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
-        }
-    }
+@Composable
+fun YoutubeListenerDisposableEffect(
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit,
+	lifecycleOwner: LifecycleOwner,
+	youTubePlayerView: YouTubePlayerView,
+	youtubePlayerState: MutableState<YouTubePlayer?>
+) {
+	DisposableEffect(lifecycleOwner) {
+		val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
+			override fun onReady(youTubePlayer: YouTubePlayer) {
+				youtubePlayerState.value = youTubePlayer
+			}
 
-    // Effect 1: Handles loading/cueing of new songs or initial song when player is ready.
-    LaunchedEffect(playerRef, state.currentSong) {
-        playerRef?.let { player ->
-            state.currentSong?.let { song ->
-                // When player is ready, or song changes, load/cue it.
-                // state.currentPlaybackTimeSeconds is relevant here (e.g. 0 for new song from ViewModel).
-                if (state.isPlaying) { // Check current isPlaying state at the moment of song load/change
-                    player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-                } else {
-                    player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-                }
-            }
-            // If playerRef is valid but currentSong is null, do nothing. Player would be idle.
-        }
-    }
+			override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
+				onAction(VideoPlayerAction.UpdateTotalDuration(duration.toInt()))
+			}
 
-    // Effect 2: Handles play/pause commands based on state.isPlaying changes.
-    // Uses loadVideo for play to be more assertive, especially after seeks.
-    // Includes a delay when transitioning to play, as a workaround for potential library bugs.
-    LaunchedEffect(playerRef, state.isPlaying) {
-        playerRef?.let { player ->
-            state.currentSong?.let { song -> // Ensure currentSong is available for loadVideo
-                if (state.isPlaying) {
-                    // Workaround for known library issue: delay before loadVideo after seek/play.
-                    delay(150L) // Delay for 150 milliseconds
-                    // Using loadVideo here to handle playing from specific time (after seek)
-                    // or resuming. This was found to be more robust for the "1-second play" bug.
-                    // Ensure playerRef is still valid after delay, though LaunchedEffect handles cancellation.
-                    if (playerRef != null) { // Re-check playerRef after delay, good practice
-                        player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-                    }
-                } else {
-                    // If isPlaying is false, pause the player.
-                    // Effect 1 handles cueing if the song changes while paused.
-                    player.pause()
-                }
-            }
-            // If currentSong is null, do nothing.
-        }
-    }
+			override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
+				onAction(VideoPlayerAction.UpdatePlaybackTime(second.toInt()))
+			}
 
-    // Effect to handle seek commands (e.g. when currentPlaybackTimeSeconds changes due to slider)
-    // This is tricky. The primary source of truth for player seek should be user interaction.
-    // The ViewModel state.currentPlaybackTimeSeconds is updated by both user and player.
-    // A more robust way might be a dedicated command flow or ensuring only onValueChangeFinished triggers this.
-    // For now, let's assume the player instance (playerRef) is the authority for seeks.
+			override fun onError(
+				youTubePlayer: YouTubePlayer,
+				error: PlayerConstants.PlayerError
+			) {
+				onAction(VideoPlayerAction.OnError("Youtube Player Error: ${error.name}"))
+			}
 
-    // --- UI ---
-    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
-        if (state.isLoading && state.songs.isEmpty()) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center), color = MaterialTheme.colorScheme.primary)
-        } else if (state.error != null) {
-            Column(
-                modifier = Modifier.fillMaxSize().padding(16.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text("Error: ${state.error}", color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodyLarge)
-                Spacer(modifier = Modifier.height(8.dp))
-                Button(onClick = { onAction(VideoPlayerAction.DismissError) }) {
-                    Text("Dismiss", style = MaterialTheme.typography.labelLarge)
-                }
-            }
-        } else if (state.songs.isEmpty() && !state.isLoading) {
-             Column(
-                modifier = Modifier.fillMaxSize().padding(16.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text("No songs loaded.", color = MaterialTheme.colorScheme.onBackground, style = MaterialTheme.typography.bodyLarge)
-                Spacer(modifier = Modifier.height(8.dp))
-                Button(onClick = { /* Trigger reload or provide guidance */ }) { // Placeholder for retry/reload
-                    Text("Retry Load", style = MaterialTheme.typography.labelLarge)
-                }
-            }
-        } else {
-            val currentSong = state.currentSong
-            Row(
-                modifier = Modifier.fillMaxSize().padding(16.dp)
-            ) {
-                // Left Column: Video Player and Song Info
-                Column(
-                    modifier = Modifier.weight(0.65f).fillMaxHeight().padding(end = 8.dp)
-                ) {
-                    AndroidView(
-                        factory = { youTubePlayerView },
-                        modifier = Modifier.fillMaxWidth().aspectRatio(16 / 9f).background(Color.Black)
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    currentSong?.let { song ->
-                        Column(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
-                            Text(song.band, style = MaterialTheme.typography.displayMedium)
-                            Text(song.songTitle, style = MaterialTheme.typography.titleLarge)
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text("Year: ${song.year} (${song.decade}s)", style = MaterialTheme.typography.bodyMedium)
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text("ID: ${song.youtubeId}", style = MaterialTheme.typography.bodySmall)
-                        }
-                    } ?: Box(modifier = Modifier.fillMaxWidth().padding(8.dp).heightIn(min = 100.dp)) { // Ensure some space if no song
-                        Text(
-                            "No song selected.",
-                            style = MaterialTheme.typography.bodyLarge,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-                }
+			override fun onStateChange(
+				youTubePlayer: YouTubePlayer,
+				playerState: PlayerConstants.PlayerState
+			) {
+				val currentViewModelIsPlaying = state.isPlaying
+				when (playerState) {
+					PlayerConstants.PlayerState.PLAYING -> {
+						if (!currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
+					}
+					PlayerConstants.PlayerState.PAUSED -> {
+						if (currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
+					}
+					PlayerConstants.PlayerState.ENDED -> {
+						onAction(VideoPlayerAction.NextSong)
+					}
+					else -> {}
+				}
+			}
+		}
 
-                // Right Column: Controls
-                Column(
-                    modifier = Modifier.weight(0.35f).fillMaxHeight().padding(start = 8.dp)
-                        .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.3f)) // Softer background
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Button(
-                        onClick = { onAction(VideoPlayerAction.PlayPause) },
-                        enabled = currentSong != null,
-                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                    ) {
-                        Text(if (state.isPlaying) "Pause" else "Play", style = MaterialTheme.typography.labelLarge)
-                    }
-                    Spacer(modifier = Modifier.height(24.dp))
+		youTubePlayerView.enableAutomaticInitialization = false
+		val options = IFramePlayerOptions.Builder().controls(0).autoplay(0).build()
+		youTubePlayerView.initialize(youtubePlayerListener, options)
 
-                    var sliderPosition by remember(state.currentPlaybackTimeSeconds) { mutableFloatStateOf(state.currentPlaybackTimeSeconds.toFloat()) }
+		val lifecycleObserver = LifecycleEventObserver { _, event ->
+			when (event) {
+				Lifecycle.Event.ON_RESUME -> youtubePlayerState.value?.let { player ->
+					if (state.isPlaying) {
+//						println("-------------------- On Resume, playing again")
+						player.play()
+					}
+				}
+				Lifecycle.Event.ON_PAUSE -> youtubePlayerState.value?.pause()
+				else -> {}
+			}
+		}
+		lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+		onDispose {
+			youtubePlayerState.value = null
+			youTubePlayerView.release()
+			lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
+		}
+	}
+}
 
-                    Slider(
-                        value = sliderPosition,
-                        onValueChange = { newValue -> sliderPosition = newValue },
-                        onValueChangeFinished = {
-                            playerRef?.seekTo(sliderPosition)
-                            onAction(VideoPlayerAction.SeekTo(sliderPosition.toInt()))
-                        },
-                        valueRange = 0f..(state.totalDurationSeconds.toFloat().takeIf { it > 0f } ?: 100f),
-                        modifier = Modifier.fillMaxWidth(),
-                        enabled = currentSong != null && state.totalDurationSeconds > 0,
-                        colors = SliderDefaults.colors(
-                            thumbColor = MaterialTheme.colorScheme.primary,
-                            activeTrackColor = MaterialTheme.colorScheme.primary,
-                            inactiveTrackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
-                        )
-                    )
-                    Text(
-                        text = "${formatTime(sliderPosition.toInt())} / ${formatTime(state.totalDurationSeconds)}",
-                        style = MaterialTheme.typography.labelSmall
-                    )
-                    Spacer(modifier = Modifier.height(32.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        Button(
-                            onClick = { onAction(VideoPlayerAction.PreviousSong) },
-                            enabled = state.songs.size > 1,
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
-                        ) { Text("Prev", style = MaterialTheme.typography.labelLarge.copy(color = MaterialTheme.colorScheme.onSecondary)) }
-                        Button(
-                            onClick = { onAction(VideoPlayerAction.NextSong) },
-                            enabled = state.songs.size > 1,
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
-                        ) { Text("Next", style = MaterialTheme.typography.labelLarge.copy(color = MaterialTheme.colorScheme.onSecondary)) }
-                    }
-                }
-            }
-        }
-    }
+@Composable
+private fun VideoPlayerContentUI(
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit,
+	youTubePlayerView: YouTubePlayerView,
+	youtubePlayer: YouTubePlayer?
+) {
+	Box(
+		modifier = Modifier
+			.fillMaxSize()
+			.background(MaterialTheme.colorScheme.background)
+	) {
+		if (state.isLoading && state.songs.isEmpty()) {
+			CircularProgressIndicator(
+				modifier = Modifier.align(Alignment.Center),
+				color = MaterialTheme.colorScheme.primary
+			)
+		} else if (state.error != null) {
+			ErrorState(
+				state = state,
+				onAction = onAction
+			)
+		} else if (state.songs.isEmpty() && !state.isLoading) {
+			RetryState()
+		} else {
+			val currentSong = state.currentSong
+			Row(
+				modifier = Modifier
+					.fillMaxSize()
+					.padding(16.dp)
+			) {
+				YoutubePlayerContent(
+					youTubePlayerView = youTubePlayerView,
+					currentSong = currentSong
+				)
+				MusicControls(
+					modifier = Modifier
+						.weight(0.35f)
+						.fillMaxHeight()
+						.padding(start = 8.dp),
+					state = state,
+					onAction = onAction,
+					currentSong = currentSong,
+					youtubePlayer = youtubePlayer
+				)
+			}
+		}
+	}
+}
+
+@Composable
+private fun ErrorState(
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit,
+) {
+	Column(
+		modifier = Modifier
+			.fillMaxSize()
+			.padding(16.dp),
+		verticalArrangement = Arrangement.Center,
+		horizontalAlignment = Alignment.CenterHorizontally
+	) {
+		Text(
+			text = "Error: ${state.error}",
+			color = MaterialTheme.colorScheme.error,
+			style = MaterialTheme.typography.bodyLarge
+		)
+		Spacer(modifier = Modifier.height(8.dp))
+		Button(onClick = { onAction(VideoPlayerAction.DismissError) }) {
+			Text("Dismiss", style = MaterialTheme.typography.labelLarge)
+		}
+	}
+}
+
+@Composable
+private fun RetryState() {
+	Column(
+		modifier = Modifier
+			.fillMaxSize()
+			.padding(16.dp),
+		verticalArrangement = Arrangement.Center,
+		horizontalAlignment = Alignment.CenterHorizontally
+	) {
+		Text(
+			text = "No songs loaded.",
+			color = MaterialTheme.colorScheme.onBackground,
+			style = MaterialTheme.typography.bodyLarge
+		)
+		Spacer(modifier = Modifier.height(8.dp))
+		Button(
+			onClick = {}
+		) {
+			Text(
+				text = "Retry Load",
+				style = MaterialTheme.typography.labelLarge
+			)
+		}
+	}
+}
+
+/**
+ * Left Column contains the Youtube Video Player and the Song Info.
+ */
+@Composable
+private fun RowScope.YoutubePlayerContent(
+	youTubePlayerView: YouTubePlayerView,
+	currentSong: Song? = null
+) {
+	Column(
+		modifier = Modifier
+			.weight(0.65f)
+			.fillMaxHeight()
+			.padding(end = 8.dp)
+	) {
+		AndroidView(
+			factory = { youTubePlayerView },
+			modifier = Modifier
+				.fillMaxWidth()
+				.aspectRatio(16 / 9f)
+				.background(Color.Black)
+		)
+		Spacer(modifier = Modifier.height(16.dp))
+		currentSong?.let { song ->
+			Column(modifier = Modifier
+				.fillMaxWidth()
+				.padding(8.dp)) {
+				Text(song.band, style = MaterialTheme.typography.displayMedium)
+				Text(song.songTitle, style = MaterialTheme.typography.titleLarge)
+				Spacer(modifier = Modifier.height(4.dp))
+				Text(
+					"Year: ${song.year} (${song.decade}s)",
+					style = MaterialTheme.typography.bodyMedium
+				)
+				Spacer(modifier = Modifier.height(4.dp))
+				Text(
+					"ID: ${song.youtubeId}",
+					style = MaterialTheme.typography.bodySmall
+				)
+			}
+		} ?: Box(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(8.dp)
+				.heightIn(min = 100.dp)
+		) {
+			// Ensure some space if no song
+			Text(
+				"No song selected.",
+				style = MaterialTheme.typography.bodyLarge,
+				modifier = Modifier.align(Alignment.Center)
+			)
+		}
+	}
+}
+
+@Composable
+private fun RowScope.MusicControls(
+	modifier: Modifier = Modifier,
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit,
+	currentSong: Song?,
+	youtubePlayer: YouTubePlayer?
+) {
+	Column(
+		modifier = modifier
+			.background(
+				MaterialTheme.colorScheme.surface.copy(alpha = 0.3f)
+			)
+			.padding(16.dp),
+		horizontalAlignment = Alignment.CenterHorizontally,
+		verticalArrangement = Arrangement.Center
+	) {
+		var sliderPosition by remember(state.currentPlaybackTimeSeconds) {
+			mutableFloatStateOf(
+				state.currentPlaybackTimeSeconds.toFloat()
+			)
+		}
+
+		Button(
+			onClick = {
+				onAction(VideoPlayerAction.PlayPause)
+		  	},
+			enabled = currentSong != null,
+			colors = ButtonDefaults.buttonColors(
+				containerColor = MaterialTheme.colorScheme.primary
+			)
+		) {
+			Text(
+				text = if (state.isPlaying) "Pause" else "Play",
+				style = MaterialTheme.typography.labelLarge
+			)
+		}
+		Spacer(modifier = Modifier.height(24.dp))
+		Slider(
+			value = sliderPosition,
+			onValueChange = { newValue -> sliderPosition = newValue },
+			onValueChangeFinished = {
+				youtubePlayer?.seekTo(sliderPosition)
+				onAction(VideoPlayerAction.SeekTo(sliderPosition.toInt()))
+			},
+			valueRange = 0f..(
+				state.totalDurationSeconds.toFloat().takeIf { it > 0f } ?: 100f
+			),
+			modifier = Modifier.fillMaxWidth(),
+			enabled = currentSong != null && state.totalDurationSeconds > 0,
+			colors = SliderDefaults.colors(
+				thumbColor = MaterialTheme.colorScheme.primary,
+				activeTrackColor = MaterialTheme.colorScheme.primary,
+				inactiveTrackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+			)
+		)
+		Text(
+			text = "${formatTime(sliderPosition.toInt())} / ${formatTime(state.totalDurationSeconds)}",
+			style = MaterialTheme.typography.labelSmall
+		)
+		Spacer(modifier = Modifier.height(32.dp))
+		NextPreviousButtons(
+			state = state,
+			onAction = onAction
+		)
+	}
+}
+
+@Composable
+private fun NextPreviousButtons(
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit
+) {
+	Row(
+		modifier = Modifier.fillMaxWidth(),
+		horizontalArrangement = Arrangement.SpaceEvenly
+	) {
+		Button(
+			onClick = {
+				onAction(VideoPlayerAction.PreviousSong)
+		  	},
+			enabled = state.songs.size > 1,
+			colors = ButtonDefaults.buttonColors(
+				containerColor = MaterialTheme.colorScheme.secondary
+			)
+		) {
+			Text(
+				text = "Prev",
+				style = MaterialTheme.typography.labelLarge.copy(
+					color = MaterialTheme.colorScheme.onSecondary
+				)
+			)
+		}
+		Button(
+			onClick = {
+				onAction(VideoPlayerAction.NextSong)
+		  	},
+			enabled = state.songs.size > 1,
+			colors = ButtonDefaults.buttonColors(
+				containerColor = MaterialTheme.colorScheme.secondary
+			)
+		) {
+			Text(
+				text = "Next",
+				style = MaterialTheme.typography.labelLarge.copy(
+					color = MaterialTheme.colorScheme.onSecondary
+				)
+			)
+		}
+	}
 }
 
 fun formatTime(totalSeconds: Int): String {
-    val minutes = totalSeconds / 60
-    val seconds = totalSeconds % 60
-    return "%d:%02d".format(minutes, seconds)
+	val minutes = totalSeconds / 60
+	val seconds = totalSeconds % 60
+	return "%d:%02d".format(minutes, seconds)
 }
 
-@Preview(showBackground = true, device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape")
+@Preview(
+	showBackground = true,
+	device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape"
+)
 @Composable
 fun VideoPlayerScreenPreview() {
-    val previewSongs = listOf(
-        Song("70", "1975", "Queen", "Bohemian Rhapsody", "fJ9rUzIMcZQ"),
-        Song("70", "1971", "Led Zeppelin", "Stairway to Heaven", "iXQUu5Dti4g")
-    )
-    val previewState = VideoPlayerState(
-        songs = previewSongs,
-        currentSongIndex = 0,
-        isPlaying = false,
-        currentPlaybackTimeSeconds = 30,
-        totalDurationSeconds = 240,
-        isLoading = false
-    )
-    VintageRadioAppTheme {
-        Surface {
-            VideoPlayerScreenContent(state = previewState, onAction = {})
-        }
-    }
+	val previewSongs = listOf(
+		Song("70", "1975", "Queen", "Bohemian Rhapsody", "fJ9rUzIMcZQ"),
+		Song("70", "1971", "Led Zeppelin", "Stairway to Heaven", "iXQUu5Dti4g")
+	)
+	val previewState = VideoPlayerState(
+		songs = previewSongs,
+		currentSongIndex = 0,
+		isPlaying = false,
+		currentPlaybackTimeSeconds = 30,
+		totalDurationSeconds = 240,
+		isLoading = false
+	)
+	VintageRadioAppTheme {
+		Surface {
+			VideoPlayerScreenContent(state = previewState, onAction = {})
+		}
+	}
 }
 
-@Preview(showBackground = true, device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape", name = "Loading State")
+@Preview(
+	showBackground = true,
+	device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape",
+	name = "Loading State"
+)
 @Composable
 fun VideoPlayerScreenLoadingPreview() {
-    val previewState = VideoPlayerState(isLoading = true)
-    VintageRadioAppTheme {
-        Surface {
-            VideoPlayerScreenContent(state = previewState, onAction = {})
-        }
-    }
+	val previewState = VideoPlayerState(isLoading = true)
+	VintageRadioAppTheme {
+		Surface {
+			VideoPlayerScreenContent(state = previewState, onAction = {})
+		}
+	}
 }
 
-@Preview(showBackground = true, device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape", name = "Error State")
+@Preview(
+	showBackground = true,
+	device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape",
+	name = "Error State"
+)
 @Composable
 fun VideoPlayerScreenErrorPreview() {
-    val previewState = VideoPlayerState(isLoading = false, error = "Failed to load songs. Please check connection.")
-    VintageRadioAppTheme {
-        Surface {
-            VideoPlayerScreenContent(state = previewState, onAction = {})
-        }
-    }
+	val previewState = VideoPlayerState(
+		isLoading = false,
+		error = "Failed to load songs. Please check connection."
+	)
+	VintageRadioAppTheme {
+		Surface {
+			VideoPlayerScreenContent(state = previewState, onAction = {})
+		}
+	}
 }
 
-@Preview(showBackground = true, device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape", name = "No Songs State")
+@Preview(
+	showBackground = true,
+	device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape",
+	name = "No Songs State"
+)
 @Composable
 fun VideoPlayerScreenNoSongsPreview() {
-    val previewState = VideoPlayerState(isLoading = false, songs = emptyList())
-    VintageRadioAppTheme {
-        Surface {
-            VideoPlayerScreenContent(state = previewState, onAction = {})
-        }
-    }
+	val previewState = VideoPlayerState(isLoading = false, songs = emptyList())
+	VintageRadioAppTheme {
+		Surface {
+			VideoPlayerScreenContent(state = previewState, onAction = {})
+		}
+	}
+}
+
+@Preview(
+	showBackground = true,
+	device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape",
+)
+@Composable
+fun YoutubePlayerContentPreview() {
+	val context = LocalContext.current
+	val youTubePlayerView = remember { YouTubePlayerView(context) }
+	VintageRadioAppTheme {
+		Surface {
+			Row(
+				modifier = Modifier
+					.fillMaxSize()
+					.padding(16.dp)
+			) {
+				YoutubePlayerContent(
+					youTubePlayerView = youTubePlayerView,
+					currentSong = Song()
+				)
+			}
+		}
+	}
+}
+
+@Preview(
+	showBackground = true,
+	device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape",
+)
+@Composable
+fun MusicControlsPreview() {
+	VintageRadioAppTheme {
+		Surface {
+			Row(
+				modifier = Modifier
+					.fillMaxSize()
+					.padding(16.dp)
+			) {
+				MusicControls(
+					modifier = Modifier
+						.weight(0.35f)
+						.fillMaxHeight()
+						.padding(start = 8.dp),
+					state = VideoPlayerState(),
+					onAction = {},
+					currentSong = Song(),
+					youtubePlayer = null
+				)
+			}
+		}
+	}
 }

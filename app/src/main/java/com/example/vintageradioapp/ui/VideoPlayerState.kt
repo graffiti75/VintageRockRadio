@@ -3,7 +3,7 @@ package com.example.vintageradioapp.ui
 import com.example.vintageradioapp.data.Song
 
 data class VideoPlayerState(
-    val songs: List<Song> = emptyList(),
+    val songs: List<Song> = List(1) { Song() },
     val currentSongIndex: Int = 0,
     val isPlaying: Boolean = false,
     val currentPlaybackTimeSeconds: Int = 0,

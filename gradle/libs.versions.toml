@@ -1,17 +1,17 @@
 [versions]
-agp = "8.9.1"
+agp = "8.9.3"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
-composeBom = "2025.04.00"
+composeBom = "2025.06.01"
 junit = "4.13.2"
-androidxTestExtJunit = "1.1.5"
-espressoCore = "3.5.1"
+androidxTestExtJunit = "1.2.1"
+espressoCore = "3.6.1"
 youtubePlayer = "12.1.0"
 composeCompiler = "1.5.3" # Matched to Kotlin 1.9.0
 
-hilt = "2.49"
+hilt = "2.51.1"
 hiltNavigationCompose = "1.2.0"
 ksp = "2.0.21-1.0.28"
 
