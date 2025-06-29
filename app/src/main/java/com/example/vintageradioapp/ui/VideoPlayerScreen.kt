@@ -85,99 +85,26 @@ fun VideoPlayerScreenContent(
 ) {
 	val context = LocalContext.current
 	val youTubePlayerView = remember { YouTubePlayerView(context) }
-	var youtubePlayer by remember { mutableStateOf<YouTubePlayer?>(null) }
+	// Define the MutableState instance explicitly
+	val youtubePlayerState = remember { mutableStateOf<YouTubePlayer?>(null) }
+	// Use this to access the player instance in LaunchedEffects, etc.
+	val youtubePlayer = youtubePlayerState.value
 	val lifecycleOwner = LocalLifecycleOwner.current
 
 	// Use rememberUpdatedState to ensure the listener always has the latest isPlaying state
 	// without causing the DisposableEffect to re-run unnecessarily.
 	val currentIsPlayingState = rememberUpdatedState(state.isPlaying)
 
-	/*
 	YoutubeListenerDisposableEffect(
 		state = state,
 		onAction = onAction,
 		lifecycleOwner = lifecycleOwner,
 		youTubePlayerView = youTubePlayerView,
-		youtubePlayerState = remember { mutableStateOf(youtubePlayer) }
+		youtubePlayerState = youtubePlayerState // Pass the actual MutableState instance
 	)
-	 */
-
-	//
-	// One-time setup for the YouTubePlayerView and listeners
-	DisposableEffect(lifecycleOwner) {
-		val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
-			override fun onReady(youTubePlayer: YouTubePlayer) {
-				youtubePlayer = youTubePlayer
-				// Initial song load/cue will be handled by LaunchedEffect(youtubePlayer, state.currentSong)
-			}
-
-			override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
-				onAction(VideoPlayerAction.UpdateTotalDuration(duration.toInt()))
-			}
-
-			override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
-				onAction(VideoPlayerAction.UpdatePlaybackTime(second.toInt()))
-			}
-
-			override fun onError(
-				youTubePlayer: YouTubePlayer,
-				error: PlayerConstants.PlayerError
-			) {
-				onAction(VideoPlayerAction.OnError("YT Player Error: ${error.name}"))
-			}
-
-			override fun onStateChange(
-				youTubePlayer: YouTubePlayer,
-				playerState: PlayerConstants.PlayerState
-			) {
-				// Use currentIsPlayingState.value to get the latest isPlaying state from the ViewModel
-				val isPlayingInViewModel = currentIsPlayingState.value
-				when (playerState) {
-					PlayerConstants.PlayerState.PLAYING -> {
-						// If player is PLAYING, but ViewModel thinks it's PAUSED, update ViewModel.
-						if (!isPlayingInViewModel) onAction(VideoPlayerAction.PlayPause)
-					}
-					PlayerConstants.PlayerState.PAUSED -> {
-						// If player is PAUSED, but ViewModel thinks it's PLAYING, update ViewModel.
-						if (isPlayingInViewModel) onAction(VideoPlayerAction.PlayPause)
-					}
-					PlayerConstants.PlayerState.ENDED -> {
-						onAction(VideoPlayerAction.NextSong)
-					}
-					else -> {}
-				}
-			}
-		}
-
-		youTubePlayerView.enableAutomaticInitialization = false
-		// Controls=0: Disable native controls.
-		// Autoplay=0: Don't autoplay unless logic dictates.
-		val options = IFramePlayerOptions.Builder().controls(0).autoplay(0).build()
-		youTubePlayerView.initialize(youtubePlayerListener, options)
-
-		val lifecycleObserver = LifecycleEventObserver { _, event ->
-			when (event) {
-				Lifecycle.Event.ON_RESUME -> youtubePlayer?.let {
-					if (state.isPlaying) it.play()
-				}
-				// Always pause when app is paused
-				Lifecycle.Event.ON_PAUSE -> youtubePlayer?.pause()
-				// ON_DESTROY is handled by onDispose
-				else -> {}
-			}
-		}
-		lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
-		onDispose {
-			youtubePlayer = null
-			// Release player resources
-			youTubePlayerView.release()
-			lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
-		}
-	}
-	 //
 
 	// Effect to load/cue videos when the current song changes
-	LaunchedEffect(youtubePlayer, state.currentSong) {
+	LaunchedEffect(youtubePlayer, state.currentSong) { // youtubePlayer here is youtubePlayerState.value
 		youtubePlayer?.let { player ->
 			state.currentSong?.let { song ->
 				if (state.isPlaying) {
@@ -222,6 +149,10 @@ fun YoutubeListenerDisposableEffect(
 	youTubePlayerView: YouTubePlayerView,
 	youtubePlayerState: MutableState<YouTubePlayer?>
 ) {
+	// Use rememberUpdatedState to ensure the listener always has the latest isPlaying state
+	// without causing the DisposableEffect to re-run unnecessarily.
+	val currentIsPlayingState = rememberUpdatedState(state.isPlaying)
+
 	DisposableEffect(lifecycleOwner) {
 		val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
 			override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -247,13 +178,13 @@ fun YoutubeListenerDisposableEffect(
 				youTubePlayer: YouTubePlayer,
 				playerState: PlayerConstants.PlayerState
 			) {
-				val currentViewModelIsPlaying = state.isPlaying
+				val isPlayingInViewModel = currentIsPlayingState.value // Use the updated state
 				when (playerState) {
 					PlayerConstants.PlayerState.PLAYING -> {
-						if (!currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
+						if (!isPlayingInViewModel) onAction(VideoPlayerAction.PlayPause)
 					}
 					PlayerConstants.PlayerState.PAUSED -> {
-						if (currentViewModelIsPlaying) onAction(VideoPlayerAction.PlayPause)
+						if (isPlayingInViewModel) onAction(VideoPlayerAction.PlayPause)
 					}
 					PlayerConstants.PlayerState.ENDED -> {
 						onAction(VideoPlayerAction.NextSong)
