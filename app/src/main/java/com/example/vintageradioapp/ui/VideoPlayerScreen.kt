@@ -98,32 +98,26 @@ fun VideoPlayerScreenContent(
 		youtubePlayerState = youtubePlayerState
 	)
 
-	// Effect to load/cue videos when the current song changes
-	LaunchedEffect(key1 = youtubePlayer, key2 = state.currentSong) {
+	// Effect to load/cue videos when the current song changes or playback time is reset
+	LaunchedEffect(
+		key1 = youtubePlayer,
+		key2 = state.currentSong,
+		key3 = state.currentPlaybackTimeSeconds // React to playback time changes for restart
+	) {
 		youtubePlayer?.let { player ->
 			state.currentSong?.let { song ->
-				// ViewModel resets currentPlaybackTimeSeconds to 0 for new songs.
-				// So, state.currentPlaybackTimeSeconds should be 0 here.
-				if (state.isPlaying) {
-					// If isPlaying is true (e.g., new song from next/prev), load and then explicitly play.
-					player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-					player.play() // Explicitly call play
-				} else {
-					// If not playing, just cue the video.
-					player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-				}
+				// This effect is only responsible for ensuring the correct video is loaded/cued
+				// at the correct time. It does not call play() or pause().
+				// The other LaunchedEffect (keyed on state.isPlaying) will handle playback.
+				player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
 			}
 		}
 	}
 
-	// Effect to handle play/pause state changes triggered by UI or other events (like lifecycle)
-	// This effect ensures the player's state (play/pause) matches the ViewModel's isPlaying state.
-	// It's important for direct play/pause button clicks and lifecycle events.
+	// Effect to handle play/pause state based on ViewModel's isPlaying state
 	LaunchedEffect(key1 = youtubePlayer, key2 = state.isPlaying) {
 		youtubePlayer?.let { player ->
-			// This effect ensures the player's state matches the ViewModel's isPlaying state.
-			// This is primarily for when the user clicks Play/Pause or for lifecycle events (handled in DisposableEffect).
-			if (state.currentSong != null) { // Only attempt to play/pause if a song is loaded/cued
+			if (state.currentSong != null) { // Only attempt to play/pause if a song is available
 				if (state.isPlaying) {
 					player.play()
 				} else {
@@ -226,18 +220,11 @@ fun YoutubeListenerDisposableEffect(
 		val lifecycleObserver = LifecycleEventObserver { _, event ->
 			when (event) {
 				Lifecycle.Event.ON_RESUME -> {
-					// When app resumes, if ViewModel indicates playing, ensure player plays.
-					// This is important if player was paused by ON_PAUSE.
-					youtubePlayerState.value?.let { player ->
-						if (state.isPlaying) { // Check current state from VM
-							player.play()
-						}
-					}
+					onAction(VideoPlayerAction.AppCameToForeground)
 				}
 				Lifecycle.Event.ON_PAUSE -> {
-					// When app pauses, always pause the player to save resources and follow platform conventions.
-					// The ViewModel's isPlaying state remains true if it was playing.
-					youtubePlayerState.value?.pause()
+					youtubePlayerState.value?.pause() // Still directly pause the player
+					onAction(VideoPlayerAction.AppWentToBackground)
 				}
 				else -> {}
 			}

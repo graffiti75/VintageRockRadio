@@ -21,6 +21,8 @@ class VideoPlayerViewModel(
     private val _state = MutableStateFlow(VideoPlayerState())
     val state: StateFlow<VideoPlayerState> = _state.asStateFlow()
 
+    private var wasPlayingBeforeBackground: Boolean = false
+
     init {
         loadSongs()
     }
@@ -82,6 +84,20 @@ class VideoPlayerViewModel(
                 if (state.value.isPlaying != action.playing) {
                     _state.update { it.copy(isPlaying = action.playing) }
                 }
+            }
+            is VideoPlayerAction.AppWentToBackground -> {
+                wasPlayingBeforeBackground = state.value.isPlaying
+            }
+            is VideoPlayerAction.AppCameToForeground -> {
+                if (wasPlayingBeforeBackground && state.value.currentSong != null) {
+                    _state.update {
+                        it.copy(
+                            currentPlaybackTimeSeconds = 0, // Restart the song
+                            isPlaying = true // Ensure it plays
+                        )
+                    }
+                }
+                wasPlayingBeforeBackground = false // Reset flag
             }
             is VideoPlayerAction.NextSong -> {
                 if (state.value.songs.isEmpty()) return
