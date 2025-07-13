@@ -46,11 +46,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import com.example.vintageradioapp.MusicService
 
 @Composable
 fun LockScreenOrientation(orientation: Int) {
@@ -76,55 +72,63 @@ fun VideoPlayerScreen(viewModel: VideoPlayerViewModel) {
 	)
 }
 
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
+
+@Composable
 @Composable
 fun VideoPlayerScreenContent(
 	state: VideoPlayerState,
 	onAction: (VideoPlayerAction) -> Unit
 ) {
 	val context = LocalContext.current
-	val youTubePlayerView = remember { YouTubePlayerView(context) }
-	val youtubePlayerState = remember { mutableStateOf<YouTubePlayer?>(null) }
-	val youtubePlayer = youtubePlayerState.value
-	val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+	var musicService by remember { mutableStateOf<MusicService?>(null) }
+	val serviceConnection = remember {
+		object : ServiceConnection {
+			override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+				val binder = service as MusicService.MusicBinder
+				musicService = binder.getService()
+			}
 
-	YoutubeListenerDisposableEffect(
-		state = state,
-		onAction = onAction,
-		lifecycleOwner = lifecycleOwner,
-		youTubePlayerView = youTubePlayerView,
-		youtubePlayerState = youtubePlayerState
-	)
+			override fun onServiceDisconnected(name: ComponentName?) {
+				musicService = null
+			}
+		}
+	}
 
-	// Effect to load/cue videos when the current song changes
-	LaunchedEffect(key1 = youtubePlayer, key2 = state.currentSong) {
-		youtubePlayer?.let { player ->
+	LaunchedEffect(Unit) {
+		Intent(context, MusicService::class.java).also { intent ->
+			context.startService(intent)
+			context.bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+		}
+	}
+
+	DisposableEffect(Unit) {
+		onDispose {
+			context.unbindService(serviceConnection)
+		}
+	}
+
+	LaunchedEffect(musicService, state.currentSong) {
+		musicService?.let { service ->
 			state.currentSong?.let { song ->
-				// ViewModel resets currentPlaybackTimeSeconds to 0 for new songs.
-				// So, state.currentPlaybackTimeSeconds should be 0 here.
 				if (state.isPlaying) {
-					// If isPlaying is true (e.g., new song from next/prev), load and then explicitly play.
-					player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-					player.play() // Explicitly call play
-				} else {
-					// If not playing, just cue the video.
-					player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+					service.play(song.youtubeId)
 				}
 			}
 		}
 	}
 
-	// Effect to handle play/pause state changes triggered by UI or other events (like lifecycle)
-	// This effect ensures the player's state (play/pause) matches the ViewModel's isPlaying state.
-	// It's important for direct play/pause button clicks and lifecycle events.
-	LaunchedEffect(key1 = youtubePlayer, key2 = state.isPlaying) {
-		youtubePlayer?.let { player ->
-			// This effect ensures the player's state matches the ViewModel's isPlaying state.
-			// This is primarily for when the user clicks Play/Pause or for lifecycle events (handled in DisposableEffect).
-			if (state.currentSong != null) { // Only attempt to play/pause if a song is loaded/cued
+	LaunchedEffect(musicService, state.isPlaying) {
+		musicService?.let { service ->
+			if (state.currentSong != null) {
 				if (state.isPlaying) {
-					player.play()
+					// Service's `play` method handles loading and playing
 				} else {
-					player.pause()
+					service.pause()
 				}
 			}
 		}
@@ -133,126 +137,16 @@ fun VideoPlayerScreenContent(
 	VideoPlayerContentUI(
 		state = state,
 		onAction = onAction,
-		youTubePlayerView = youTubePlayerView,
-		youtubePlayer = youtubePlayer
+		youTubePlayerView = musicService?.let { YouTubePlayerView(context) },
+		youtubePlayer = null // The service handles the player now
 	)
-}
-
-@Composable
-fun YoutubeListenerDisposableEffect(
-	state: VideoPlayerState,
-	onAction: (VideoPlayerAction) -> Unit,
-	lifecycleOwner: LifecycleOwner,
-	youTubePlayerView: YouTubePlayerView,
-	youtubePlayerState: MutableState<YouTubePlayer?>
-) {
-	// Use rememberUpdatedState to ensure the listener always has the latest isPlaying state
-	// without causing the DisposableEffect to re-run unnecessarily.
-	val currentIsPlayingState = rememberUpdatedState(state.isPlaying)
-
-	DisposableEffect(lifecycleOwner) {
-		val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
-			override fun onReady(youTubePlayer: YouTubePlayer) {
-				youtubePlayerState.value = youTubePlayer
-			}
-
-			override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
-				onAction(VideoPlayerAction.UpdateTotalDuration(duration.toInt()))
-			}
-
-			override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
-				onAction(VideoPlayerAction.UpdatePlaybackTime(second.toInt()))
-			}
-
-			override fun onError(
-				youTubePlayer: YouTubePlayer,
-				error: PlayerConstants.PlayerError
-			) {
-				onAction(VideoPlayerAction.OnError("Youtube Player Error: ${error.name}"))
-			}
-
-			override fun onStateChange(
-				youTubePlayer: YouTubePlayer,
-				playerState: PlayerConstants.PlayerState
-			) {
-				val isPlayingInViewModel = currentIsPlayingState.value
-				when (playerState) {
-					PlayerConstants.PlayerState.PLAYING -> {
-						if (!isPlayingInViewModel) {
-							onAction(VideoPlayerAction.SetPlaying(true))
-						}
-					}
-					PlayerConstants.PlayerState.PAUSED -> {
-						val isLikelyNewSong = state.currentPlaybackTimeSeconds < 2 // Heuristic for new song
-						if (isPlayingInViewModel) {
-							if (isLikelyNewSong) {
-								// If a new song was likely just loaded and meant to play,
-								// but player emits PAUSED, this might be a transient state
-								// before our explicit play() command takes full effect.
-								// Aggressively setting ViewModel's isPlaying to false here
-								// would fight the intention to play.
-								// The LaunchedEffect for state.isPlaying (being true) should
-								// ensure player.play() is called. We let that effect win.
-								// No action here, to avoid counteracting the play command.
-							} else {
-								// Player paused, and it's not immediately after a new song load
-								// intended for playback. Sync ViewModel to paused.
-								onAction(VideoPlayerAction.SetPlaying(false))
-							}
-						}
-					}
-					PlayerConstants.PlayerState.ENDED -> {
-						// When video ends, go to the next song
-						onAction(VideoPlayerAction.NextSong)
-					}
-					// VIDEO_CUED is a common state after loadVideo with autoplay(0).
-					// UNSTARTED is the initial state.
-					// BUFFERING, UNKNOWN, VIDEO_DATA_LOADED are other states.
-					// We generally don't need to fight these states unless they
-					// contradict our ViewModel's isPlaying expectation for PLAYING/PAUSED.
-					else -> {}
-				}
-			}
-		}
-
-		youTubePlayerView.enableAutomaticInitialization = false
-		// Ensure autoplay(0) is critical here. We control play/pause via LaunchedEffects.
-		val options = IFramePlayerOptions.Builder().controls(0).autoplay(0).build()
-		youTubePlayerView.initialize(youtubePlayerListener, options)
-
-		val lifecycleObserver = LifecycleEventObserver { _, event ->
-			when (event) {
-				Lifecycle.Event.ON_RESUME -> {
-					// When app resumes, if ViewModel indicates playing, ensure player plays.
-					// This is important if player was paused by ON_PAUSE.
-					youtubePlayerState.value?.let { player ->
-						if (state.isPlaying) { // Check current state from VM
-							player.play()
-						}
-					}
-				}
-				Lifecycle.Event.ON_PAUSE -> {
-					// When app pauses, always pause the player to save resources and follow platform conventions.
-					// The ViewModel's isPlaying state remains true if it was playing.
-					youtubePlayerState.value?.pause()
-				}
-				else -> {}
-			}
-		}
-		lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
-		onDispose {
-			youtubePlayerState.value = null
-			youTubePlayerView.release()
-			lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
-		}
-	}
 }
 
 @Composable
 private fun VideoPlayerContentUI(
 	state: VideoPlayerState,
 	onAction: (VideoPlayerAction) -> Unit,
-	youTubePlayerView: YouTubePlayerView,
+	youTubePlayerView: YouTubePlayerView?,
 	youtubePlayer: YouTubePlayer?
 ) {
 	Box(
@@ -326,7 +220,7 @@ private fun RetryState() {
  */
 @Composable
 private fun RowScope.YoutubePlayerContent(
-	youTubePlayerView: YouTubePlayerView,
+	youTubePlayerView: YouTubePlayerView?,
 	currentSong: Song? = null
 ) {
 	Column(
@@ -336,14 +230,16 @@ private fun RowScope.YoutubePlayerContent(
 			.padding(end = 8.dp)
 	) {
 		// Video Player takes a weighted portion of the vertical space
-		AndroidView(
-			factory = { youTubePlayerView },
-			modifier = Modifier
-				.fillMaxWidth()
-				.aspectRatio(16 / 9f) // Maintain aspect ratio
-				.weight(0.5f) // Takes 50% of the vertical space in this Column
-				.background(Color.Black)
-		)
+		if (youTubePlayerView != null) {
+			AndroidView(
+				factory = { youTubePlayerView },
+				modifier = Modifier
+					.fillMaxWidth()
+					.aspectRatio(16 / 9f) // Maintain aspect ratio
+					.weight(0.5f) // Takes 50% of the vertical space in this Column
+					.background(Color.Black)
+			)
+		}
 		Spacer(modifier = Modifier.height(48.dp))
 
 		// Song details take the remaining weighted portion.
