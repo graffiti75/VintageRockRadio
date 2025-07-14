@@ -48,7 +48,11 @@ class MusicService : Service() {
             addAction(ACTION_PLAY)
             addAction(ACTION_PAUSE)
         }
-        registerReceiver(notificationReceiver, filter)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(notificationReceiver, filter, RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(notificationReceiver, filter)
+        }
 
         startForeground(NOTIFICATION_ID, createNotification())
 
@@ -58,14 +62,24 @@ class MusicService : Service() {
         playerView.initialize(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 this@MusicService.youTubePlayer = youTubePlayer
+                youTubePlayer.addListener(youtubePlayerListener)
             }
         }, true, options)
+    }
+
+    private val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
+        override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
+            // Not needed for now
+        }
+
+        override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
+            // Not needed for now
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(notificationReceiver)
-        youTubePlayer?.removeListener(youtubePlayerListener)
     }
 
     fun play(song: Song) {
