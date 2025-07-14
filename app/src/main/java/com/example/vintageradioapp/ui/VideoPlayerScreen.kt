@@ -47,6 +47,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
 import com.example.vintageradioapp.MusicService
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 @Composable
 fun LockScreenOrientation(orientation: Int) {
@@ -72,13 +79,6 @@ fun VideoPlayerScreen(viewModel: VideoPlayerViewModel) {
 	)
 }
 
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
-import android.content.ServiceConnection
-import android.os.IBinder
-
-@Composable
 @Composable
 fun VideoPlayerScreenContent(
 	state: VideoPlayerState,

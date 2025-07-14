@@ -41,6 +41,7 @@ class MusicService : Service() {
         return binder
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onCreate() {
         super.onCreate()
         createNotificationChannel()
@@ -121,7 +122,7 @@ class MusicService : Service() {
         val pausePendingIntent = PendingIntent.getBroadcast(this, 1, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle(currentSong?.title ?: "Vintage Radio")
+            .setContentTitle(currentSong?.songTitle ?: "Vintage Radio")
             .setContentText(currentSong?.band ?: "Now Playing")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setOngoing(true)
