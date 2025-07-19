@@ -18,7 +18,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 class MusicService : Service() {
 
-    private var youTubePlayer: YouTubePlayer? = null
+    var youTubePlayer: YouTubePlayer? = null
+    lateinit var playerView: YouTubePlayerView
     private val binder = MusicBinder()
     private val NOTIFICATION_ID = 1
     private val CHANNEL_ID = "MusicServiceChannel"
@@ -58,7 +59,7 @@ class MusicService : Service() {
 
         startForeground(NOTIFICATION_ID, createNotification())
 
-        val playerView = YouTubePlayerView(this)
+        playerView = YouTubePlayerView(this)
         val options = IFramePlayerOptions.Builder().controls(0).build()
         playerView.enableAutomaticInitialization = false
         playerView.initialize(object : AbstractYouTubePlayerListener() {

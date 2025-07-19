@@ -134,12 +134,14 @@ fun VideoPlayerScreenContent(
 		}
 	}
 
-	VideoPlayerContentUI(
-		state = state,
-		onAction = onAction,
-		youTubePlayerView = musicService?.let { YouTubePlayerView(context) },
-		youtubePlayer = null // The service handles the player now
-	)
+	if (musicService != null) {
+		VideoPlayerContentUI(
+			state = state,
+			onAction = onAction,
+			youTubePlayerView = musicService?.playerView,
+			youtubePlayer = musicService?.youTubePlayer
+		)
+	}
 }
 
 @Composable
