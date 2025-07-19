@@ -91,6 +91,14 @@ fun VideoPlayerScreenContent(
 			override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
 				val binder = service as MusicService.MusicBinder
 				musicService = binder.getService()
+				musicService?.onTimeChanged = { currentTime, totalDuration ->
+					if (currentTime > 0) {
+						onAction(VideoPlayerAction.UpdatePlaybackTime(currentTime))
+					}
+					if (totalDuration > 0) {
+						onAction(VideoPlayerAction.UpdateTotalDuration(totalDuration))
+					}
+				}
 			}
 
 			override fun onServiceDisconnected(name: ComponentName?) {
@@ -126,7 +134,7 @@ fun VideoPlayerScreenContent(
 		musicService?.let { service ->
 			if (state.currentSong != null) {
 				if (state.isPlaying) {
-					// Service's `play` method handles loading and playing
+					service.play(state.currentSong!!)
 				} else {
 					service.pause()
 				}

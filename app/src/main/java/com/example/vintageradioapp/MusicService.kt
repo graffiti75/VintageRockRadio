@@ -20,6 +20,7 @@ class MusicService : Service() {
 
     var youTubePlayer: YouTubePlayer? = null
     lateinit var playerView: YouTubePlayerView
+    var onTimeChanged: ((Int, Int) -> Unit)? = null
     private val binder = MusicBinder()
     private val NOTIFICATION_ID = 1
     private val CHANNEL_ID = "MusicServiceChannel"
@@ -72,11 +73,11 @@ class MusicService : Service() {
 
     private val youtubePlayerListener = object : AbstractYouTubePlayerListener() {
         override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
-            // Not needed for now
+            onTimeChanged?.invoke(0, duration.toInt())
         }
 
         override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
-            // Not needed for now
+            onTimeChanged?.invoke(second.toInt(), 0)
         }
     }
 
@@ -89,6 +90,7 @@ class MusicService : Service() {
         this.currentSong = song
         this.isPlaying = true
         youTubePlayer?.loadVideo(song.youtubeId, 0f)
+        youTubePlayer?.play()
         updateNotification()
     }
 
