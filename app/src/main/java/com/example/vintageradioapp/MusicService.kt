@@ -88,7 +88,6 @@ class MusicService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(notificationReceiver)
-        youTubePlayer?.release()
     }
 
     fun play(song: Song) {
