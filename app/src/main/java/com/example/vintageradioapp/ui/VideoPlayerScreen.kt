@@ -116,7 +116,7 @@ fun VideoPlayerScreenContent(
 		musicService?.let { service ->
 			state.currentSong?.let { song ->
 				if (state.isPlaying) {
-					service.play(song.youtubeId)
+					service.play(song)
 				}
 			}
 		}
