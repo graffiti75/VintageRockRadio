@@ -122,6 +122,7 @@ class VideoPlayerViewModel(
             }
             is VideoPlayerAction.ChangeDecade -> {
                 loadSongs(action.decade)
+                _state.update { it.copy(isPrevButtonEnabled = false) }
             }
         }
     }
@@ -134,7 +135,8 @@ class VideoPlayerViewModel(
                 currentSongIndex = prevIndex,
                 currentPlaybackTimeSeconds = 0, // Reset time for new song
                 totalDurationSeconds = 0, // Reset duration for new song
-                isPlaying = true // Auto-play previous song
+                isPlaying = true, // Auto-play previous song
+                isPrevButtonEnabled = true
             )
         }
     }
@@ -147,7 +149,8 @@ class VideoPlayerViewModel(
                 currentPlaybackTimeSeconds = 0, // Reset time for new song
                 totalDurationSeconds = 0, // Reset duration for new song
                 isPlaying = true, // Auto-play next song
-                error = null
+                error = null,
+                isPrevButtonEnabled = true
             )
         }
     }

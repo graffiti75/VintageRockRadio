@@ -39,6 +39,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -282,7 +283,7 @@ private fun VideoPlayerContentUI(
 				)
 				MusicControls(
 					modifier = Modifier
-						.weight(0.35f)
+						.weight(0.6f)
 						.fillMaxHeight()
 						.padding(start = 8.dp),
 					state = state,
@@ -331,7 +332,7 @@ private fun RowScope.YoutubePlayerContent(
 ) {
 	Column(
 		modifier = Modifier
-			.weight(0.65f) // This Column takes 65% of the width
+			.weight(0.4f) // This Column takes 40% of the width
 			.fillMaxHeight() // It will fill the available height
 			.padding(end = 8.dp)
 	) {
@@ -470,7 +471,7 @@ private fun NextPreviousButtons(
 			onClick = {
 				onAction(VideoPlayerAction.PreviousSong)
 		  	},
-			enabled = state.songs.size > 1,
+			enabled = state.isPrevButtonEnabled,
 			colors = ButtonDefaults.buttonColors(
 				containerColor = MaterialTheme.colorScheme.secondary
 			)
@@ -506,30 +507,28 @@ private fun DecadeButtons(
 	onAction: (VideoPlayerAction) -> Unit
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
-	Column(
+	FlowRow(
 		modifier = Modifier.fillMaxWidth(),
-		horizontalAlignment = Alignment.CenterHorizontally
+		horizontalArrangement = Arrangement.Center,
+		verticalAlignment = Alignment.CenterVertically,
+		maxItemsInEachRow = 3
 	) {
-		Row(
-			modifier = Modifier.fillMaxWidth(),
-			horizontalArrangement = Arrangement.SpaceEvenly
-		) {
-			decades.forEach { decade ->
-				Button(
-					onClick = {
-						onAction(VideoPlayerAction.ChangeDecade(decade))
-					},
-					colors = ButtonDefaults.buttonColors(
-						containerColor = MaterialTheme.colorScheme.secondary
+		decades.forEach { decade ->
+			Button(
+				onClick = {
+					onAction(VideoPlayerAction.ChangeDecade(decade))
+				},
+				colors = ButtonDefaults.buttonColors(
+					containerColor = MaterialTheme.colorScheme.secondary
+				),
+				modifier = Modifier.padding(4.dp)
+			) {
+				Text(
+					text = decade,
+					style = MaterialTheme.typography.labelLarge.copy(
+						color = MaterialTheme.colorScheme.onSecondary
 					)
-				) {
-					Text(
-						text = decade,
-						style = MaterialTheme.typography.labelLarge.copy(
-							color = MaterialTheme.colorScheme.onSecondary
-						)
-					)
-				}
+				)
 			}
 		}
 	}
@@ -539,6 +538,71 @@ fun formatTime(totalSeconds: Int): String {
 	val minutes = totalSeconds / 60
 	val seconds = totalSeconds % 60
 	return "%d:%02d".format(minutes, seconds)
+}
+
+@Composable
+fun FlowRow(
+    modifier: Modifier = Modifier,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
+    verticalAlignment: Alignment.Vertical = Alignment.Top,
+    maxItemsInEachRow: Int = Int.MAX_VALUE,
+    content: @Composable () -> Unit
+) {
+    Layout(
+        content = content,
+        modifier = modifier
+    ) { measurables, constraints ->
+        val placeables = measurables.map { measurable ->
+            measurable.measure(constraints)
+        }
+
+        val rows = mutableListOf<List<Placeable>>()
+        var currentRowPlaceables = mutableListOf<Placeable>()
+        var currentRowWidth = 0
+
+        placeables.forEach { placeable ->
+            if (currentRowWidth + placeable.width > constraints.maxWidth || currentRowPlaceables.size >= maxItemsInEachRow) {
+                rows.add(currentRowPlaceables)
+                currentRowPlaceables = mutableListOf(placeable)
+                currentRowWidth = placeable.width
+            } else {
+                currentRowPlaceables.add(placeable)
+                currentRowWidth += placeable.width
+            }
+        }
+        if (currentRowPlaceables.isNotEmpty()) {
+            rows.add(currentRowPlaceables)
+        }
+
+        val height = rows.sumOf { row -> row.maxOfOrNull { it.height } ?: 0 }
+
+        layout(constraints.maxWidth, height) {
+            var yPosition = 0
+            rows.forEach { row ->
+                val rowHeight = row.maxOfOrNull { it.height } ?: 0
+                val totalRowWidth = row.sumOf { it.width }
+                val horizontalArrangementSpacing = horizontalArrangement.spacing.roundToPx()
+                val remainingWidth = constraints.maxWidth - totalRowWidth - (row.size - 1) * horizontalArrangementSpacing
+
+                var xPosition = when (horizontalArrangement) {
+                    Arrangement.Center -> remainingWidth / 2
+                    Arrangement.End -> remainingWidth
+                    else -> 0
+                }
+
+                row.forEach { placeable ->
+                    val verticalAlignmentY = when (verticalAlignment) {
+                        Alignment.CenterVertically -> (rowHeight - placeable.height) / 2
+                        Alignment.Bottom -> rowHeight - placeable.height
+                        else -> 0
+                    }
+                    placeable.placeRelative(x = xPosition, y = yPosition + verticalAlignmentY)
+                    xPosition += placeable.width + horizontalArrangementSpacing
+                }
+                yPosition += rowHeight
+            }
+        }
+    }
 }
 
 @Preview(
