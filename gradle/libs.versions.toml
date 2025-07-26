@@ -35,6 +35,8 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+mockk = { module = "io.mockk:mockk", version = "1.13.3" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.7.1" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
