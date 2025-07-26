@@ -507,11 +507,10 @@ private fun DecadeButtons(
 	onAction: (VideoPlayerAction) -> Unit
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
-	FlowRow(
+	Row(
 		modifier = Modifier.fillMaxWidth(),
 		horizontalArrangement = Arrangement.Center,
-		verticalAlignment = Alignment.CenterVertically,
-		maxItemsInEachRow = 3
+		verticalAlignment = Alignment.CenterVertically
 	) {
 		decades.forEach { decade ->
 			Button(
@@ -538,71 +537,6 @@ fun formatTime(totalSeconds: Int): String {
 	val minutes = totalSeconds / 60
 	val seconds = totalSeconds % 60
 	return "%d:%02d".format(minutes, seconds)
-}
-
-@Composable
-fun FlowRow(
-    modifier: Modifier = Modifier,
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    verticalAlignment: Alignment.Vertical = Alignment.Top,
-    maxItemsInEachRow: Int = Int.MAX_VALUE,
-    content: @Composable () -> Unit
-) {
-    Layout(
-        content = content,
-        modifier = modifier
-    ) { measurables, constraints ->
-        val placeables = measurables.map { measurable ->
-            measurable.measure(constraints)
-        }
-
-        val rows = mutableListOf<List<Placeable>>()
-        var currentRowPlaceables = mutableListOf<Placeable>()
-        var currentRowWidth = 0
-
-        placeables.forEach { placeable ->
-            if (currentRowWidth + placeable.width > constraints.maxWidth || currentRowPlaceables.size >= maxItemsInEachRow) {
-                rows.add(currentRowPlaceables)
-                currentRowPlaceables = mutableListOf(placeable)
-                currentRowWidth = placeable.width
-            } else {
-                currentRowPlaceables.add(placeable)
-                currentRowWidth += placeable.width
-            }
-        }
-        if (currentRowPlaceables.isNotEmpty()) {
-            rows.add(currentRowPlaceables)
-        }
-
-        val height = rows.sumOf { row -> row.maxOfOrNull { it.height } ?: 0 }
-
-        layout(constraints.maxWidth, height) {
-            var yPosition = 0
-            rows.forEach { row ->
-                val rowHeight = row.maxOfOrNull { it.height } ?: 0
-                val totalRowWidth = row.sumOf { it.width }
-                val horizontalArrangementSpacing = horizontalArrangement.spacing.roundToPx()
-                val remainingWidth = constraints.maxWidth - totalRowWidth - (row.size - 1) * horizontalArrangementSpacing
-
-                var xPosition = when (horizontalArrangement) {
-                    Arrangement.Center -> remainingWidth / 2
-                    Arrangement.End -> remainingWidth
-                    else -> 0
-                }
-
-                row.forEach { placeable ->
-                    val verticalAlignmentY = when (verticalAlignment) {
-                        Alignment.CenterVertically -> (rowHeight - placeable.height) / 2
-                        Alignment.Bottom -> rowHeight - placeable.height
-                        else -> 0
-                    }
-                    placeable.placeRelative(x = xPosition, y = yPosition + verticalAlignmentY)
-                    xPosition += placeable.width + horizontalArrangementSpacing
-                }
-                yPosition += rowHeight
-            }
-        }
-    }
 }
 
 @Preview(
