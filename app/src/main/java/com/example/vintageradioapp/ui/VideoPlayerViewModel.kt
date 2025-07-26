@@ -20,10 +20,10 @@ class VideoPlayerViewModel(
     val state: StateFlow<VideoPlayerState> = _state.asStateFlow()
 
     init {
-        loadSongs()
+        loadSongs("70")
     }
 
-    private fun loadSongs() {
+    private fun loadSongs(decade: String) {
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -31,7 +31,7 @@ class VideoPlayerViewModel(
                 )
             }
             try {
-                val songs = songParser.parseSongs().shuffled()
+                val songs = songParser.parseSongs(decade).shuffled()
                 if (songs.isNotEmpty()) {
                     _state.update {
                         it.copy(
@@ -47,7 +47,7 @@ class VideoPlayerViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            error = "No songs found in ids.txt."
+                            error = "No songs found for decade $decade in ids.txt."
                         )
                     }
                 }
@@ -119,6 +119,9 @@ class VideoPlayerViewModel(
             }
             is VideoPlayerAction.DismissError -> {
                 goToNextSong()
+            }
+            is VideoPlayerAction.ChangeDecade -> {
+                loadSongs(action.decade)
             }
         }
     }

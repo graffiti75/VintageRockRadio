@@ -425,6 +425,8 @@ private fun RowScope.MusicControls(
 			)
 		}
 		Spacer(modifier = Modifier.height(24.dp))
+		DecadeButtons(onAction = onAction)
+		Spacer(modifier = Modifier.height(24.dp))
 		Slider(
 			value = sliderPosition,
 			onValueChange = { newValue -> sliderPosition = newValue },
@@ -495,6 +497,40 @@ private fun NextPreviousButtons(
 					color = MaterialTheme.colorScheme.onSecondary
 				)
 			)
+		}
+	}
+}
+
+@Composable
+private fun DecadeButtons(
+	onAction: (VideoPlayerAction) -> Unit
+) {
+	val decades = listOf("50", "60", "70", "80", "90", "2000")
+	Column(
+		modifier = Modifier.fillMaxWidth(),
+		horizontalAlignment = Alignment.CenterHorizontally
+	) {
+		Row(
+			modifier = Modifier.fillMaxWidth(),
+			horizontalArrangement = Arrangement.SpaceEvenly
+		) {
+			decades.forEach { decade ->
+				Button(
+					onClick = {
+						onAction(VideoPlayerAction.ChangeDecade(decade))
+					},
+					colors = ButtonDefaults.buttonColors(
+						containerColor = MaterialTheme.colorScheme.secondary
+					)
+				) {
+					Text(
+						text = decade,
+						style = MaterialTheme.typography.labelLarge.copy(
+							color = MaterialTheme.colorScheme.onSecondary
+						)
+					)
+				}
+			}
 		}
 	}
 }
