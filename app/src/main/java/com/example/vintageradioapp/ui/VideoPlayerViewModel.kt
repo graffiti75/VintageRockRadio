@@ -23,7 +23,7 @@ class VideoPlayerViewModel(
         loadSongs("70")
     }
 
-    private fun loadSongs(decade: String) {
+    fun loadSongs(decade: String) {
         viewModelScope.launch {
             _state.update {
                 it.copy(

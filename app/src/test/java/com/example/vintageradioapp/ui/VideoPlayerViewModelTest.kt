@@ -41,9 +41,9 @@ class VideoPlayerViewModelTest {
     @Test
     fun `loadSongs updates state with songs`() = runTest {
         val songs = listOf(Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"))
-        coEvery { songParser.parseSongs() } returns songs
+        coEvery { songParser.parseSongs("70") } returns songs
 
-        viewModel.loadSongs()
+        viewModel.loadSongs("70")
         testDispatcher.scheduler.advanceUntilIdle()
 
         assertEquals(false, viewModel.state.value.isLoading)
@@ -57,8 +57,8 @@ class VideoPlayerViewModelTest {
             Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"),
             Song(decade = "70", year = "1971", band = "Led Zeppelin", songTitle = "Stairway to Heaven", youtubeId = "iXQUu5Dti4g")
         )
-        coEvery { songParser.parseSongs() } returns songs
-        viewModel.loadSongs()
+        coEvery { songParser.parseSongs("70") } returns songs
+        viewModel.loadSongs("70")
         testDispatcher.scheduler.advanceUntilIdle()
 
         viewModel.onAction(VideoPlayerAction.NextSong)
@@ -73,8 +73,8 @@ class VideoPlayerViewModelTest {
             Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"),
             Song(decade = "70", year = "1971", band = "Led Zeppelin", songTitle = "Stairway to Heaven", youtubeId = "iXQUu5Dti4g")
         )
-        coEvery { songParser.parseSongs() } returns songs
-        viewModel.loadSongs()
+        coEvery { songParser.parseSongs("70") } returns songs
+        viewModel.loadSongs("70")
         testDispatcher.scheduler.advanceUntilIdle()
 
         viewModel.onAction(VideoPlayerAction.NextSong)
