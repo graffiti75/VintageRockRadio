@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class VideoPlayerViewModel @Inject constructor(
     private val songParser: SongParser,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
+    private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private val _state = MutableStateFlow(VideoPlayerState())
     val state: StateFlow<VideoPlayerState> = _state.asStateFlow()
@@ -27,7 +28,7 @@ class VideoPlayerViewModel @Inject constructor(
     }
 
     fun loadSongs(decade: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
                     isLoading = true

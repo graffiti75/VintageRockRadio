@@ -68,7 +68,7 @@ fun LockScreenOrientation(orientation: Int) {
 }
 
 @Composable
-fun VideoPlayerScreen(viewModel: VideoPlayerViewModel) {
+fun VideoPlayerScreen(viewModel: VideoPlayerViewModel = hiltViewModel()) {
 	LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
 	val state by viewModel.state.collectAsStateWithLifecycle()
 	VideoPlayerScreenContent(
