@@ -32,11 +32,12 @@ class VideoPlayerViewModelHiltTest {
 
     private lateinit var viewModel: VideoPlayerViewModel
     private val scheduler = TestCoroutineScheduler()
+    private val dispatcher = StandardTestDispatcher(scheduler)
 
     @Before
     fun setUp() {
         hiltRule.inject()
-        viewModel = VideoPlayerViewModel(songParser, scheduler)
+        viewModel = VideoPlayerViewModel(songParser, dispatcher)
     }
 
     @Test
