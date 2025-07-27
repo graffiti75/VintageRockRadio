@@ -9,7 +9,7 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -42,8 +42,8 @@ class VideoPlayerViewModelHiltTest {
 
         viewModel.loadSongs("70")
 
-        assertEquals(false, viewModel.state.value.isLoading)
-        assertEquals(songs, viewModel.state.value.songs)
-        assertEquals(songs[0], viewModel.state.value.currentSong)
+        Assert.assertEquals(false, viewModel.state.value.isLoading)
+        Assert.assertEquals(songs, viewModel.state.value.songs)
+        Assert.assertEquals(songs[0], viewModel.state.value.currentSong)
     }
 }
