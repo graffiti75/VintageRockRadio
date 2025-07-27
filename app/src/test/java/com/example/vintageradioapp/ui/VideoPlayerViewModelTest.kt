@@ -15,7 +15,11 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
+
 @ExperimentalCoroutinesApi
+@RunWith(MockitoJUnitRunner::class)
 class VideoPlayerViewModelTest {
 
     private lateinit var viewModel: VideoPlayerViewModel

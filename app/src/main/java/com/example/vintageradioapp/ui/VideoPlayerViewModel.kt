@@ -10,12 +10,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class VideoPlayerViewModel(
-    application: Application
-) : AndroidViewModel(application) {
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-    private val songParser = SongParser(application)
-
+@HiltViewModel
+class VideoPlayerViewModel @Inject constructor(
+    private val songParser: SongParser,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
+) : ViewModel() {
     private val _state = MutableStateFlow(VideoPlayerState())
     val state: StateFlow<VideoPlayerState> = _state.asStateFlow()
 
