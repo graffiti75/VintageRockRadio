@@ -503,7 +503,7 @@ private fun NextPreviousButtons(
 }
 
 @Composable
-private fun DecadeButtons(
+fun DecadeButtons(
 	onAction: (VideoPlayerAction) -> Unit
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
