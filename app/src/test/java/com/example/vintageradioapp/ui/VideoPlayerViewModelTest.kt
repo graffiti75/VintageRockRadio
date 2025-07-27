@@ -38,12 +38,12 @@ class VideoPlayerViewModelTest {
     }
 
     @Test
-    fun `initial state is loading`() {
+    fun initialState_isLoading() {
         assertEquals(VideoPlayerState(isLoading = true), viewModel.state.value)
     }
 
     @Test
-    fun `loadSongs updates state with songs`() = runTest {
+    fun loadSongs_updatesStateWithSongs() = runTest {
         val songs = listOf(Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"))
         coEvery { songParser.parseSongs("70") } returns songs
 
@@ -56,7 +56,7 @@ class VideoPlayerViewModelTest {
     }
 
     @Test
-    fun `nextSong updates currentSong`() = runTest {
+    fun nextSong_updatesCurrentSong() = runTest {
         val songs = listOf(
             Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"),
             Song(decade = "70", year = "1971", band = "Led Zeppelin", songTitle = "Stairway to Heaven", youtubeId = "iXQUu5Dti4g")
@@ -72,7 +72,7 @@ class VideoPlayerViewModelTest {
     }
 
     @Test
-    fun `previousSong updates currentSong`() = runTest {
+    fun previousSong_updatesCurrentSong() = runTest {
         val songs = listOf(
             Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"),
             Song(decade = "70", year = "1971", band = "Led Zeppelin", songTitle = "Stairway to Heaven", youtubeId = "iXQUu5Dti4g")

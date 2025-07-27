@@ -40,7 +40,7 @@ class VideoPlayerViewModelHiltTest {
 import kotlinx.coroutines.runBlocking
 
     @Test
-    fun `loadSongs updates state with songs`() = runBlocking {
+    fun loadSongs_updatesStateWithSongs() = runTest(scheduler) {
         val songs = listOf(Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"))
         coEvery { songParser.parseSongs("70") } returns songs
 
