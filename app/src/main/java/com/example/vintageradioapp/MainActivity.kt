@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelProvider
 import com.example.vintageradioapp.ui.VideoPlayerScreen
-import com.example.vintageradioapp.ui.VideoPlayerViewModel
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
