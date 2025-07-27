@@ -21,24 +21,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModelFactory = object : ViewModelProvider.Factory {
-            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(VideoPlayerViewModel::class.java)) {
-                    @Suppress("UNCHECKED_CAST")
-                    return VideoPlayerViewModel(application) as T
-                }
-                throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
-            }
-        }
-        val viewModel = ViewModelProvider(this, viewModelFactory)[VideoPlayerViewModel::class.java]
-
         setContent {
             VintageRadioAppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    VideoPlayerScreen(viewModel = viewModel)
+                    VideoPlayerScreen()
                 }
             }
         }
