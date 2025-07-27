@@ -8,7 +8,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -35,8 +35,10 @@ class VideoPlayerViewModelHiltTest {
         viewModel = VideoPlayerViewModel(songParser)
     }
 
+import kotlinx.coroutines.runBlocking
+
     @Test
-    fun `loadSongs updates state with songs`() = runTest {
+    fun `loadSongs updates state with songs`() = runBlocking {
         val songs = listOf(Song(decade = "70", year = "1975", band = "Queen", songTitle = "Bohemian Rhapsody", youtubeId = "fJ9rUzIMcZQ"))
         coEvery { songParser.parseSongs("70") } returns songs
 
