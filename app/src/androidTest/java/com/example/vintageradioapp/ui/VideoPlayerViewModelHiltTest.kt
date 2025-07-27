@@ -18,6 +18,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
 
+import kotlinx.coroutines.runBlocking
+
 @ExperimentalCoroutinesApi
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
@@ -37,8 +39,6 @@ class VideoPlayerViewModelHiltTest {
         hiltRule.inject()
         viewModel = VideoPlayerViewModel(songParser)
     }
-
-import kotlinx.coroutines.runBlocking
 
     @Test
     fun loadSongs_updatesStateWithSongs() = runTest(scheduler) {
