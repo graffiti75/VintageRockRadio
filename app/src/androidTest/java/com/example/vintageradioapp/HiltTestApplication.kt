@@ -1,7 +1,7 @@
 package com.example.vintageradioapp
 
 import android.app.Application
-import dagger.hilt.android.testing.HiltAndroidApp
+import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class HiltTestApplication : Application()
