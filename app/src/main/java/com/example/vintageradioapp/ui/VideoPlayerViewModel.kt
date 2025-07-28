@@ -33,7 +33,7 @@ class VideoPlayerViewModel @Inject constructor(
                 )
             }
             try {
-                val songs = songParser.parseSongs(decade).shuffled()
+                val songs = songParser.parseSongs(decade)
                 if (songs.isNotEmpty()) {
                     _state.update {
                         it.copy(
