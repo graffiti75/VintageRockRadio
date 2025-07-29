@@ -443,6 +443,8 @@ private fun RowScope.MusicControls(
 			)
 		}
 		Spacer(modifier = Modifier.height(24.dp))
+		DecadeButtons(onAction = onAction)
+		Spacer(modifier = Modifier.height(24.dp))
 		DecadeSlider(
 			onAction = onAction,
 			modifier = Modifier.fillMaxWidth().height(48.dp)
@@ -523,6 +525,37 @@ private fun NextPreviousButtons(
 }
 
 
+@Composable
+fun DecadeButtons(
+	onAction: (VideoPlayerAction) -> Unit
+) {
+	val decades = listOf("50", "60", "70", "80", "90", "2000")
+	Row(
+		modifier = Modifier.fillMaxWidth(),
+		horizontalArrangement = Arrangement.Center,
+		verticalAlignment = Alignment.CenterVertically
+	) {
+		decades.forEach { decade ->
+			Button(
+				onClick = {
+					onAction(VideoPlayerAction.ChangeDecade(decade))
+				},
+				colors = ButtonDefaults.buttonColors(
+					containerColor = MaterialTheme.colorScheme.secondary
+				),
+				modifier = Modifier.padding(4.dp)
+			) {
+				Text(
+					text = decade,
+					style = MaterialTheme.typography.labelLarge.copy(
+						color = MaterialTheme.colorScheme.onSecondary
+					)
+				)
+			}
+		}
+	}
+}
+
 fun formatTime(totalSeconds: Int): String {
 	val minutes = totalSeconds / 60
 	val seconds = totalSeconds % 60
@@ -535,7 +568,7 @@ private fun DecadeSlider(
 	modifier: Modifier = Modifier
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
-	val numSegments = decades.size - 1
+	val numSegments = decades.size
 
 	BoxWithConstraints(modifier = modifier) {
 		val width = constraints.maxWidth.toFloat()
@@ -566,7 +599,7 @@ private fun DecadeSlider(
 				.pointerInput(Unit) {
 					detectDragGestures(
 						onDragEnd = {
-							val nearestSegment = (offsetX / segmentWidth).toInt().coerceIn(0, numSegments)
+							val nearestSegment = (offsetX / segmentWidth).toInt().coerceIn(0, numSegments - 1)
 							finalOffsetX = nearestSegment * segmentWidth
 							offsetX = finalOffsetX
 							onAction(VideoPlayerAction.ChangeDecade(decades[nearestSegment]))
