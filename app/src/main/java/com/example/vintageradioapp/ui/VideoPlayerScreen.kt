@@ -43,6 +43,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
@@ -67,7 +68,7 @@ fun LockScreenOrientation(orientation: Int) {
 }
 
 @Composable
-fun VideoPlayerScreen(viewModel: VideoPlayerViewModel) {
+fun VideoPlayerScreen(viewModel: VideoPlayerViewModel = hiltViewModel()) {
 	LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
 	val state by viewModel.state.collectAsStateWithLifecycle()
 	VideoPlayerScreenContent(
@@ -282,7 +283,7 @@ private fun VideoPlayerContentUI(
 				)
 				MusicControls(
 					modifier = Modifier
-						.weight(0.35f)
+						.weight(0.6f)
 						.fillMaxHeight()
 						.padding(start = 8.dp),
 					state = state,
@@ -331,7 +332,7 @@ private fun RowScope.YoutubePlayerContent(
 ) {
 	Column(
 		modifier = Modifier
-			.weight(0.65f) // This Column takes 65% of the width
+			.weight(0.4f) // This Column takes 40% of the width
 			.fillMaxHeight() // It will fill the available height
 			.padding(end = 8.dp)
 	) {
@@ -425,6 +426,8 @@ private fun RowScope.MusicControls(
 			)
 		}
 		Spacer(modifier = Modifier.height(24.dp))
+		DecadeButtons(onAction = onAction)
+		Spacer(modifier = Modifier.height(24.dp))
 		Slider(
 			value = sliderPosition,
 			onValueChange = { newValue -> sliderPosition = newValue },
@@ -468,7 +471,7 @@ private fun NextPreviousButtons(
 			onClick = {
 				onAction(VideoPlayerAction.PreviousSong)
 		  	},
-			enabled = state.songs.size > 1,
+			enabled = state.isPrevButtonEnabled,
 			colors = ButtonDefaults.buttonColors(
 				containerColor = MaterialTheme.colorScheme.secondary
 			)
@@ -495,6 +498,37 @@ private fun NextPreviousButtons(
 					color = MaterialTheme.colorScheme.onSecondary
 				)
 			)
+		}
+	}
+}
+
+@Composable
+fun DecadeButtons(
+	onAction: (VideoPlayerAction) -> Unit
+) {
+	val decades = listOf("50", "60", "70", "80", "90", "2000")
+	Row(
+		modifier = Modifier.fillMaxWidth(),
+		horizontalArrangement = Arrangement.Center,
+		verticalAlignment = Alignment.CenterVertically
+	) {
+		decades.forEach { decade ->
+			Button(
+				onClick = {
+					onAction(VideoPlayerAction.ChangeDecade(decade))
+				},
+				colors = ButtonDefaults.buttonColors(
+					containerColor = MaterialTheme.colorScheme.secondary
+				),
+				modifier = Modifier.padding(4.dp)
+			) {
+				Text(
+					text = decade,
+					style = MaterialTheme.typography.labelLarge.copy(
+						color = MaterialTheme.colorScheme.onSecondary
+					)
+				)
+			}
 		}
 	}
 }

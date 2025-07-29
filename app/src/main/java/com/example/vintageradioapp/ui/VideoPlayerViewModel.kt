@@ -1,7 +1,5 @@
 package com.example.vintageradioapp.ui
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vintageradioapp.data.SongParser
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,28 +8,32 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class VideoPlayerViewModel(
-    application: Application
-) : AndroidViewModel(application) {
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import javax.inject.Inject
 
-    private val songParser = SongParser(application)
-
+@HiltViewModel
+class VideoPlayerViewModel @Inject constructor(
+    private val songParser: SongParser,
+    private val dispatcher: CoroutineDispatcher
+) : ViewModel() {
     private val _state = MutableStateFlow(VideoPlayerState())
     val state: StateFlow<VideoPlayerState> = _state.asStateFlow()
 
     init {
-        loadSongs()
+        loadSongs("70")
     }
 
-    private fun loadSongs() {
-        viewModelScope.launch {
+    fun loadSongs(decade: String) {
+        viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
                     isLoading = true
                 )
             }
             try {
-                val songs = songParser.parseSongs().shuffled()
+                val songs = songParser.parseSongs(decade)
                 if (songs.isNotEmpty()) {
                     _state.update {
                         it.copy(
@@ -47,7 +49,7 @@ class VideoPlayerViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            error = "No songs found in ids.txt."
+                            error = "No songs found for decade $decade in ids.txt."
                         )
                     }
                 }
@@ -120,6 +122,10 @@ class VideoPlayerViewModel(
             is VideoPlayerAction.DismissError -> {
                 goToNextSong()
             }
+            is VideoPlayerAction.ChangeDecade -> {
+                loadSongs(action.decade)
+                _state.update { it.copy(isPrevButtonEnabled = false) }
+            }
         }
     }
 
@@ -131,7 +137,8 @@ class VideoPlayerViewModel(
                 currentSongIndex = prevIndex,
                 currentPlaybackTimeSeconds = 0, // Reset time for new song
                 totalDurationSeconds = 0, // Reset duration for new song
-                isPlaying = true // Auto-play previous song
+                isPlaying = true, // Auto-play previous song
+                isPrevButtonEnabled = true
             )
         }
     }
@@ -144,7 +151,8 @@ class VideoPlayerViewModel(
                 currentPlaybackTimeSeconds = 0, // Reset time for new song
                 totalDurationSeconds = 0, // Reset duration for new song
                 isPlaying = true, // Auto-play next song
-                error = null
+                error = null,
+                isPrevButtonEnabled = true
             )
         }
     }

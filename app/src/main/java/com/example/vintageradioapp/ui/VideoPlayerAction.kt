@@ -10,4 +10,5 @@ sealed interface VideoPlayerAction {
     data class OnError(val error: String) : VideoPlayerAction
     data object DismissError : VideoPlayerAction
     data class SetPlaying(val playing: Boolean) : VideoPlayerAction // New action
+    data class ChangeDecade(val decade: String) : VideoPlayerAction
 }
