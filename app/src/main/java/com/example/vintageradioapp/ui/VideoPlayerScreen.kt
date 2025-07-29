@@ -1,5 +1,6 @@
 package com.example.vintageradioapp.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.ActivityInfo
 import androidx.compose.foundation.background
@@ -200,8 +201,10 @@ fun YoutubeListenerDisposableEffect(
 							onAction(VideoPlayerAction.SetPlaying(true))
 						}
 					}
+
 					PlayerConstants.PlayerState.PAUSED -> {
-						val isLikelyNewSong = state.currentPlaybackTimeSeconds < 2 // Heuristic for new song
+						val isLikelyNewSong =
+							state.currentPlaybackTimeSeconds < 2 // Heuristic for new song
 						if (isPlayingInViewModel) {
 							if (isLikelyNewSong) {
 								// If a new song was likely just loaded and meant to play,
@@ -219,6 +222,7 @@ fun YoutubeListenerDisposableEffect(
 							}
 						}
 					}
+
 					PlayerConstants.PlayerState.ENDED -> {
 						// When video ends, go to the next song
 						onAction(VideoPlayerAction.NextSong)
@@ -249,11 +253,13 @@ fun YoutubeListenerDisposableEffect(
 						}
 					}
 				}
+
 				Lifecycle.Event.ON_PAUSE -> {
 					// When app pauses, always pause the player to save resources and follow platform conventions.
 					// The ViewModel's isPlaying state remains true if it was playing.
 					youtubePlayerState.value?.pause()
 				}
+
 				else -> {}
 			}
 		}
@@ -431,7 +437,7 @@ private fun RowScope.MusicControls(
 		Button(
 			onClick = {
 				onAction(VideoPlayerAction.PlayPause)
-		  	},
+			},
 			enabled = currentSong != null,
 			colors = ButtonDefaults.buttonColors(
 				containerColor = MaterialTheme.colorScheme.primary
@@ -447,7 +453,9 @@ private fun RowScope.MusicControls(
 		Spacer(modifier = Modifier.height(24.dp))
 		DecadeSlider(
 			onAction = onAction,
-			modifier = Modifier.fillMaxWidth().height(48.dp)
+			modifier = Modifier
+				.fillMaxWidth()
+				.height(48.dp)
 		)
 		Spacer(modifier = Modifier.height(24.dp))
 		Slider(
@@ -459,7 +467,7 @@ private fun RowScope.MusicControls(
 			},
 			valueRange = 0f..(
 				state.totalDurationSeconds.toFloat().takeIf { it > 0f } ?: 100f
-			),
+				),
 			modifier = Modifier.fillMaxWidth(),
 			enabled = currentSong != null && state.totalDurationSeconds > 0,
 			colors = SliderDefaults.colors(
@@ -492,7 +500,7 @@ private fun NextPreviousButtons(
 		Button(
 			onClick = {
 				onAction(VideoPlayerAction.PreviousSong)
-		  	},
+			},
 			enabled = state.isPrevButtonEnabled,
 			colors = ButtonDefaults.buttonColors(
 				containerColor = MaterialTheme.colorScheme.secondary
@@ -508,7 +516,7 @@ private fun NextPreviousButtons(
 		Button(
 			onClick = {
 				onAction(VideoPlayerAction.NextSong)
-		  	},
+			},
 			enabled = state.songs.size > 1,
 			colors = ButtonDefaults.buttonColors(
 				containerColor = MaterialTheme.colorScheme.secondary
@@ -562,6 +570,7 @@ fun formatTime(totalSeconds: Int): String {
 	return "%d:%02d".format(minutes, seconds)
 }
 
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 private fun DecadeSlider(
 	onAction: (VideoPlayerAction) -> Unit,
@@ -591,7 +600,7 @@ private fun DecadeSlider(
 		}
 
 		Icon(
-			painter = painterResource(id = R.drawable.ic_red_pencil),
+			painter = painterResource(id = R.drawable.ic_red_pencil_two),
 			contentDescription = "Decade Selector",
 			modifier = Modifier
 				.offset { IntOffset(offsetX.toInt(), 0) }
@@ -599,7 +608,8 @@ private fun DecadeSlider(
 				.pointerInput(Unit) {
 					detectDragGestures(
 						onDragEnd = {
-							val nearestSegment = (offsetX / segmentWidth).toInt().coerceIn(0, numSegments - 1)
+							val nearestSegment =
+								(offsetX / segmentWidth).toInt().coerceIn(0, numSegments - 1)
 							finalOffsetX = nearestSegment * segmentWidth
 							offsetX = finalOffsetX
 							onAction(VideoPlayerAction.ChangeDecade(decades[nearestSegment]))

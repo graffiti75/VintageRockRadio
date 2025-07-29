@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="800dp"
+    android:viewportWidth="200"
+    android:viewportHeight="800">
+
+    <!-- Pencil tip (sharp point) -->
+    <path
+        android:pathData="M100,50 L60,150 L140,150 Z"
+        android:fillColor="#99FF0000"/>
+
+    <!-- Metal ferrule (band) -->
+    <path
+        android:pathData="M50,150 L150,150 L150,220 L50,220 Z"
+        android:fillColor="#CCCCCCCC"/>
+
+    <!-- Pencil body (main shaft) -->
+    <path
+        android:pathData="M60,220 L140,220 L140,650 L60,650 Z"
+        android:fillColor="#99FF0000"/>
+
+    <!-- Pencil body highlight -->
+    <path
+        android:pathData="M70,220 L90,220 L90,650 L70,650 Z"
+        android:fillColor="#BBFF4444"/>
+
+    <!-- Eraser ferrule (metal band) -->
+    <path
+        android:pathData="M50,650 L150,650 L150,700 L50,700 Z"
+        android:fillColor="#CCCCCCCC"/>
+
+    <!-- Eraser -->
+    <path
+        android:pathData="M60,700 Q60,700 60,710 L60,750 Q60,760 70,760 L130,760 Q140,760 140,750 L140,710 Q140,700 140,700 Z"
+        android:fillColor="#FFFF9999"/>
+
+</vector>
