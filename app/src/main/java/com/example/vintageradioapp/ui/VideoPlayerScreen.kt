@@ -449,14 +449,13 @@ private fun RowScope.MusicControls(
 			)
 		}
 		Spacer(modifier = Modifier.height(24.dp))
-		DecadeButtons(onAction = onAction)
-		Spacer(modifier = Modifier.height(24.dp))
-		DecadeSlider(
-			onAction = onAction,
-			modifier = Modifier
-				.fillMaxWidth()
-				.height(48.dp)
-		)
+		Box(modifier = Modifier.fillMaxWidth()) {
+			DecadeButtons(onAction = onAction)
+			DecadeSlider(
+				onAction = onAction,
+				modifier = Modifier.fillMaxWidth()
+			)
+		}
 		Spacer(modifier = Modifier.height(24.dp))
 		Slider(
 			value = sliderPosition,
@@ -551,7 +550,9 @@ fun DecadeButtons(
 				colors = ButtonDefaults.buttonColors(
 					containerColor = MaterialTheme.colorScheme.secondary
 				),
-				modifier = Modifier.padding(4.dp)
+				modifier = Modifier
+					.padding(4.dp)
+					.weight(1f)
 			) {
 				Text(
 					text = decade,
@@ -586,25 +587,13 @@ private fun DecadeSlider(
 		var offsetX by remember { mutableFloatStateOf(0f) }
 		var finalOffsetX by remember { mutableFloatStateOf(0f) }
 
-		val sliderColor = MaterialTheme.colorScheme.secondary
-		val sliderHeight = 8.dp
-
-		Canvas(modifier = Modifier.fillMaxSize()) {
-			drawLine(
-				color = sliderColor,
-				start = Offset(0f, center.y),
-				end = Offset(width, center.y),
-				strokeWidth = sliderHeight.toPx(),
-				cap = StrokeCap.Round
-			)
-		}
-
 		Icon(
-			painter = painterResource(id = R.drawable.ic_red_pencil_two),
+			painter = painterResource(id = R.drawable.ic_red_pencil),
 			contentDescription = "Decade Selector",
 			modifier = Modifier
+				.align(Alignment.CenterStart)
 				.offset { IntOffset(offsetX.toInt(), 0) }
-				.size(48.dp)
+				.size(64.dp)
 				.pointerInput(Unit) {
 					detectDragGestures(
 						onDragEnd = {
