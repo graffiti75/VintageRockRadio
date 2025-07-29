@@ -37,10 +37,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
+import com.example.vintageradioapp.R
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -426,7 +443,10 @@ private fun RowScope.MusicControls(
 			)
 		}
 		Spacer(modifier = Modifier.height(24.dp))
-		DecadeButtons(onAction = onAction)
+		DecadeSlider(
+			onAction = onAction,
+			modifier = Modifier.fillMaxWidth().height(48.dp)
+		)
 		Spacer(modifier = Modifier.height(24.dp))
 		Slider(
 			value = sliderPosition,
@@ -502,41 +522,63 @@ private fun NextPreviousButtons(
 	}
 }
 
-@Composable
-fun DecadeButtons(
-	onAction: (VideoPlayerAction) -> Unit
-) {
-	val decades = listOf("50", "60", "70", "80", "90", "2000")
-	Row(
-		modifier = Modifier.fillMaxWidth(),
-		horizontalArrangement = Arrangement.Center,
-		verticalAlignment = Alignment.CenterVertically
-	) {
-		decades.forEach { decade ->
-			Button(
-				onClick = {
-					onAction(VideoPlayerAction.ChangeDecade(decade))
-				},
-				colors = ButtonDefaults.buttonColors(
-					containerColor = MaterialTheme.colorScheme.secondary
-				),
-				modifier = Modifier.padding(4.dp)
-			) {
-				Text(
-					text = decade,
-					style = MaterialTheme.typography.labelLarge.copy(
-						color = MaterialTheme.colorScheme.onSecondary
-					)
-				)
-			}
-		}
-	}
-}
 
 fun formatTime(totalSeconds: Int): String {
 	val minutes = totalSeconds / 60
 	val seconds = totalSeconds % 60
 	return "%d:%02d".format(minutes, seconds)
+}
+
+@Composable
+private fun DecadeSlider(
+	onAction: (VideoPlayerAction) -> Unit,
+	modifier: Modifier = Modifier
+) {
+	val decades = listOf("50", "60", "70", "80", "90", "2000")
+	val numSegments = decades.size - 1
+
+	BoxWithConstraints(modifier = modifier) {
+		val width = constraints.maxWidth.toFloat()
+		val segmentWidth = width / numSegments
+
+		var offsetX by remember { mutableFloatStateOf(0f) }
+		var finalOffsetX by remember { mutableFloatStateOf(0f) }
+
+		val sliderColor = MaterialTheme.colorScheme.secondary
+		val sliderHeight = 8.dp
+
+		Canvas(modifier = Modifier.fillMaxSize()) {
+			drawLine(
+				color = sliderColor,
+				start = Offset(0f, center.y),
+				end = Offset(width, center.y),
+				strokeWidth = sliderHeight.toPx(),
+				cap = StrokeCap.Round
+			)
+		}
+
+		Icon(
+			painter = painterResource(id = R.drawable.ic_red_pencil),
+			contentDescription = "Decade Selector",
+			modifier = Modifier
+				.offset { IntOffset(offsetX.toInt(), 0) }
+				.size(48.dp)
+				.pointerInput(Unit) {
+					detectDragGestures(
+						onDragEnd = {
+							val nearestSegment = (offsetX / segmentWidth).toInt().coerceIn(0, numSegments)
+							finalOffsetX = nearestSegment * segmentWidth
+							offsetX = finalOffsetX
+							onAction(VideoPlayerAction.ChangeDecade(decades[nearestSegment]))
+						}
+					) { change, dragAmount ->
+						change.consume()
+						offsetX = (offsetX + dragAmount.x).coerceIn(0f, width)
+					}
+				},
+			tint = Color.Red.copy(alpha = 0.7f)
+		)
+	}
 }
 
 @Preview(
