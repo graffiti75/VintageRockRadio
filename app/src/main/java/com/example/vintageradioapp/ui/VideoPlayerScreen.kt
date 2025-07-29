@@ -449,14 +449,18 @@ private fun RowScope.MusicControls(
 			)
 		}
 		Spacer(modifier = Modifier.height(24.dp))
-		DecadeButtons(onAction = onAction)
-		Spacer(modifier = Modifier.height(24.dp))
-		DecadeSlider(
-			onAction = onAction,
-			modifier = Modifier
-				.fillMaxWidth()
-				.height(48.dp)
-		)
+		Box(
+			modifier = Modifier.fillMaxWidth(),
+			contentAlignment = Alignment.Center
+		) {
+			DecadeButtons(onAction = onAction)
+			DecadeSlider(
+				onAction = onAction,
+				modifier = Modifier
+					.fillMaxWidth()
+					.height(48.dp)
+			)
+		}
 		Spacer(modifier = Modifier.height(24.dp))
 		Slider(
 			value = sliderPosition,
@@ -543,22 +547,38 @@ fun DecadeButtons(
 		horizontalArrangement = Arrangement.Center,
 		verticalAlignment = Alignment.CenterVertically
 	) {
-		decades.forEach { decade ->
-			Button(
-				onClick = {
-					onAction(VideoPlayerAction.ChangeDecade(decade))
-				},
-				colors = ButtonDefaults.buttonColors(
-					containerColor = MaterialTheme.colorScheme.secondary
-				),
-				modifier = Modifier.padding(4.dp)
-			) {
-				Text(
-					text = decade,
-					style = MaterialTheme.typography.labelLarge.copy(
-						color = MaterialTheme.colorScheme.onSecondary
-					)
-				)
+		SubcomposeLayout { constraints ->
+			val buttonPlaceables = subcompose("buttons") {
+				decades.forEach { decade ->
+					Button(
+						onClick = {
+							onAction(VideoPlayerAction.ChangeDecade(decade))
+						},
+						colors = ButtonDefaults.buttonColors(
+							containerColor = MaterialTheme.colorScheme.secondary
+						),
+						modifier = Modifier.padding(4.dp)
+					) {
+						Text(
+							text = decade,
+							style = MaterialTheme.typography.labelLarge.copy(
+								color = MaterialTheme.colorScheme.onSecondary
+							)
+						)
+					}
+				}
+			}.map { it.measure(constraints) }
+
+			val maxButtonWidth = buttonPlaceables.maxOf { it.width }
+			val totalWidth = maxButtonWidth * decades.size
+			val layoutHeight = buttonPlaceables.maxOf { it.height }
+
+			layout(totalWidth, layoutHeight) {
+				var xPosition = 0
+				buttonPlaceables.forEach { placeable ->
+					placeable.placeRelative(xPosition, 0)
+					xPosition += maxButtonWidth
+				}
 			}
 		}
 	}
@@ -586,25 +606,13 @@ private fun DecadeSlider(
 		var offsetX by remember { mutableFloatStateOf(0f) }
 		var finalOffsetX by remember { mutableFloatStateOf(0f) }
 
-		val sliderColor = MaterialTheme.colorScheme.secondary
-		val sliderHeight = 8.dp
-
-		Canvas(modifier = Modifier.fillMaxSize()) {
-			drawLine(
-				color = sliderColor,
-				start = Offset(0f, center.y),
-				end = Offset(width, center.y),
-				strokeWidth = sliderHeight.toPx(),
-				cap = StrokeCap.Round
-			)
-		}
 
 		Icon(
 			painter = painterResource(id = R.drawable.ic_red_pencil_two),
 			contentDescription = "Decade Selector",
 			modifier = Modifier
 				.offset { IntOffset(offsetX.toInt(), 0) }
-				.size(48.dp)
+				.size(64.dp)
 				.pointerInput(Unit) {
 					detectDragGestures(
 						onDragEnd = {
