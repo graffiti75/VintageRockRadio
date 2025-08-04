@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.ActivityInfo
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -15,10 +17,14 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -37,32 +43,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
-import com.example.vintageradioapp.R
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.vintageradioapp.R
 import com.example.vintageradioapp.data.Song
 import com.example.vintageradioapp.ui.theme.VintageRadioAppTheme
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -70,6 +64,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+private val WIDTH_2000 = 85.dp
+private val WIDTH_NON_2000 = 65.dp
 
 @Composable
 fun LockScreenOrientation(orientation: Int) {
@@ -448,43 +445,56 @@ private fun RowScope.MusicControls(
 				style = MaterialTheme.typography.labelLarge
 			)
 		}
-		Spacer(modifier = Modifier.height(24.dp))
-		DecadeButtons(onAction = onAction)
-		Spacer(modifier = Modifier.height(24.dp))
-		DecadeSlider(
-			onAction = onAction,
+		Box(
 			modifier = Modifier
-				.fillMaxWidth()
-				.height(48.dp)
-		)
-		Spacer(modifier = Modifier.height(24.dp))
-		Slider(
-			value = sliderPosition,
-			onValueChange = { newValue -> sliderPosition = newValue },
-			onValueChangeFinished = {
-				youtubePlayer?.seekTo(sliderPosition)
-				onAction(VideoPlayerAction.SeekTo(sliderPosition.toInt()))
-			},
-			valueRange = 0f..(
-				state.totalDurationSeconds.toFloat().takeIf { it > 0f } ?: 100f
-				),
-			modifier = Modifier.fillMaxWidth(),
-			enabled = currentSong != null && state.totalDurationSeconds > 0,
-			colors = SliderDefaults.colors(
-				thumbColor = MaterialTheme.colorScheme.primary,
-				activeTrackColor = MaterialTheme.colorScheme.primary,
-				inactiveTrackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+				.wrapContentHeight(),
+			contentAlignment = Alignment.Center
+		) {
+			DecadeSlider(
+				onAction = onAction,
+				modifier = Modifier
+					.fillMaxWidth()
+					.padding(bottom = 50.dp)
+					.height(150.dp)
+					.zIndex(1f)
 			)
-		)
-		Text(
-			text = "${formatTime(sliderPosition.toInt())} / ${formatTime(state.totalDurationSeconds)}",
-			style = MaterialTheme.typography.labelSmall
-		)
-		Spacer(modifier = Modifier.height(32.dp))
-		NextPreviousButtons(
-			state = state,
-			onAction = onAction
-		)
+			Column(
+				horizontalAlignment = Alignment.CenterHorizontally,
+				verticalArrangement = Arrangement.Center
+			) {
+				Spacer(modifier = Modifier.height(24.dp))
+				DecadeButtons(onAction = onAction)
+				Spacer(modifier = Modifier.height(24.dp))
+				Spacer(modifier = Modifier.height(24.dp))
+				Slider(
+					value = sliderPosition,
+					onValueChange = { newValue -> sliderPosition = newValue },
+					onValueChangeFinished = {
+						youtubePlayer?.seekTo(sliderPosition)
+						onAction(VideoPlayerAction.SeekTo(sliderPosition.toInt()))
+					},
+					valueRange = 0f..(
+						state.totalDurationSeconds.toFloat().takeIf { it > 0f } ?: 100f
+						),
+					modifier = Modifier.fillMaxWidth(),
+					enabled = currentSong != null && state.totalDurationSeconds > 0,
+					colors = SliderDefaults.colors(
+						thumbColor = MaterialTheme.colorScheme.primary,
+						activeTrackColor = MaterialTheme.colorScheme.primary,
+						inactiveTrackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+					)
+				)
+				Text(
+					text = "${formatTime(sliderPosition.toInt())} / ${formatTime(state.totalDurationSeconds)}",
+					style = MaterialTheme.typography.labelSmall
+				)
+				Spacer(modifier = Modifier.height(32.dp))
+				NextPreviousButtons(
+					state = state,
+					onAction = onAction
+				)
+			}
+		}
 	}
 }
 
@@ -539,8 +549,10 @@ fun DecadeButtons(
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
 	Row(
-		modifier = Modifier.fillMaxWidth(),
-		horizontalArrangement = Arrangement.Center,
+		modifier = Modifier
+			.fillMaxWidth()
+			.background(Color.Yellow.copy(alpha = 0.3f)),
+		horizontalArrangement = Arrangement.SpaceEvenly,
 		verticalAlignment = Alignment.CenterVertically
 	) {
 		decades.forEach { decade ->
@@ -551,7 +563,15 @@ fun DecadeButtons(
 				colors = ButtonDefaults.buttonColors(
 					containerColor = MaterialTheme.colorScheme.secondary
 				),
-				modifier = Modifier.padding(4.dp)
+				modifier = Modifier
+					.padding(4.dp)
+					.then(
+						if (decade == "2000") {
+							Modifier.width(WIDTH_2000)
+						} else {
+							Modifier.width(WIDTH_NON_2000)
+						}
+					)
 			) {
 				Text(
 					text = decade,
@@ -578,8 +598,11 @@ private fun DecadeSlider(
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
 	val numSegments = decades.size
+	val paddingStart = 5.dp
 
-	BoxWithConstraints(modifier = modifier) {
+	BoxWithConstraints(
+		modifier = modifier.background(Color.Blue.copy(alpha = 0.3f))
+	) {
 		val width = constraints.maxWidth.toFloat()
 		val segmentWidth = width / numSegments
 
@@ -587,17 +610,25 @@ private fun DecadeSlider(
 		var finalOffsetX by remember { mutableFloatStateOf(0f) }
 
 		Icon(
-			painter = painterResource(id = R.drawable.ic_red_pencil),
+			painter = painterResource(id = R.drawable.ic_red_pencil_two),
 			contentDescription = "Decade Selector",
 			modifier = Modifier
+				.padding(vertical = 20.dp)
 				.offset { IntOffset(offsetX.toInt(), 0) }
-				.size(192.dp)
 				.pointerInput(Unit) {
 					detectDragGestures(
 						onDragEnd = {
 							val nearestSegment =
 								(offsetX / segmentWidth).toInt().coerceIn(0, numSegments - 1)
-							finalOffsetX = nearestSegment * segmentWidth
+							val shift = when (nearestSegment) {
+								0 -> WIDTH_NON_2000.toPx() / 2 - paddingStart.toPx()
+								in 1..2 -> WIDTH_NON_2000.toPx() / 3
+								3 -> WIDTH_NON_2000.toPx() / 4
+								4 -> WIDTH_NON_2000.toPx() / 5
+								else -> WIDTH_2000.toPx() / 4
+							}
+//							val shift = 0
+							finalOffsetX = nearestSegment * segmentWidth + shift
 							offsetX = finalOffsetX
 							onAction(VideoPlayerAction.ChangeDecade(decades[nearestSegment]))
 						}
@@ -732,6 +763,24 @@ fun MusicControlsPreview() {
 					youtubePlayer = null
 				)
 			}
+		}
+	}
+}
+
+@Preview(
+	showBackground = true,
+	device = "spec:width=1280dp,height=800dp,dpi=240,orientation=landscape",
+)
+@Composable
+fun DecadeSliderPreview() {
+	VintageRadioAppTheme {
+		Surface {
+			DecadeSlider(
+				onAction = {}, modifier = Modifier
+					.fillMaxWidth()
+					.height(148.dp)
+					.background(Color.Blue)
+			)
 		}
 	}
 }
