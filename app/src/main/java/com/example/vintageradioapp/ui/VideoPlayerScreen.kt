@@ -466,8 +466,7 @@ private fun RowScope.MusicControls(
 			) {
 				Spacer(modifier = Modifier.height(24.dp))
 				DecadeButtons(onAction = onAction)
-				Spacer(modifier = Modifier.height(24.dp))
-				Spacer(modifier = Modifier.height(24.dp))
+				Spacer(modifier = Modifier.height(48.dp))
 				Slider(
 					value = sliderPosition,
 					onValueChange = { newValue -> sliderPosition = newValue },
@@ -809,7 +808,8 @@ fun DecadeSliderPreview() {
 	VintageRadioAppTheme {
 		Surface {
 			DecadeSlider(
-				onAction = {}, modifier = Modifier
+				onAction = {},
+				modifier = Modifier
 					.fillMaxWidth()
 					.height(148.dp)
 					.background(Color.Blue)
