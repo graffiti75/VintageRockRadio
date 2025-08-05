@@ -10,7 +10,8 @@ data class VideoPlayerState(
     val totalDurationSeconds: Int = 0,
     val isLoading: Boolean = true,
     val error: String? = null,
-    val isPrevButtonEnabled: Boolean = true
+    val isPrevButtonEnabled: Boolean = true,
+    val currentDecade: String = "70" // Add this new field
 ) {
     val currentSong: Song?
         get() = songs.getOrNull(currentSongIndex)

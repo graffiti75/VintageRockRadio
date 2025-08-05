@@ -45,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
@@ -452,6 +453,7 @@ private fun RowScope.MusicControls(
 		) {
 			DecadeSlider(
 				onAction = onAction,
+				currentDecade = state.currentDecade, // Pass current decade
 				modifier = Modifier
 					.fillMaxWidth()
 					.padding(bottom = 50.dp)
@@ -594,11 +596,13 @@ fun formatTime(totalSeconds: Int): String {
 @Composable
 private fun DecadeSlider(
 	onAction: (VideoPlayerAction) -> Unit,
-	modifier: Modifier = Modifier
+	modifier: Modifier = Modifier,
+	currentDecade: String = "70" // Add this parameter
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
 	val numSegments = decades.size
 	val paddingStart = 5.dp
+	val density = LocalDensity.current
 
 	BoxWithConstraints(
 		modifier = modifier.background(Color.Blue.copy(alpha = 0.3f))
@@ -606,8 +610,38 @@ private fun DecadeSlider(
 		val width = constraints.maxWidth.toFloat()
 		val segmentWidth = width / numSegments
 
-		var offsetX by remember { mutableFloatStateOf(0f) }
-		var finalOffsetX by remember { mutableFloatStateOf(0f) }
+		// Calculate initial position based on current decade
+		val currentDecadeIndex = decades.indexOf(currentDecade).takeIf { it >= 0 } ?: 2 // Default to "70"
+		val initialShift = with(density) {
+			when (currentDecadeIndex) {
+				0 -> WIDTH_NON_2000.toPx() / 2 - paddingStart.toPx()
+				in 1..2 -> WIDTH_NON_2000.toPx() / 3
+				3 -> WIDTH_NON_2000.toPx() / 4
+				4 -> WIDTH_NON_2000.toPx() / 5
+				else -> WIDTH_2000.toPx() / 4
+			}
+		}
+		val initialOffsetX = currentDecadeIndex * segmentWidth + initialShift
+
+		var offsetX by remember(currentDecade) { mutableFloatStateOf(initialOffsetX) }
+		var finalOffsetX by remember(currentDecade) { mutableFloatStateOf(initialOffsetX) }
+
+		// Update position when decade changes externally (from button clicks)
+		LaunchedEffect(currentDecade) {
+			val decadeIndex = decades.indexOf(currentDecade).takeIf { it >= 0 } ?: 2
+			val shift = with(density) {
+				when (decadeIndex) {
+					0 -> WIDTH_NON_2000.toPx() / 2 - paddingStart.toPx()
+					in 1..2 -> WIDTH_NON_2000.toPx() / 3
+					3 -> WIDTH_NON_2000.toPx() / 4
+					4 -> WIDTH_NON_2000.toPx() / 5
+					else -> WIDTH_2000.toPx() / 4
+				}
+			}
+			val newOffsetX = decadeIndex * segmentWidth + shift
+			offsetX = newOffsetX
+			finalOffsetX = newOffsetX
+		}
 
 		Icon(
 			painter = painterResource(id = R.drawable.ic_red_pencil_two),
@@ -627,7 +661,6 @@ private fun DecadeSlider(
 								4 -> WIDTH_NON_2000.toPx() / 5
 								else -> WIDTH_2000.toPx() / 4
 							}
-//							val shift = 0
 							finalOffsetX = nearestSegment * segmentWidth + shift
 							offsetX = finalOffsetX
 							onAction(VideoPlayerAction.ChangeDecade(decades[nearestSegment]))

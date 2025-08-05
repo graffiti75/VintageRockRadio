@@ -123,8 +123,9 @@ class VideoPlayerViewModel @Inject constructor(
                 goToNextSong()
             }
             is VideoPlayerAction.ChangeDecade -> {
-                loadSongs(action.decade)
-                _state.update { it.copy(isPrevButtonEnabled = false) }
+//                loadSongs(action.decade)
+//                _state.update { it.copy(isPrevButtonEnabled = false) }
+                handleChangeDecade(action.decade)
             }
         }
     }
@@ -141,6 +142,12 @@ class VideoPlayerViewModel @Inject constructor(
                 isPrevButtonEnabled = true
             )
         }
+    }
+
+    private fun handleChangeDecade(decade: String) {
+        _state.update { it.copy(currentDecade = decade) }
+        loadSongs(decade)
+        _state.update { it.copy(isPrevButtonEnabled = false) }
     }
 
     private fun goToNextSong() {
