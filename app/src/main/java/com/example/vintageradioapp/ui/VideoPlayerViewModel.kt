@@ -1,16 +1,15 @@
 package com.example.vintageradioapp.ui
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vintageradioapp.data.SongParser
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +22,10 @@ class VideoPlayerViewModel @Inject constructor(
 
     init {
         loadSongs("70")
+    }
+
+    fun checkIfIsTabletAndLandscape(isTabletAndLandscape: Boolean) {
+        _state.update { it.copy(isTabletAndLandscape = isTabletAndLandscape) }
     }
 
     fun loadSongs(decade: String) {
@@ -123,8 +126,6 @@ class VideoPlayerViewModel @Inject constructor(
                 goToNextSong()
             }
             is VideoPlayerAction.ChangeDecade -> {
-//                loadSongs(action.decade)
-//                _state.update { it.copy(isPrevButtonEnabled = false) }
                 handleChangeDecade(action.decade)
             }
         }

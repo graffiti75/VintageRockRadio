@@ -3,6 +3,7 @@ package com.example.vintageradioapp.ui
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -44,8 +45,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
@@ -65,9 +66,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-
-private val WIDTH_2000 = 85.dp
-private val WIDTH_NON_2000 = 65.dp
 
 @Composable
 fun LockScreenOrientation(orientation: Int) {
@@ -91,6 +89,15 @@ fun VideoPlayerScreen(viewModel: VideoPlayerViewModel = hiltViewModel()) {
 		state = state,
 		onAction = viewModel::onAction
 	)
+
+	val configuration = LocalConfiguration.current
+	val screenLayout = configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
+	val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+	val isTabletAndLandscape = (screenLayout >= Configuration.SCREENLAYOUT_SIZE_LARGE) && isLandscape
+
+	LaunchedEffect(Unit) {
+		viewModel.checkIfIsTabletAndLandscape(isTabletAndLandscape)
+	}
 }
 
 @Composable
@@ -120,11 +127,17 @@ fun VideoPlayerScreenContent(
 				// So, state.currentPlaybackTimeSeconds should be 0 here.
 				if (state.isPlaying) {
 					// If isPlaying is true (e.g., new song from next/prev), load and then explicitly play.
-					player.loadVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
-					player.play() // Explicitly call play
+					player.loadVideo(
+						song.youtubeId,
+						state.currentPlaybackTimeSeconds.toFloat()
+					)
+					player.play()
 				} else {
 					// If not playing, just cue the video.
-					player.cueVideo(song.youtubeId, state.currentPlaybackTimeSeconds.toFloat())
+					player.cueVideo(
+						song.youtubeId,
+						state.currentPlaybackTimeSeconds.toFloat()
+					)
 				}
 			}
 		}
@@ -299,6 +312,7 @@ private fun VideoPlayerContentUI(
 					.padding(16.dp)
 			) {
 				YoutubePlayerContent(
+					state = state,
 					youTubePlayerView = youTubePlayerView,
 					currentSong = currentSong
 				)
@@ -348,12 +362,16 @@ private fun RetryState() {
  */
 @Composable
 private fun RowScope.YoutubePlayerContent(
+	state: VideoPlayerState,
 	youTubePlayerView: YouTubePlayerView,
 	currentSong: Song? = null
 ) {
 	Column(
+		horizontalAlignment = Alignment.CenterHorizontally,
+		verticalArrangement = Arrangement.Top,
 		modifier = Modifier
-			.weight(0.4f) // This Column takes 40% of the width
+			// This Column takes 40% or 60% of the width
+			.weight(if (state.isTabletAndLandscape) 0.6f else 0.4f)
 			.fillMaxHeight() // It will fill the available height
 			.padding(end = 8.dp)
 	) {
@@ -363,54 +381,79 @@ private fun RowScope.YoutubePlayerContent(
 			modifier = Modifier
 				.fillMaxWidth()
 				.aspectRatio(16 / 9f) // Maintain aspect ratio
-				.weight(0.5f) // Takes 50% of the vertical space in this Column
 				.background(Color.Black)
 		)
-		Spacer(modifier = Modifier.height(48.dp))
 
-		// Song details take the remaining weighted portion.
-		Column(
+		Spacer(modifier = Modifier.height(48.dp))
+		SongDetails(
+			state = state,
+			currentSong = currentSong
+		)
+	}
+}
+
+@Composable
+private fun SongDetails(
+	state: VideoPlayerState,
+	currentSong: Song? = null
+) {
+	Column(
+		verticalArrangement = Arrangement.Top,
+		modifier = Modifier
+			.fillMaxWidth()
+			.padding(horizontal = 8.dp)
+	) {
+		currentSong?.let { song ->
+			Text(
+				text = song.band,
+				style = if (state.isTabletAndLandscape) {
+					MaterialTheme.typography.displayLarge
+				} else {
+					MaterialTheme.typography.displayMedium
+				}
+			)
+			Text(
+				text = song.songTitle,
+				style = if (state.isTabletAndLandscape) {
+					MaterialTheme.typography.titleLarge
+				} else {
+					MaterialTheme.typography.titleMedium
+				}
+			)
+			Spacer(modifier = Modifier.height(4.dp))
+			Text(
+				text = "Year: ${song.year} (${song.decade}s)",
+				style = if (state.isTabletAndLandscape) {
+					MaterialTheme.typography.bodyLarge
+				} else {
+					MaterialTheme.typography.bodyMedium
+				}
+			)
+			Spacer(modifier = Modifier.height(4.dp))
+			Text(
+				text = "ID: ${song.youtubeId}",
+				style = if (state.isTabletAndLandscape) {
+					MaterialTheme.typography.bodyMedium
+				} else {
+					MaterialTheme.typography.bodySmall
+				}
+			)
+		} ?: Box( // Placeholder if no song, fills the details section
 			modifier = Modifier
-				.fillMaxWidth()
-				.weight(0.2f) // Takes 40% of the vertical space in this Column
-				.padding(horizontal = 8.dp)
+				.fillMaxSize() // Fill the 40% allocated space
+				.padding(8.dp)
 		) {
-			currentSong?.let { song ->
-				Text(
-					text = song.band,
-					style = MaterialTheme.typography.displayMedium
-				)
-				Text(
-					text = song.songTitle,
-					style = MaterialTheme.typography.titleLarge
-				)
-				Spacer(modifier = Modifier.height(4.dp))
-				Text(
-					text = "Year: ${song.year} (${song.decade}s)",
-					style = MaterialTheme.typography.bodyMedium
-				)
-				Spacer(modifier = Modifier.height(4.dp))
-				Text(
-					text = "ID: ${song.youtubeId}",
-					style = MaterialTheme.typography.bodySmall
-				)
-			} ?: Box( // Placeholder if no song, fills the details section
-				modifier = Modifier
-					.fillMaxSize() // Fill the 40% allocated space
-					.padding(8.dp)
-			) {
-				Text(
-					text = "No song selected.",
-					style = MaterialTheme.typography.bodyLarge,
-					modifier = Modifier.align(Alignment.Center)
-				)
-			}
+			Text(
+				text = "No song selected.",
+				style = MaterialTheme.typography.bodyLarge,
+				modifier = Modifier.align(Alignment.Center)
+			)
 		}
 	}
 }
 
 @Composable
-private fun RowScope.MusicControls(
+private fun MusicControls(
 	modifier: Modifier = Modifier,
 	state: VideoPlayerState,
 	onAction: (VideoPlayerAction) -> Unit,
@@ -453,7 +496,8 @@ private fun RowScope.MusicControls(
 		) {
 			DecadeSlider(
 				onAction = onAction,
-				currentDecade = state.currentDecade, // Pass current decade
+				state = state,
+				currentDecade = state.currentDecade,
 				modifier = Modifier
 					.fillMaxWidth()
 					.padding(bottom = 50.dp)
@@ -543,43 +587,49 @@ private fun NextPreviousButtons(
 	}
 }
 
-
 @Composable
 fun DecadeButtons(
 	onAction: (VideoPlayerAction) -> Unit
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
-	Row(
-		modifier = Modifier
-			.fillMaxWidth()
-			.background(Color.Yellow.copy(alpha = 0.3f)),
-		horizontalArrangement = Arrangement.SpaceEvenly,
-		verticalAlignment = Alignment.CenterVertically
+
+	BoxWithConstraints(
+		modifier = Modifier.fillMaxWidth()
 	) {
-		decades.forEach { decade ->
-			Button(
-				onClick = {
-					onAction(VideoPlayerAction.ChangeDecade(decade))
-				},
-				colors = ButtonDefaults.buttonColors(
-					containerColor = MaterialTheme.colorScheme.secondary
-				),
-				modifier = Modifier
-					.padding(4.dp)
-					.then(
-						if (decade == "2000") {
-							Modifier.width(WIDTH_2000)
-						} else {
-							Modifier.width(WIDTH_NON_2000)
-						}
+		val totalWidthDp = this.maxWidth
+		val paddingPerButtonDp = 8.dp // 4dp on each side
+		val totalPaddingDp = paddingPerButtonDp * decades.size
+		val availableWidthDp = totalWidthDp - totalPaddingDp
+
+		val regularButtonWidth = availableWidthDp * 0.154f
+		val wideButtonWidth = availableWidthDp * 0.23f
+
+		Row(
+			modifier = Modifier.fillMaxWidth(),
+			horizontalArrangement = Arrangement.SpaceEvenly,
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			decades.forEach { decade ->
+				Button(
+					onClick = {
+						onAction(VideoPlayerAction.ChangeDecade(decade))
+					},
+					colors = ButtonDefaults.buttonColors(
+						containerColor = MaterialTheme.colorScheme.secondary
+					),
+					modifier = Modifier
+						.padding(horizontal = 4.dp)
+						.width(
+							if (decade == "2000") wideButtonWidth else regularButtonWidth
+						)
+				) {
+					Text(
+						text = decade,
+						style = MaterialTheme.typography.labelLarge.copy(
+							color = MaterialTheme.colorScheme.onSecondary
+						)
 					)
-			) {
-				Text(
-					text = decade,
-					style = MaterialTheme.typography.labelLarge.copy(
-						color = MaterialTheme.colorScheme.onSecondary
-					)
-				)
+				}
 			}
 		}
 	}
@@ -595,32 +645,22 @@ fun formatTime(totalSeconds: Int): String {
 @Composable
 private fun DecadeSlider(
 	onAction: (VideoPlayerAction) -> Unit,
+	state: VideoPlayerState,
 	modifier: Modifier = Modifier,
-	currentDecade: String = "70" // Add this parameter
+	currentDecade: String = "70"
 ) {
 	val decades = listOf("50", "60", "70", "80", "90", "2000")
 	val numSegments = decades.size
-	val paddingStart = 5.dp
-	val density = LocalDensity.current
 
 	BoxWithConstraints(
-		modifier = modifier.background(Color.Blue.copy(alpha = 0.3f))
+		modifier = modifier.background(Color.Transparent)
 	) {
-		val width = constraints.maxWidth.toFloat()
-		val segmentWidth = width / numSegments
+		val totalWidth = constraints.maxWidth.toFloat()
+		val segmentWidth = totalWidth / numSegments
 
 		// Calculate initial position based on current decade
-		val currentDecadeIndex = decades.indexOf(currentDecade).takeIf { it >= 0 } ?: 2 // Default to "70"
-		val initialShift = with(density) {
-			when (currentDecadeIndex) {
-				0 -> WIDTH_NON_2000.toPx() / 2 - paddingStart.toPx()
-				in 1..2 -> WIDTH_NON_2000.toPx() / 3
-				3 -> WIDTH_NON_2000.toPx() / 4
-				4 -> WIDTH_NON_2000.toPx() / 5
-				else -> WIDTH_2000.toPx() / 4
-			}
-		}
-		val initialOffsetX = currentDecadeIndex * segmentWidth + initialShift
+		val currentDecadeIndex = decades.indexOf(currentDecade).takeIf { it >= 0 } ?: 2
+		val initialOffsetX = getButtonCenterX(currentDecadeIndex, totalWidth, decades)
 
 		var offsetX by remember(currentDecade) { mutableFloatStateOf(initialOffsetX) }
 		var finalOffsetX by remember(currentDecade) { mutableFloatStateOf(initialOffsetX) }
@@ -628,16 +668,8 @@ private fun DecadeSlider(
 		// Update position when decade changes externally (from button clicks)
 		LaunchedEffect(currentDecade) {
 			val decadeIndex = decades.indexOf(currentDecade).takeIf { it >= 0 } ?: 2
-			val shift = with(density) {
-				when (decadeIndex) {
-					0 -> WIDTH_NON_2000.toPx() / 2 - paddingStart.toPx()
-					in 1..2 -> WIDTH_NON_2000.toPx() / 3
-					3 -> WIDTH_NON_2000.toPx() / 4
-					4 -> WIDTH_NON_2000.toPx() / 5
-					else -> WIDTH_2000.toPx() / 4
-				}
-			}
-			val newOffsetX = decadeIndex * segmentWidth + shift
+			val newOffsetX =
+				getButtonCenterX(decadeIndex, totalWidth, decades, state.isTabletAndLandscape)
 			offsetX = newOffsetX
 			finalOffsetX = newOffsetX
 		}
@@ -653,24 +685,61 @@ private fun DecadeSlider(
 						onDragEnd = {
 							val nearestSegment =
 								(offsetX / segmentWidth).toInt().coerceIn(0, numSegments - 1)
-							val shift = when (nearestSegment) {
-								0 -> WIDTH_NON_2000.toPx() / 2 - paddingStart.toPx()
-								in 1..2 -> WIDTH_NON_2000.toPx() / 3
-								3 -> WIDTH_NON_2000.toPx() / 4
-								4 -> WIDTH_NON_2000.toPx() / 5
-								else -> WIDTH_2000.toPx() / 4
-							}
-							finalOffsetX = nearestSegment * segmentWidth + shift
+							val centerX = getButtonCenterX(
+								nearestSegment,
+								totalWidth,
+								decades,
+								state.isTabletAndLandscape
+							)
+							finalOffsetX = centerX
 							offsetX = finalOffsetX
 							onAction(VideoPlayerAction.ChangeDecade(decades[nearestSegment]))
 						}
 					) { change, dragAmount ->
 						change.consume()
-						offsetX = (offsetX + dragAmount.x).coerceIn(0f, width)
+						offsetX = (offsetX + dragAmount.x).coerceIn(0f, totalWidth)
 					}
 				},
 			tint = Color.Red.copy(alpha = 0.7f)
 		)
+	}
+}
+
+private fun getButtonCenterX(
+	index: Int,
+	totalWidth: Float,
+	decades: List<String>,
+	isTabletAndLandscape: Boolean = false
+): Float {
+	val paddingDp = 4f // Button padding in dp (approximate px conversion)
+	val totalPadding = paddingDp * 2 * decades.size // All button paddings
+	val availableWidth = totalWidth - totalPadding
+
+	// Calculate button widths
+	val regularWidth = availableWidth * 0.154f
+	val wideWidth = availableWidth * 0.23f
+
+	// Calculate cumulative position for each button center
+	var cumulativeX = paddingDp // Start after first padding
+
+	for (i in 0 until index) {
+		val buttonWidth = if (decades[i] == "2000") wideWidth else regularWidth
+		cumulativeX += buttonWidth + (paddingDp * 2) // Button width + padding on both sides
+	}
+
+	// Add half of current button width to get center
+	val currentButtonWidth = if (decades[index] == "2000") wideWidth else regularWidth
+	val centerX = cumulativeX + (currentButtonWidth / 2) + paddingDp
+
+	val decade = decades[index]
+	return if (isTabletAndLandscape) {
+		if (decade == "2000") {
+			centerX - (wideWidth * 0.1f)
+		} else {
+			centerX - (regularWidth * 0.1f)
+		}
+	} else {
+		centerX - (totalWidth * 0.02f)
 	}
 }
 
@@ -763,6 +832,7 @@ fun YoutubePlayerContentPreview() {
 					.padding(16.dp)
 			) {
 				YoutubePlayerContent(
+					state = VideoPlayerState(),
 					youTubePlayerView = youTubePlayerView,
 					currentSong = Song()
 				)
@@ -809,6 +879,7 @@ fun DecadeSliderPreview() {
 		Surface {
 			DecadeSlider(
 				onAction = {},
+				state = VideoPlayerState(),
 				modifier = Modifier
 					.fillMaxWidth()
 					.height(148.dp)

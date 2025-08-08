@@ -5,48 +5,47 @@
 50;1953;Big Joe Turner;Honey Hush;wLYkj2MDS6E
 50;1952;Big Mama Thornton;Hound Dog;yoHDrzw-RPg
 50;1952;Bill Haley;Rock This Joint;46pFZKOxl7s
-50;1955;Bill Haley & His Comets;Rock Around The Clock;DFHCy_joxaA
-50;1955;Bill Haley & His Comets;See You Later, Alligator;Ch1UQ47rWKU
+50;1955;Bill Haley & His Comets;Rock Around The Clock;ZgdufzXvjqw
+50;1955;Bill Haley & His Comets;See You Later, Alligator;1Hb66FH9AzI
 50;1954;Bill Haley & His Comets;Shake, Rattle And Roll;tscuoxuWQFk
 50;1959;Bill Haley & The Comets;Mary Mary Lou;6Gz7y_SCCac
 50;1955;Bo Diddley;Bo Diddley;3jrIK7YB0tE
-50;1955;Bo Diddley;I'm A Man;SaC5ZKRjLUM
-50;1956;Bo Diddley;Who Do You Love;MAGoqMZRLB4
+50;1955;Bo Diddley;I'm A Man;OKlAiuaYdoI
+50;1956;Bo Diddley;Who Do You Love;0iLcqaIS-48
 50;1958;Bobby Darin;Splish Splash;QSA-yHzkvP8
-50;1958;Bobby Day;Rock-in Robin;r-vpxxLF3Z4
+50;1958;Bobby Day;Rockin' Robin;uLF3YZIjucs
 50;1958;Bobby Freeman;Do You Want To Dance;4T6XIBIjKck
 50;1957;Bobby Helms;Jingle Bell Rock;itcMLwMEeMQ
 50;1957;Buddy Holly;Peggy Sue;OUesbTObC9A
 50;1958;Buddy Holly;Rave On;0IUV-QxwlRM
-50;1957;Buddy Holly;That'll Be The Day;eq9FCBatl3A
-50;1957;Buddy Holly & The Crickets;Maybe Baby;hG-780C4OKY
-50;1957;Buddy Holly & The Crickets;Not Fade Away;AyTtFNGzFsE
+50;1957;Buddy Holly & The Crickets;Maybe Baby;68QwFQSurdE
+50;1957;Buddy Holly & The Crickets;Not Fade Away;0SxlGExhCf0
 50;1957;Buddy Holly & The Crickets;Oh Boy!;j53OPR-cuYY
-50;1957;Buddy Holly & The Crickets;That'll Be The Day;YzNut2IpaO4
+50;1957;Buddy Holly & The Crickets;That'll Be The Day;M4TfFTmITLo
 50;1959;Buster Brown;Fannie Mae;pVNcqb2a3KA
 50;1957;Carl Perking;Matchbox;PYH_SS_aYtA
-50;1956;Carl Perkins;Blue Suede Shoes;b2f_eSZgp88
-50;1956;Carl Perkins;Honey Don't;bVnSb2drVJw
-50;1958;Chuck Berry;Around And Around;W5gx_b_XCvY
-50;1959;Chuck Berry;Back In The U.S.A.;xGCJ5j7oVWc
-50;1956;Chuck Berry;Brown Eyed Handsome Man;ComyNCcYPvg
-50;1958;Chuck Berry;Carol;72_JQcup4ic
+50;1956;Carl Perkins;Blue Suede Shoes;mvsYRAc-BWA
+50;1956;Carl Perkins;Honey Don't;Gjxb3Z6aAW4
+50;1958;Chuck Berry;Around And Around;PejoPHGBWlo
+50;1959;Chuck Berry;Back In The U.S.A.;1VMWIJwr2rg
+50;1956;Chuck Berry;Brown Eyed Handsome Man;OEQQIPqO-FQ
+50;1958;Chuck Berry;Carol;QjmQeDQlW1Y
 50;1958;Chuck Berry;Johnny B. Goode;I8JULmUlGDA
-50;1955;Chuck Berry;Maybellene;6ZFzFmcqweo
+50;1955;Chuck Berry;Maybelline;RMkIK0qZnjw
 50;1957;Chuck Berry;Reelin And Rocking;eTnoSsaeOn0
-50;1957;Chuck Berry;Rock And Roll Music;0XSaKQlBZuE
-50;1956;Chuck Berry;Roll Over Beethoven;zD80CostTV0
+50;1957;Chuck Berry;Rock And Roll Music;2wOZbMjzJsQ
+50;1956;Chuck Berry;Roll Over Beethoven;z6YnO18ECys
 50;1957;Chuck Berry;School Days;DHG5-GxI_Es
-50;1958;Chuck Berry;Sweet Little Sixteen;cp6gG5CsYlo
+50;1958;Chuck Berry;Sweet Little Sixteen;TQsMuCwwL3g
 50;1957;Chuck Willis;C.C. Rider;ACpeuOQP1nw
 50;1958;Chuck Willis;Hang Up My Rock And Roll Shoes;rcitG7FpMVg
 50;1958;Chuck Willis;What Am I Living For;L2znRVg599g
 50;1954;Clyde McPhatter & The Drifters;Honey Love;DEsSVbwIAsU
 50;1959;Coasters;Poison Ivy;ZRfRITVdz4k
-50;1957;Coasters;Searchin';g39huFtvB5g
+50;1957;Coasters;Searchin';PN307ssGLuc
 50;1958;Coasters;Yakety Yak;-WfDYssJMqs
 50;1959;Conway Twitty;It's Only Make Believe;LJefPaBsSug
-50;1954;Crows;Gee;jf9SP84EgHY
+50;1954;Crows;Gee;ZvmGLV_GE0M
 50;1958;Dale Hawkings;My Babe;2aHy2PP4aqs
 50;1957;Dale Hawkins;Susie Q;ftpcE4x7Nn0
 50;1958;Danny & The Juniors;At The Hop;fpuJcPx1O7g
@@ -56,14 +55,14 @@
 50;1957;Diamonds;Little Darlin';dxeWZ-zkBUg
 50;1959;Dion & The Belmonts;A Teenager In Love;o-Xvgv92GBc
 50;1958;Dion & The Belmonts;I Wonder Why;4ZBSGaWrEn4
-50;1959;Drifters;There Goes My Baby;pFGGabHZu88
+50;1959;Drifters;There Goes My Baby;i3HXy9mGPpI
 50;1953;Drifters Featuring Clyde McPhatter;Money Honey;N8oNHMNCSjQ
 50;1958;Duane Eddy;Rebel Rouser;uGPG_Y-_BZI
-50;1958;Eddie Cochran;C'mon Everybody;Qadw2rFiaJc
-50;1958;Eddie Cochran;Summertime Blues;In7z7B87Puc
+50;1958;Eddie Cochran;C'mon Everybody;hw8MXhFupno
+50;1958;Eddie Cochran;Summertime Blues;1C38Zevwyx4
 50;1955;El Dorados;At My Front Door;xAP_z-kEhgk
 50;1951;Elmore James;Dust My Broom;aKo80b-QfK0
-50;1957;Elvis Presley;All Shook Up;nFTfnz1VANI
+50;1957;Elvis Presley;All Shook Up;23zLefwiii4
 50;1955;Elvis Presley;Baby Lets Play House;aaKlBtoZaNQ
 50;1954;Elvis Presley;Blue Moon Of Kentucky;r7M0CmkJ-2o
 50;1956;Elvis Presley;Blue Suede Shoes;Bm5HKlQ6nGM
@@ -79,29 +78,29 @@
 50;1955;Elvis Presley;Milkcow Blues Boogie;8bSVEA0ZAVw
 50;1958;Elvis Presley;One Night;8o74j7t1tKs
 50;1956;Elvis Presley;Too Much;GPc8XNtlDk4
-50;1955;Elvis Presley With Scotty And Bill;Baby Let's Play House;Lsd_zR3dOHA
+50;1955;Elvis Presley With Scotty And Bill;Baby Let's Play House;xipoD1O-n9o
 50;1956;Elvis Presley With Scotty And Bill;Good Rocking Tonight;6FeWJHUB8aU
 50;1956;Elvis Presley With Scotty And Bill;Mystery Train;bloaDASj_A4
 50;1954;Elvis Presley With Scotty And Bill;That's All Right;DCP_g7X31nI
-50;1955;Etta James;The Wallflower;W3-2Q6HYq7U
-50;1958;Everly Brothers;All I Have To Do Is Dream;1N_xGYG0JYI
+50;1955;Etta James;The Wallflower;mmJkt10FMDM
+50;1958;Everly Brothers;All I Have To Do Is Dream;tbU3zdAgiX8
 50;1957;Everly Brothers;Bye Bye Love;LRyrWN-fftE
-50;1957;Everly Brothers;Wake Up Little Susie;FZvDReUkuHc
+50;1957;Everly Brothers;Wake Up Little Susie;LojqhHnmyvc
 50;1955;Fats Domino;Ain't That A Shame;I6JZW7zMDfY
-50;1957;Fats Domino;Blue Monday;mDO78-0a4ho
+50;1957;Fats Domino;Blue Monday;Fy5WM1xYbGo
 50;1956;Fats Domino;Blueberry Hill;clQYBlL7kjU
 50;1956;Fats Domino;I'm In Love Again;ajWI1g7dNAk
 50;1959;Fats Domino;I'm Ready;L2eZZBMt1CQ
 50;1957;Fats Domino;I'm Walkin';NbqSbTRCBl4
 50;1949;Fats Domino;The Fat Man;aIz1cPfTRW4
 50;1958;Fats Domino;Whole Lotta Loving;g7N7CFLuto8
-50;1953;Faye Adams;Shake A Hand;6DE_KxYKzi4
-50;1956;Five Satins;In The Still Of The Nite;twQNeIBGntg
+50;1953;Faye Adams;Shake A Hand;vjMgS0KaZz0
+50;1956;Five Satins;In The Still Of The Nite;ak6tttHk_R8
 50;1959;Frankie Ford;Sea Cruise;dp3nmvMYC3A
-50;1956;Frankie Lymon & The Teenagers;Why Do Fools Fall In Love;bQ45VxN6UqE
+50;1956;Frankie Lymon & The Teenagers;Why Do Fools Fall In Love;cU24RvPqb0c
 50;1956;Gene Vincent & The Bluecaps;Be-Bop-A-Lula;O4_5593-skQ
 50;1956;Go! Go! Go!;Roy Orbison & Teen Kings;yN2kx4FljbY
-50;1954;Hank Ballard & The Midnighters;Work With Me Annie;OMEgmy8nLo8
+50;1954;Hank Ballard & The Midnighters;Work With Me Annie;Np8q6CHMaAo
 50;1956;Harry Belafonte;Day-O (Banana Boat Song);PMigXnXMhQ4
 50;1958;Huey Piano Smith & The Clowns;Don't You Just Know It;3P3yqQ4vgHA
 50;1959;Jackie Wilson;Lonely Teardrops;2ssjvFLniUU
@@ -110,60 +109,60 @@
 50;1958;Jerry Butler & the Impressions;For Your Precious Love;glLYI1w1d5M
 50;1958;Jerry Lee Lewis;Breathless;cGF5UbFYmK0
 50;1957;Jerry Lee Lewis;Great Balls Of Fire;FRdblh4yn_c
-50;1957;Jerry Lee Lewis;Whole Lot of Shakin' Going On;RFxRTLmtsbE
+50;1957;Jerry Lee Lewis;Whole Lot of Shakin' Going On;GN8VV8CHnrk
 50;1958;Jerry Lee Lewis;Wild One;inb1z-qjxIU
 50;1959;Jessie Belvin;Goodnight My Love;DMK3R8ALK8s
-50;1952;Jimmy Forrest;Night Train;q3lBs31Pa-Q
+50;1952;Jimmy Forrest;Night Train;liMFcPWm0HA
 50;1959;Jimmy Jones;Handy Man;CKpbNvDg6zY
 50;1959;Jimmy Reed;Baby What You Want Me To Do;cEkepygs_bM
-50;1954;Joe Turner;Shake, Rattle And Roll;z_RrNOgv2wM
-50;1956;Johnny Burnette Trio;The Train Kept-A-Rollin;wIWofR6Rn7Y
-50;1956;Johnny Cash And The Tennessee Two;Folsom Prison Blues;zphvpeMyqtY
+50;1954;Joe Turner;Shake, Rattle And Roll;rJoTiZ0tHYc
+50;1956;Johnny Burnette Trio;The Train Kept-A-Rollin;VkZhJJ8sPmw
+50;1956;Johnny Cash And The Tennessee Two;Folsom Prison Blues;AeZRYhLDLeU
 50;1956;Johnny Cash And The Tennessee Two;I Walk The Line;tjRMYsPPodU
-50;1958;Larry Williams;Dizzy Miss Lizzy;1UtzA_v64bU
+50;1958;Larry Williams;Dizzy Miss Lizzy;rVoczinIY_0
 50;1957;Larry Williams;Short Fat Fannie;qs4eIExZols
-50;1958;Larry Williams;Slow Down;DnK3y7RHLhY
+50;1958;Larry Williams;Slow Down;cHuJAC_XbhQ
 50;1957;Lavern Baker;Jim Dandy;TdeZeqqiKrk
 50;1954;LaVern Baker;Tweedlee Dee;_9M6EeMVf_Q
 50;1957;Litte Richard;Can't Believe You Wanna Leave;j5meI68k8ZM
 50;1959;Little Anthony & The Imperials;Tears On My Pillow;x33hBl5HIi0
 50;1956;Little Richard;Good Golly Miss Molly;lQ6akiGRcL8
-50;1957;Little Richard;Jenny Jenny;uMPDgf81ik4
+50;1957;Little Richard;Jenny Jenny;HLIlRvEa3Ls
 50;1958;Little Richard;Keep a Knockin';PcJrExewkYA
 50;1956;Little Richard;Long Tall Sally;eFFgbc5Vcbw
 50;1957;Little Richard;Lucille;K4fNqoHzeO4
 50;1957;Little Richard;Miss Ann;QOs9VTKeR9c
 50;1957;Little Richard;Ready Teddy;tpMaCUh569I
 50;1956;Little Richard;Rip It Up;2Utf2QzF5Ik
-50;1958;Little Richard;Send Me Some Lovin';yHUTtqRvdts
+50;1958;Little Richard;Send Me Some Lovin';eJWUExy7av0
 50;1957;Little Richard;She's Got It;Mp43uumF0QY
 50;1958;Little Richard;The Girl Can't Help It;egiR3FgtHe0
 50;1957;Little Richard;True, Fine Mama;IRV25fHD-b4
 50;1955;Little Richard;Tutti Frutti;F13JNjpNW6c
-50;1955;Little Walter;My Babe;p3cKJ42HAd0
+50;1955;Little Walter;My Babe;duRp_avXtMM
 50;1956;Little Willie John;Fever;szz27BuDgeU
 50;1952;Lloyd Price;Lawdy Miss Clawdy;eqycY37sr_w
 50;1959;Lloyd Price;Stagger Lee;FCPutYaGFlE
 50;1958;Lorry & Larry Collins;Mercy;hGKgTRQwl_E
 50;1959;Mickey & Sylvia;Love Is Strange;5mvN05MSa48
 50;1958;Monotones;Book Of Love;-xDwq8NM9G4
-50;1954;Moonglows;Sincerely;XsxVKN114M0
+50;1953;Moonglows;Sincerely;0xGqfmvNVuk
 50;1957;Muddy Waters;Got My Mojo Working;8hEYwk0bypY
-50;1954;Muddy Waters;Hoochie Coochie Man;U5QKpsVzndc
+50;1954;Muddy Waters;Hoochie Coochie Man;sSnxwnPkgas
 50;1954;Muddy Waters;I Just Want To Make Love To You;RnlvHP1AXPo
-50;1954;Nolan Strong And The Diablos;The Wind;UikYboldB6U
+50;1954;Nolan Strong And The Diablos;The Wind;bIVKaayaNaY
 50;1957;Patsy Cline;Walking After Midnight;bsRNCvHXHHU
 50;1957;Paul Anka;Diana;ar-zZ21iW9w
 50;1959;Phil Phillips & Twilights;Sea Of Love;lrkNRcyvtF4
-50;1955;Platters;Only You;IlVjR5Clz0A
+50;1955;Platters;Only You;5p2k55F-uag
 50;1957;Ray Charles;(Night Time Is) The Right Time;BTruv-lVoLk
 50;1954;Ray Charles;I've Got A Woman;R8kdX6VJ2oY
 50;1959;Ray Charles;What'd I Say;EPLZL4s_jtI
-50;1959;Ricky Nelson;It's Late;2FQmnBtTP00
+50;1959;Ricky Nelson;It's Late;KFxXwEkT_Sc
 50;1959;Ritchie Valens;Come On Let's Go;4WDK16m1Ks4
 50;1958;Ritchie Valens;La Bamba;QHufxQdr2ao
 50;1959;Ronnie Dawson;Rockin' Bones;lIGtGj0VJcg
-50;1959;Ronnie Hawkings;Forty Days;GY7jnocjGk4
+50;1959;Ronnie Hawkings;Forty Days;RXbUaxs6fMs
 50;1957;Roy Hamilton;Don't Let Go;nnRV7G7-xd0
 50;1953;Ruth Brown;Mama, He Treats Your Daughter Mean;9P5HwKGWqsg
 50;1959;Santo & Johnny;Sleep Walk;YBRCvVpknvg
@@ -174,13 +173,13 @@
 50;1953;Sonny Till And The Orioles;Crying In The Chapel;eEwcMvcWKgk
 50;1958;Tarheel Slim;Number 9 Train;sxKcXLJS0f8
 50;1956;The Cadets;Stranded In The Jungle;4h9PbMucPXU
-50;1958;The Champs;Tequilla;3H6amDbAwlY
+50;1958;The Champs;Tequilla;4hswHOEQfj8
 50;1954;The Charms;Hearts Of Stone;u6enJYluQv0
 50;1959;The Clovers;Love Potion No. 9;Nt7htnE1s4o
-50;1956;The Clovers;Lovey Dovey;rmh2_y4b16k
+50;1956;The Clovers;Lovey Dovey;-yDZCNR_qkI
 50;1951;The Clovers;One Mint Julep;2rNoR8jnPRU
 50;1959;The Coasters;Charlie Brown;qMHEMXGjQqw
-50;1957;The Coasters;Young Blood;e-Exe4YUJyI
+50;1957;The Coasters;Young Blood;MRdRRn-bW4k
 50;1959;The Crests;Sixteen Candles;Ads-VjLHaJM
 50;1952;The Dominoes;Have Mercy Baby;MdGG1ry-Rks
 50;1958;The Everly Brothers;Bird Dog;I65PxlOlHA4
@@ -189,14 +188,13 @@
 50;1957;The Heartbeats;A Thousand Miles Away;3HQBDRSryUA
 50;1959;The Isley Brothers;Shout;rWRsJ-mDU5o
 50;1959;The Isley Brothers;Twist And Shout;cTaqn8_gMR0
-50;1958;The Johnny Otis Show;Willie And The Hand Jive;zUyP9bBEutM
-50;1956;The Moonglows;Sincerely;XsxVKN114M0
+50;1958;The Johnny Otis Show;Willie And The Hand Jive;9kIswurDJt4
 50;1955;The Nutmegs;Story Untold;KOKYGzAhLQE
 50;1956;The Penguins;Earth Angel;VJcGi4-n_Yw
 50;1958;The Phantom;Love Me;8zgsIdMa8qA
 50;1956;The Platters;My Prayer;eDlcqhlzDqQ
 50;1958;The Platters;Smoke Gets In Your Eyes;H2di83WAOhU
-50;1956;The Platters;The Great Pretender;Pg9fUzKlt5Q
+50;1956;The Platters;The Great Pretender;rwfmbXJEBtY
 50;1957;The Rays;Silhouettes;j6uq49ueugg
 50;1957;The Silhouettes;Get A Job;ysKhbaLyIFw
 50;1955;The Turbans;When You Dance;WWB9ZXMsMDY
@@ -204,7 +202,7 @@
 50;1957;Thurston Harris;Little Bitty Pretty One;B8j4mn4eF-c
 50;1958;Wanda Jackson;Fujiyama Mama;ztFHvNwRb6Q
 50;1956;Wanda Jackson;I Gotta Know;Lf8EHzMA9sw
-50;1959;Wilbert Harrison;Kansas City;rHZSMUJypqw
+50;1959;Wilbert Harrison;Kansas City;Oj5drFXNnEI
 60;1966;? And The Mysterians;96 Tears;R7uC5m-IRns
 60;1963;Angels;My Boyfriend's Back;qFdzJ0j8lYo
 60;1968;Aretha Franklin;A Natural Woman;dEWuAcMWDLY
@@ -218,7 +216,7 @@
 60;1965;Billy Stewart;I Do Love You;kr40p6ev4Yw
 60;1968;Blue Cheer;Summertime Blues;YXcYZsqkZ-g
 60;1963;Bob Dylan;Blowin' In The Wind;G58XWF6B3AA
-60;1966;Bob Dylan;Just Like A Woman;ymmRnKaTEr8
+60;1966;Bob Dylan;Just Like A Woman;dRLXZVojdhQ
 60;1965;Bob Dylan;Like A Rolling Stone;IwOfCgkyEj0
 60;1965;Bob Dylan;Subterranean Homesick Blues;MGxjIBEZvx0
 60;1960;Bobby Darin;Beyond The Sea;m8OlDPqYBLw
@@ -226,13 +224,13 @@
 60;1966;Bobby Fuller Four;I Fought The Law;OgtQj8O92eI
 60;1962;Booker T. & The M.G.s;Green Onions;0oox9bJaGJ8
 60;1960;Brenda Lee;I'm Sorry;BGLR25EJtfE
-60;1960;Brenda Lee;Sweet Nothin's;jx-t1KdvmnM
+60;1960;Brenda Lee;Sweet Nothin's;POUhXpLAnM0
 60;1961;Bruce Channel;Hey Baby;ik9dxkKriV0
 60;1967;Buffalo Springfield;For What It's Worth;gp5JCrSXkJY
 60;1966;Cannibal & The Headhunters;Land Of 1000 Dances;VZFzKZyyQK0
-60;1965;Chris Kenner;I Like It Like That;jjml2lPJndk
+60;1965;Chris Kenner;I Like It Like That;77IHUDVUTq8
 60;1964;Chuck Berry;No Particular Place To Go;t6OS_ItMGpc
-60;1964;Chuck Berry;You Never Can Tell;RoDPPgWbfXY
+60;1964;Chuck Berry;You Never Can Tell;55_9o8LoWiw
 60;1966;Count Five;Psychotic Reaction;GTroJlLPRHM
 60;1968;Cream;Crossroads;PE9HvSdcaL4
 60;1967;Cream;Strange Brew;r0FFTd3bS_8
@@ -242,10 +240,10 @@
 60;1969;Creedence Clearwater Revival;Fortunate Son;ec0XKhAHR5I
 60;1969;Creedence Clearwater Revival;Green River;L5V9nK7-OkM
 60;1968;Creedence Clearwater Revival;I Put A Spell On You;xeXqtzusIU0
-60;1969;Creedence Clearwater Revival;Lodi;yA7iGxV6rt4
+60;1969;Creedence Clearwater Revival;Lodi;dIfQNB5WXmY
 60;1969;Creedence Clearwater Revival;Proud Mary;XfyEpmQM7bw
 60;1968;Creedence Clearwater Revival;Susie Q;PDIVvo1bhGo
-60;1969;Creedence Clearwater Revival;The Midnight Special;T00eJSQimIk
+60;1969;Creedence Clearwater Revival;The Midnight Special;kNiUfwHJF6E
 60;1969;Creedence Clearwater Revival;Wrote A Song For Everyone;G2-fqdCKCMA
 60;1964;Dave Clark Five;Bits And Pieces;XoRLIJJSG4o
 60;1964;Dave Clark Five;Glad All Over;NHtNFaa2ne0
@@ -254,14 +252,14 @@
 60;1968;Deep Purple;Kentucky Woman;KcLER89gLhc
 60;1969;Deep Purple;Lalena;W1ZFAM1Yuhc
 60;1961;Del Shannon;Runaway;0S13mP_pfEc
-60;1963;Dick Dale;Misirlou;1s6zqr9P9Xk
+60;1963;Dick Dale;Misirlou;mKpsuGMeqHI
 60;1961;Dion DiMucci;Runaround Sue;PvnlyP9sfHU
 60;1966;Donovan;Sunshine Superman;hTuPbJLqFKI
 60;1967;Eddie Floyd;Knock On Wood;Kceiks__PsE
 60;1968;Elvis Presley;A Little Less Conversation;WWVMXLSS1cA
 60;1969;Elvis Presley;Can't Help Falling In Love;vGJTaP6anOU
 60;1963;Elvis Presley;Devil In Desguise;emjLXdsj6xA
-60;1960;Elvis Presley;Fever;dNsU5edolvk
+60;1960;Elvis Presley;Fever;n0O7y8b6t6w
 60;1961;Elvis Presley;Good Luck Charm;Z0gx4kPDW0w
 60;1960;Elvis Presley;She's Not You;qZQwc0yUZIM
 60;1969;Elvis Presley;Suspicious Minds;RxOBOhRECoo
@@ -269,10 +267,10 @@
 60;1966;Frank Zappa;Motherly Love;FFQbERB2DAM
 60;1966;Frank Zappa;Trouble Every Day;girnJH7tvpM
 60;1960;Gary U.S. Bonds;Quarter To Three;hoopfp5iaKw
-60;1962;Gene Chandler;Duke Of Earl;QQnfooEED8Y
+60;1962;Gene Chandler;Duke Of Earl;Qa88gqvXJMc
 60;1969;Genesis;A Winter's Tale;AEBmgvJ-zOI
-60;1969;Genesis;The Silent Sun;SO_JTvPar4c
-60;1969;Grand Funk Railroad;Anybody's Answer;E_GV3IY08-4
+60;1969;Genesis;The Silent Sun;RBHf52Y0XpU
+60;1969;Grand Funk Railroad;Anybody's Answer;Q85piRjGWF4
 60;1969;Grand Funk Railroad;Heartbreaker;ieHkKs0ewLY
 60;1960;Hank Ballard & The Midnighters;Let's Go, Let's Go, Let's Go;TYfnC4CgN-Y
 60;1966;Ike & Tina Turner;River Deep, Mountain High;jhkIh4x4mmM
@@ -287,7 +285,7 @@
 60;1967;James Carr;The Dark End Of The Street;HC3AXQ8dPJM
 60;1963;Jan & Dean;Surf City;ERrwjR4ZlfI
 60;1967;Jefferson Airplane;White Rabbit;WANNqr-vcx0
-60;1960;Jerry Butler;He Will Break Your Heart;OG0VEasgHZY
+60;1960;Jerry Butler;He Will Break Your Heart;uJmCvbD0zZM
 60;1968;Jerry Butler;Only The Strong Survive;XPkd9ZQOtbI
 60;1968;Jethro Tull;A Song For Jeffrey;3hZOeB-9D6Y
 60;1969;Jethro Tull;Look Into The Sun;F_N51GePbY8
@@ -297,27 +295,27 @@
 60;1967;Jimi Hendrix;Little Wing;U5Vki76x-EU
 60;1967;Jimi Hendrix;Purple Haze;fjwWjx7Cw8I
 60;1969;Joe Cocker;With A Little Help From My Friends;nCrlyX6XbTU
-60;1968;Joe South;Games People Play;5znh58WITU8
+60;1968;Joe South;Games People Play;vDeVonv3kY0
 60;1961;Johnny Burnette Trio;Tear It Up;4etvFlAncDo
 60;1965;Johnny Kidd & The Pirates;Shakin' All Over;n327ncoU_ZU
 60;1963;Johnny Rivers;Memphis;qDG7ZdfBFRU
 60;1965;Jr. Walker & The Allstars;Shotgun;cq6jquFrb08
 60;1969;King Crimson;21st Century Schizoid Man;3028oDEKZo4
 60;1969;King Crimson;I Talk To The Wind;GaHbbERITQ8
-60;1969;King Crimson;Moonchild;-NjdfOoPK9c
-60;1969;Led Zeppelin;Babe I'm Gonna Leave You;eOUaQz8GYPA
+60;1969;King Crimson;Moonchild;DnYDqv8-lJE
+60;1969;Led Zeppelin;Babe I'm Gonna Leave You;zX_wwlIZ6ko
 60;1969;Led Zeppelin;Communication Breakdown;3EH7QMVnSRI
 60;1969;Led Zeppelin;Dazed And Confused;yO2n7QoyieM
-60;1969;Led Zeppelin;Good Times Bad Times;TFj0rxyNCtc
-60;1969;Led Zeppelin;Heartbreaker;EUFGJvYlPFk
+60;1969;Led Zeppelin;Good Times Bad Times;TA9Rec1qAFQ
+60;1969;Led Zeppelin;Heartbreaker;e5O4073zCKA
 60;1969;Led Zeppelin;How Many More Times;y-5o2f9wzmw
-60;1969;Led Zeppelin;Ramble On;_284RNK8eCo
-60;1969;Led Zeppelin;Thank You;u1z4vkPWkLQ
+60;1969;Led Zeppelin;Ramble On;LzGBQerkvWs
+60;1969;Led Zeppelin;Thank You;12KbOAc8vmk
 60;1969;Led Zeppelin;Whole Lotta Love;HQmmM_qwG4k
 60;1969;Led Zeppelin;You Shook Me;YS1Tz6dzcjU
-60;1963;Lesley Gore;It's My Party;V6Uo1nNt6LU
+60;1963;Lesley Gore;It's My Party;mIsnIt1p978
 60;1962;Little Eva;The Loco-Motion;eKpVQm41f8Y
-60;1964;Manfred Mann;Do Wah Diddy Diddy;43vOAw2sAFU
+60;1964;Manfred Mann;Do Wah Diddy Diddy;1UingsUi0mI
 60;1964;Martha & The Vandellas;Dancing In The Streets;9KhbM2mqhCQ
 60;1965;Martha & The Vandellas;Nowhere To Run;RQRIOKvR2WM
 60;1968;Marvin Gaye;I Heard It Through The Grapevine;hajBdDM2qdg
@@ -329,27 +327,27 @@
 60;1965;Otis Redding;I've Been Loving You Too Long;qZ6OrrkeVFo
 60;1967;Otis Redding;Respect;KvC9V_lBnDQ
 60;1961;Patsy Cline;Crazy;MbnrdCS57d0
-60;1966;Paul Revere & The Raiders;Kicks;Aor4Z5jWP0o
-60;1966;Percy Sledge;When A Man Loves A Woman;jHS8LAqHyHs
+60;1966;Paul Revere & The Raiders;Kicks;lLomSaLLSzg
+60;1966;Percy Sledge;When A Man Loves A Woman;KwPxhWU1koE
 60;1968;Pink Floyd;Corporal Clegg;oH5fI0qpLu4
 60;1967;Pink Floyd;See Emily Play;5R8EpAv4miA
 60;1969;Pink Floyd;The Nile Song;MduQlWUoyhI
 60;1967;Procol Harum;A Whiter Shade Of Pale;Mb3iPP-tHdA
 60;1960;Ray Charles;Drown In My Own Tears;_ekn9dAYfz0
 60;1960;Ray Charles;Georgia On My Mind;fRgWBN8yt_E
-60;1962;Ray Charles;Hit The Road Jack;0rEsVp5tiDQ
+60;1962;Ray Charles;Hit The Road Jack;uSiHqxgE2d0
 60;1962;Ray Charles;I Can't Stop Loving You;w-YqaTDDCDM
 60;1961;Ray Charles;Unchain My Heart;Q0lCxoF88jU
 60;1961;Ricky Nelson;Hello Mary Lou;AMVQCHgpYmI
 60;1962;Roy Orbison;Running Scared;UH-AafkQPEo
-60;1967;Sam & Dave;Soul Man;ZVx2i6jGzf8
+60;1967;Sam & Dave;Soul Man;S_OX2HwWy-o
 60;1963;Sam Cooke;Bring It On Home To Me;WjtndPBN6jE
 60;1961;Sam Cooke;Chain Gang;zBn5aIfZElE
 60;1963;Sam Cooke;Cupid;S28tILqie1o
-60;1962;Sam Cooke;Twisting The Night Away;jSoPeZMHMf4
+60;1962;Sam Cooke;Twisting The Night Away;zTArYTvpLZA
 60;1960;Sam Cooke;Wonderful World;R4GLAKEjU4w
 60;1969;Santana;Evil Ways;_tKIPuLfeKg
-60;1967;Scott McKenzie;San Francisco;FnygM27ELR4
+60;1967;Scott McKenzie;San Francisco;7I0vkKy504U
 60;1969;Shocking Blue;Venus;aPEhQugz-Ew
 60;1966;Simon & Garfunkel;I Am A Rock;JKlSVNxLB-A
 60;1964;Simon & Garfunkel;The Sound Of Silence;4zLfCnGVeL4
@@ -359,9 +357,9 @@
 60;1969;Sly & The Family Stone;Thank You (Falettinme Be Mice Elf Agin);N5BP2KlPD4U
 60;1066;Small Faces;You Need Loving;tp0jZ4BGuDw
 60;1965;Smokey Robinson & The Miracles;Going To A Go-Go;sWt4Hz1KGcQ
-60;1965;Smokey Robinson & The Miracles;Ooo Baby Baby;YrizfdCsDi4
+60;1965;Smokey Robinson & The Miracles;Ooo Baby Baby;uThnUmWRCCs
 60;1961;Smokey Robinson & The Miracles;Shop Around;AQGXa3FiXKM
-60;1967;Smokey Robinson & The Miracles;Tears Of A Clown;ZaMX0Cs5Bc4
+60;1967;Smokey Robinson & The Miracles;Tears Of A Clown;tcd9N62nOLg
 60;1969;Smokey Robinson & The Miracles;The Tracks Of My Tears;rNS6D4hSQdA
 60;1963;Smokey Robinson & The Miracles;You've Really Got A Hold On Me;AdDnqSFYXFs
 60;1965;Sonny & Cher;I Got You Babe;BERd61bDY7k
@@ -374,15 +372,15 @@
 60;1965;The Animals;Don't Let Me Be Misunderstood;HHjKzr6tLz0
 60;1966;The Animals;Inside Looking Out;vome1rJrZp8
 60;1965;The Animals;It's My Life;s0KlOmrqdyY
-60;1964;The Animals;The House Of The Rising Sun;0sB3Fjw3Uvc
+60;1964;The Animals;The House Of The Rising Sun;4-43lLKaqBQ
 60;1965;The Animals;We Gotta Get Out Of This Place;wJVpihgwE18
-60;1967;The Animals;When I Was Young;BMlgn4duxU
+60;1967;The Animals;When I Was Young;ur30bn_3G58
 60;1966;The Association;Along Comes Mary;sYJhhKSXOBo
 60;1968;The Band;The Weight;FFqb1I-hiHE
-60;1965;The Beach Boys;California Girls;fmIsdMWzdaE
-60;1967;The Beach Boys;Darlin';-uAK0Ws6TwY
+60;1965;The Beach Boys;California Girls;DR2lvcdKSdU
+60;1967;The Beach Boys;Darlin';iXhB2uETzP0
 60;1964;The Beach Boys;Fun, Fun, Fun;dDHErN3dOkc
-60;1966;The Beach Boys;God Only Knows;EkPy18xW1j8
+60;1966;The Beach Boys;God Only Knows;M0lj3WX_5ps
 60;1966;The Beach Boys;Good Vibrations;Eab_beh07HU
 60;1965;The Beach Boys;Help Me Rhonda;QPnBrK6D26g
 60;1963;The Beach Boys;In My Room;l71pbhqnvNM
@@ -391,12 +389,12 @@
 60;1966;The Beach Boys;Wouldn't It Be Nice;nZBKFoeDKJo
 60;1967;The Beatles;A Day In The Life;usNsCeOV4GM
 60;1964;The Beatles;A Hard Day's Night;AMSiHdrHl0g
-60;1969;The Beatles;Across The Universe;xykODVIGzJs
+60;1969;The Beatles;Across The Universe;we0tO0LxY8Y
 60;1968;The Beatles;Back In The U.S.S.R.;0ArlUSVDQIw
 60;1964;The Beatles;Can't Buy Me Love;TBSpmoA8V78
 60;1969;The Beatles;Come Together;45cYwDMibGo
 60;1964;The Beatles;Eight Days A Week;kle2xHhRHg4
-60;1964;The Beatles;From Me To You;XTB3bCYMK0
+60;1964;The Beatles;From Me To You;GN-iTB-CEC4
 60;1969;The Beatles;Get Back;IKJqecxswCA
 60;1967;The Beatles;Hello Goodbye;rblYSKz_VnI
 60;1968;The Beatles;Helter Skelter;vWW2SzoAXMo
@@ -413,13 +411,13 @@
 60;1964;The Beatles;She Loves You;nGbWU8S3vzs
 60;1969;The Beatles;Something;UelDrZ1aFeY
 60;1967;The Beatles;Strawberry Fields Forever;HtUH9z_Oey8
-60;1963;The Beatles;Twist And Shout;lxQjwQbD6sg
+60;1963;The Beatles;Twist And Shout;2RicaUqd9Hg
 60;1965;The Beatles;We Can Work It Out;Qyclqo_AV2M
 60;1968;The Beatles;While My Guitar Gently Weeps;bI8P6ZSHSvE
 60;1965;The Beatles;Yesterday;Ho2e0zvGEWE
-60;1066;The Blues MaGoos;Tobacco Road;tSKQJ3XYp2w
+60;1066;The Blues MaGoos;Tobacco Road;9JKUoKjtu5I
 60;1066;The Blues MaGoos;We Ain't Got Nothin' Yet;6jNXRr2aINw
-60;1966;The Byrds;Eight Miles High;J74ttSR8lEg
+60;1966;The Byrds;Eight Miles High;NxyOhFBoxSY
 60;1965;The Byrds;Mr. Tambourine Man;NyOzGPbn2tg
 60;1967;The Byrds;My Back Pages;h80l4XIPJC4
 60;1965;The Byrds;Turn, Turn, Turn;W4ga_M5Zdn4
@@ -429,16 +427,16 @@
 60;1963;The Crystals;He's A Rebel;G_SXJ18EkNw
 60;1969;The Dells;Oh What A Nite;Z1ozQT8yQXA
 60;1967;The Doors;Hello I Love You;8f1z-nHvt3c
-60;1967;The Doors;Light My Fire;deB_u-to-IE
+60;1967;The Doors;Light My Fire;qoX6AKuYWL8
 60;1967;The Doors;Love Me Two Times;MsP6EKAzEjI
 60;1967;The Doors;Take It As It Comes;PyBYxAAWThM
-60;1967;The Doors;The End;JSUIQgEVDM4
+60;1967;The Doors;The End;BXqPNlng6uI
 60;1968;The Doors;Waiting For The Sun;W1WnrjciO8c
 60;1967;The Doors;When The Musics Over;YkKRU1ajKFA
 60;1962;The Drifters;On Broadway;yPYRtjxYEH8
 60;1960;The Drifters;Save The Last Dance For Me;n-XQ26KePUQ
 60;1964;The Drifters;Under The Boardwalk;EPEqRMVnZNU
-60;1966;The Easybeats;Friday On My Mind;3iW2_Ec3uEU
+60;1966;The Easybeats;Friday On My Mind;rOtnpb2EtQ8
 60;1960;The Everly Brothers;Cathy's Clown;PXvKAWiU_cQ
 60;1968;The Foundations;Build Me Up Buttercup;FvluBVhfGcw
 60;1964;The Four Seasons;Rag Doll;kJY83Ehuq1Y
@@ -457,26 +455,26 @@
 60;1967;The Kinks;Waterloo Sunset;N_MqfF0WBsU
 60;1964;The Kinks;You Really Got Me;fTTsY-oz6Go
 60;1965;The Lovin' Spoonful;Do You Believe In Magic;JnbfuAcCqpY
-60;1966;The Lovin' Spoonful;Summer In The City;U5bUmx-hk-c
+60;1966;The Lovin' Spoonful;Summer In The City;U7ofnHmxE-I
 60;1966;The Mamas & The Papas;California Dreamin';qhZULM69DIw
 60;1961;The Marvelettes;Please Mr. Postman;425GpjTSlS4
 60;1965;The McCoys;Hang On Sloopy;TlTKhPkZSJo
-60;1067;The Monkeys;I'm A Believer;W83InivbUSQ
+60;1067;The Monkeys;I'm A Believer;4PQAqprjOuA
 60;1967;The Moody Blues;Nights In White Satin;9muzyOd4Lh8
 60;1067;The Painted Faces;Lost You In My Mind;nKcBicEfGk8
 60;1964;The Righteous Brothers;You've Lost That Lovin' Feelin';uOnYY9Mw2Fg
 60;1965;The Rolling Stones;(I Can't Get No) Satisfaction;nrIPxlFzDi0
-60;1965;The Rolling Stones;Get Off Of My Cloud;_8bnU49EB74
+60;1965;The Rolling Stones;Get Off Of My Cloud;1sWqmMAvmdU
 60;1969;The Rolling Stones;Gimme Shelter;RbmS3tQJ7Os
-60;1969;The Rolling Stones;Honky Tonk Women;b0iLSCgMjvE
-60;1969;The Rolling Stones;Jumpin' Jack Flash;NHDr9qTgUF8
+60;1969;The Rolling Stones;Honky Tonk Women;urqALF0-dX4
+60;1969;The Rolling Stones;Jumpin' Jack Flash;KXUJMaYzh6U
 60;1966;The Rolling Stones;Mother's Little Helper;kSgBj3C3QSE
 60;1966;The Rolling Stones;Paint It Black;O4irXQhgMqg
 60;1968;The Rolling Stones;Street Fighting Man;BUt0dZXPFoU
 60;1966;The Rolling Stones;Under My Thumb;_We6LQJcr5Y
 60;1969;The Rolling Stones;You Can't Always Get What You Want;jv9sDn_2XkI
-60;1964;The Ronettes;Be My Baby;ZV5tgZlTEkQ
-60;1963;The Searchers;Needles And Pins;5rLqPtZUWJI
+60;1964;The Ronettes;Be My Baby;jSPpbOGnFgk
+60;1963;The Searchers;Needles And Pins;jkfojbL_yTk
 60;1966;The Shadows Of Knight;Gloria;NdAezc-RX-o
 60;1964;The Shangri-Las;Leader Of The Pack;Q8UKf65NOzM
 60;1965;The Shangri-Las;Remember (Walkin' In The Sand);V5YxtweUxrA
@@ -484,7 +482,7 @@
 60;1961;The Showmen;It Will Stand;aa17h1n5kCw
 60;1966;The Standells;Dirty Water;62XRy-jFCm8
 60;1964;The Supremes;Baby Love;mQvIbkFaq18
-60;1965;The Supremes;Back In My Arms Again;X-iNQ-E_b6Y
+60;1965;The Supremes;Back In My Arms Again;edDBXaWN5Ns
 60;1965;The Supremes;Stop! In The Name Of Love;UGJQPkfwlAc
 60;1964;The Supremes;Where Did Our Love Go;qTBmgAOO0Nw
 60;1966;The Supremes;You Keep Me Hangin' On;t3bjMtqpGBw
@@ -492,7 +490,7 @@
 60;1966;The Swingin' Medallions;Double Shot (Of My Baby's Love);57s89xrC93o
 60;1966;The Temptations;Ain't Too Proud To Beg;RKPd9GUadxc
 60;1969;The Temptations;Cloud Nine;2BdhhQayeWw
-60;1969;The Temptations;I Can't Get Next To You;IA-bspSRCXE
+60;1969;The Temptations;I Can't Get Next To You;CxH1BYed6xc
 60;1965;The Temptations;My Girl;C_CSjcm-z1w
 60;1961;The Tokens;The Lion Sleeps Tonight;_LBmUwi6mEo
 60;1063;The Trashmen;Malaguena;Ipinrujp5sk
@@ -504,10 +502,10 @@
 60;1965;The Who;My Generation;qN5zw04WxCc
 60;1969;The Who;Pinball Wizard;4AKbUm8GrbM
 60;1966;The Who;Run Run Run;Drm48bOirLw
-60;1965;The Yardbirds;For Your Love;pn6cxaKRwtk
+60;1965;The Yardbirds;For Your Love;yKI7c9x2lbM
 60;1965;The Yardbirds;Heart Full Of Soul;pM1qZBFiOLU
 60;1966;The Yardbirds;Shapes Of Things;Jc17DqcA6Qc
-60;1966;The Young Rascals;Good Lovin';g55XaECGBN0
+60;1966;The Young Rascals;Good Lovin';t3CQ-5MeRwY
 60;1967;The Young Rascals;Groovin';falI0baGhBQ
 60;1967;The Youngbloods;Get Together;nBJYxPN8qIA
 60;1965;The Zombies;She's Not There;_2hXBf1DakE
@@ -520,13 +518,13 @@
 60;1967;Vanilla Fudge;Take Me For A Little While;yD442BYRT0Q
 60;1967;Vanilla Fudge;You Keep Me Hangin' On;R3ChToIvLRM
 60;1967;Velvet Underground;Heroin;6xcwt9mSbYE
-60;1967;Velvet Underground;I'm Waiting For The Man;EwdH09vJwwU
+60;1967;Velvet Underground;I'm Waiting For The Man;_7bsxcNdzKg
 60;1961;Wanda Jackson;Hard Headed Woman;dp2xQGX_I7A
 60;1966;Wilson Pickett;In The Midnight Hour;FGVGFfj7POA
 60;1966;Wilson Pickett;Mustang Sally;16u6w0cjjrU
 70;1975;10cc;I'm Not In Love;OtBHfxU2wmc
 70;1979;ACDC;Highway To Hell;l482T0yNkeo
-70;1976;ACDC;It's A Long Way To The Top;-sUXMzkh-jI
+70;1976;ACDC;It's A Long Way To The Top;GChhRrU6BJU
 70;1974;ACDC;Jailbreak;WHtWs4wiFCs
 70;1977;ACDC;Whole Lotta Rosie;QMvE0yFnR0I
 70;1973;Aerosmith;Dream On;9bAoq7k3tZ0
@@ -542,16 +540,16 @@
 70;1974;Bad Company;Can't Get Enough;4XwKk_LmwTI
 70;1970;Barclay James Harvest;The Iron Maiden;hhxm8fJECCE
 70;1971;Black Sabbath;After Forever;UiwjyeR0drI
-70;1972;Black Sabbath;Changes;nPtorZ2k7Ak
+70;1972;Black Sabbath;Changes;_eBCxYVma1g
 70;1971;Black Sabbath;Children Of The Grave;X7UZeHvMYZA
 70;1970;Black Sabbath;Evil Woman;IE8lXuSDVNU
-70;1978;Black Sabbath;Hard Road;oZnRhqZuJjs
+70;1978;Black Sabbath;Hard Road;sbP_BncY5tA
 70;1975;Black Sabbath;Hole In The Sky;ruhxGENigrk
-70;1971;Black Sabbath;Into The Void;R5XnrZn47Q
+70;1971;Black Sabbath;Into The Void;-R5XnrZn47Q
 70;1970;Black Sabbath;Iron Man;8aQRq9hhekA
 70;1970;Black Sabbath;N.I.B.;RaRtXYSszsA
 70;1978;Black Sabbath;Never Say Die;D3-hNMqmKK0
-70;1970;Black Sabbath;Paranoid;uk_wUT1CvWM
+70;1970;Black Sabbath;Paranoid;BOTIIw76qiE
 70;1973;Black Sabbath;Sabbath Bloody Sabbath;mfTpjrzas5E
 70;1974;Black Sabbath;Sabbra Cadabra;noUYAPdLMp0
 70;1970;Black Sabbath;Sleeping Village;5unr2J_XhLI
@@ -565,12 +563,12 @@
 70;1978;Blondie;Heart Of Glass;WGU_4-5RaxU
 70;1978;Blondie;One Way Or Another;_zBwRDEFMRY
 70;1976;Blue Oyster Cult;(Don't Fear) The Reaper;Dy4HA3vUv2c
-70;1974;Bob Dylan;Knockin' On Heaven's Door;rnKbImRPhTE
+70;1974;Bob Dylan;Knockin' On Heaven's Door;rm9coqlk8fY
 70;1975;Bob Dylan;Tangled Up In Blue;YwSZvHqf9qM
 70;1978;Bob Seger & Silver Bullet Band;Old Time Rock 'n' Roll;SoaAb5MnKtY
 70;1976;Bob Seger;Night Moves;_mRFWQoXq4c
 70;1973;Bob Seger;Turn The Page;3khH9ih2XJg
-70;1978;Bonnie Tyler;It's A Heartache;nPOy7TPjfkE
+70;1978;Bonnie Tyler;It's A Heartache;bEOl38y8Nj8
 70;1976;Boston;Long Time;TnwqUEelQjE
 70;1976;Boston;More Than A Feeling;GSism86Y4bk
 70;1972;Bread;The Guitar Man;CpOjQvADLG4
@@ -625,7 +623,7 @@
 70;1974;Deep Purple;Burn;LCnebZnysmI
 70;1970;Deep Purple;Child In Time;PfAWReBmxEs
 70;1970;Deep Purple;Cry Free;UuMHFlls6lE
-70;1971;Deep Purple;Demon's Eye;kDNnARSBamU
+70;1971;Deep Purple;Demon's Eye;ZwdVcMrYUrA
 70;1971;Deep Purple;Fireball;lFHTWdQkqYw
 70;1970;Deep Purple;Flight Of The Rat;XxNYOcNnmGI
 70;1971;Deep Purple;Fools;VuArDaJ0I6Y
@@ -645,7 +643,7 @@
 70;1972;Deep Purple;Pictures Of Home;-qMnp8mQ0JQ
 70;1973;Deep Purple;Place In Line;mFwrKtoleRs
 70;1973;Deep Purple;Rat Bat Blue;6poRsrl_574
-70;1972;Deep Purple;Smoke On The Water;zUwEIt9ez7M
+70;1972;Deep Purple;Smoke On The Water;qK7j_EERgT4
 70;1973;Deep Purple;Smooth Dancer;gAHIgvIFggo
 70;1974;Deep Purple;Soldier Of Fortune;xVO7sQRBcuQ
 70;1972;Deep Purple;Space Truckin';hHOrpFeXUao
@@ -659,7 +657,7 @@
 70;1970;Derek And The Dominos;Layla;uSquiIVLhrQ
 70;1978;Dire Straits;Sultans Of Swing;0fAQhSRLQnM
 70;1971;Don McLean;American Pie;uAsV5-Hv-7U
-70;1976;Eagles;Hotel California;EqPtz5qN7HM
+70;1976;Eagles;Hotel California;09839DpTctU
 70;1979;Electric Light Orchestra;Last Train To London;Up4WjdabA2c
 70;1976;Electric Light Orchestra;Livin' Thing;H48j3KGBomU
 70;1970;Elton John;Love Song;FFRFdx-RjLw
@@ -675,23 +673,23 @@
 70;1971;Elton John;Your Song;GlPlfCy1urI
 70;1973;Elvis Presley;Burning Love;zf2VYAtqRe0
 70;1974;Elvis Presley;My Boy;HOLH63c7SG0
-70;1971;Emerson, Lake & Palmer;A Time And A Place;diqXzi39tsA
+70;1971;Emerson, Lake & Palmer;A Time And A Place;zTFeyvYhAi8
 70;1973;Emerson, Lake & Palmer;Benny The Bouncer;zFzr_MFX0Ok
 70;1977;Emerson, Lake & Palmer;C'est La Vie;BvNJ1RpYjsI
 70;1977;Emerson, Lake & Palmer;Food For Your Soul;_L-2SXD9RI0
-70;1972;Emerson, Lake & Palmer;From The Beginning;47S-lRwoK7c
+70;1972;Emerson, Lake & Palmer;From The Beginning;Wp8UlgvCVlI
 70;1977;Emerson, Lake & Palmer;Hallowed Be Thy Name;TmAZ-mNEthk
-70;1977;Emerson, Lake & Palmer;I Believe In Father Christmas;uMtteocAA80
-70;1971;Emerson, Lake & Palmer;Infinite Space (Conclusion);ZBYFB8VauAM
-70;1971;Emerson, Lake & Palmer;Jeremy Bender;AIT2rsoC22E
+70;1977;Emerson, Lake & Palmer;I Believe In Father Christmas;yfY4b1NszpY
+70;1971;Emerson, Lake & Palmer;Infinite Space (Conclusion);URbaciLz1l0
+70;1971;Emerson, Lake & Palmer;Jeremy Bender;Ayx9lM0o4EM
 70;1973;Emerson, Lake & Palmer;Karn Evil 9;fLS0Med0s6E
-70;1970;Emerson, Lake & Palmer;Knife Edge;XwIehM-x6kA
+70;1970;Emerson, Lake & Palmer;Knife Edge;7YKc7jlgKM8
 70;1977;Emerson, Lake & Palmer;L.A. Nights;yemZPocWUA8
-70;1970;Emerson, Lake & Palmer;Lucky Man;89g1P_J40JA
+70;1970;Emerson, Lake & Palmer;Lucky Man;3ds55ii0wqc
 70;1977;Emerson, Lake & Palmer;New Orleans;48FtqyrC6pY
 70;1972;Emerson, Lake & Palmer;Nutrocker;CiRBQ_hSNt0
 70;1973;Emerson, Lake & Palmer;Still... You Turn Me On;McNQqH3RGGI
-70;1970;Emerson, Lake & Palmer;Take A Pebble;SrYbfQRlfwQ
+70;1970;Emerson, Lake & Palmer;Take A Pebble;Sb6xWcqlpdw
 70;1972;Emerson, Lake & Palmer;The Gnome;-mTR8Z8aR2Y
 70;1972;Emerson, Lake & Palmer;The Sage;5AXxQGai4JU
 70;1970;Eric Clapton;After Midnight;AvxJ0TVvVzE
@@ -701,18 +699,18 @@
 70;1977;Fleetwood Mac;Go Your Own Way;6ul-cZyuYq4
 70;1975;Fleetwood Mac;Rhiannon;U_aYibUx1B8
 70;1975;Foghat;Slow Ride;GcCNcgoyG_0
-70;1978;Foreigner;Double Vision;oxKCPjcvbys
+70;1978;Foreigner;Double Vision;dD-SpHH7qDA
 70;1970;Free;All Right Now;lSdBtoIIYT4
 70;1972;Gary Glitter;Rock and Roll, Part 2;t-hB1TzoG7M
 70;1974;Genesis;Carpet Crawlers;2yUN6CsuVPw
 70;1978;Genesis;Follow You Follow Me;DyDRXbP1MaY
-70;1970;George Harrison;My Sweet Lord;8qJTJNfzvr8
+70;1970;George Harrison;My Sweet Lord;SP9wms6oEMo
 70;1970;Grand Funk Railroad;I'm Your Captain;FrlE3JOQ7bE
 70;1973;Grand Funk Railroad;We're An American Band;Zc_JcGuH5Z8
 70;1977;Heart;Barracuda;PeMvMNpvB5M
 70;1977;Iggy Pop;Lust For Life;jQvUBf5l7Vw
 70;1972;James Brown;I Got Ants In My Pants (And I Want To Dance);fB-hpewwEiY
-70;1971;James Brown;Sex Machine;1UzZUfFUnxY
+70;1971;James Brown;Sex Machine;6KjMn-OOVHg
 70;1970;James Taylor;Fire And Rain;C3uaXCJcRrE
 70;1977;James Taylor;Handy Man;dXI43zGeyu4
 70;1971;James Taylor;You've Got A Friend;xEkIou3WFnM
@@ -730,7 +728,6 @@
 70;1972;Jethro Tull;Thick as a Brick (Pt. 2);GTWQv8RsI6s
 70;1970;Jethro Tull;To Cry You A Song;S5vto70Q23E
 70;1977;Jethro Tull;Velvet Green;6-ANplhDJNY
-70;1977;Jethro Tull;Velvet Green;JG77YHX5yYE
 70;1970;Jethro Tull;With You There to Help Me;gfKzPV-Ely4
 70;1971;Jethro Tull;Wond'ring Aloud;luDfuZkeqKU
 70;1971;John Lennon;Imagine;YkgkThdzX-8
@@ -804,7 +801,7 @@
 70;1977;Meat Loaf;Paradise By The Dashboard Light;C11MzbEcHlw
 70;1974;Montrose;I Got The Fire;ccQRJJoW7TY
 70;1979;Motorhead;Overkill;3VNUyjRRjxM
-70;1979;Motorhead;Stay Clean;J8MuArrlmmw
+70;1979;Motorhead;Stay Clean;eilzQSthLCY
 70;1974;Mott The Hoople;All The Young Dudes;yNHdPPJGowY
 70;1970;Mountain;Theme for An Imaginary Western;0l_x0xH9fLM
 70;1970;Mungo Jerry;In The Summertime;wvUQcnfwUUM
@@ -812,7 +809,7 @@
 70;1973;Nazareth;Broken Down Angel;zboXNSXqOtE
 70;1975;Nazareth;Changin' Times;HG3eahyw5os
 70;1977;Nazareth;Expect No Mercy;BwMxpNhBAmk
-70;1975;Nazareth;Hair Of The Dog;kyXz6eMCj2k
+70;1975;Nazareth;Hair Of The Dog;Ef2SLZdhNrY
 70;1976;Nazareth;Holly Roller;NRJUr-iP-8o
 70;1976;Nazareth;I Don't Want To Go On Without You;IZtYVpK4s7k
 70;1976;Nazareth;L.A. Girls;BVPFI6YOYVE
@@ -823,7 +820,7 @@
 70;1973;Nazareth;Razamanaz;fpeI5Z4vO-4
 70;1977;Nazareth;Revenge Is Sweet;nUKe97AefOM
 70;1974;Nazareth;Shapes Of Things;HOC9mn7l9c4
-70;1977;Nazareth;Shot Me Down;qGzTb7d1iX0
+70;1977;Nazareth;Shot Me Down;HMFvuYgMTk8
 70;1978;Nazareth;Star;SXkd1zKZNp0
 70;1974;Nazareth;Sunshine;TRNL3QOLT2Q
 70;1971;Nazareth;The King Is Dead;sn3MWS_fnBw
@@ -834,8 +831,8 @@
 70;1979;Neil Young;Hey Hey My My (Into The Black);331kyZ9OXMc
 70;1978;Patti Smith;Because The Night;c_BcivBprM0
 70;1973;Paul McCartney & The Wings;Band On The Run;RjlvdcBAKdg
-70;1973;Paul McCartney & The Wings;Live And Let Die;e7aGAIWe3uE
-70;1976;Paul McCartney & The Wings;Silly Love Songs;wh15LOppcWQ
+70;1973;Paul McCartney & The Wings;Live And Let Die;NR0UmZcf89E
+70;1976;Paul McCartney & The Wings;Silly Love Songs;ap87QgZKTNw
 70;1970;Paul McCartney;Maybe I'm Amazed;DNh5Ca1dIXM
 70;1979;Pink Floyd;Another Brick In The Wall, Part 2;x71uD9ybrzk
 70;1973;Pink Floyd;Breath;mrojrDCI02k
@@ -871,18 +868,18 @@
 70;1975;Rainbow;Black Sheep Of The Family;WsW3654eUxE
 70;1975;Rainbow;Catch The Rainbow;v5J2yjSmt_w
 70;1979;Rainbow;Danger Zone;EeVFTeXs1o8
-70;1979;Rainbow;Eyes Of The World;ufPPB0SMn-g
+70;1979;Rainbow;Eyes Of The World;O8FcrH1lDeY
 70;1978;Rainbow;Gates Of Babylon;SH43BU6DSm0
 70;1978;Rainbow;Kill The King;2YYP7LlLsbA
 70;1978;Rainbow;Lady Of The Lake;OUodkI3VsTw
 70;1978;Rainbow;Long Live Rock 'N' Roll;wGkNMy2P2gY
 70;1979;Rainbow;Lost In Hollywood;mRLHHftZEJA
-70;1979;Rainbow;Love's No Friend;Me661ZymqRg
+70;1979;Rainbow;Love's No Friend;iU__fm6QFvk
 70;1975;Rainbow;Man On The Silver Mountain;RKSJNnbHiOQ
 70;1975;Rainbow;Self Portrait;RriUpGA5Ang
 70;1975;Rainbow;Sixteenth Century Greensleeves;hAbWj4JL22c
 70;1975;Rainbow;Snake Charmer;Pq35nvahbR4
-70;1976;Rainbow;Stargazer;W6CjO0H2j0s
+70;1976;Rainbow;Stargazer;YmJIccPWnEk
 70;1976;Rainbow;Starstruck;6FWdy6H_jcE
 70;1976;Rainbow;Tarot Woman;AhdmFx2kQAg
 70;1975;Rainbow;The Temple Of The King;ZUpxniZBb5s
@@ -891,7 +888,7 @@
 70;1971;Rod Stewart;Maggie May;EOl7dh7a-6g
 70;1976;Rod Stewart;Tonight's The Night;IZr6AE-u2UM
 70;1975;Roxy Music;Love Is The Drug;0n3OepDn5GU
-70;1975;Rush;Anthem;_VcswhBy9tk
+70;1975;Rush;Anthem;a9h2H5Sgzfw
 70;1970;Santana;Black Magic Woman;wyQUCYl-ocs
 70;1976;Scorpions;Backstage Queen;zIAQSzmZW_s
 70;1977;Scorpions;Born To Touch Your Feelings;Tua0viBBQxM
@@ -925,7 +922,7 @@
 70;1976;Scorpions;Yellow Raven;ESO0rpDtud8
 70;1977;Scorpions;Your Light;tflAb0YjAQI
 70;1970;Simon & Garfunkel;Bridge Over Troubled Water;4G-YQA_bsOU
-70;1973;Slade;Cum On Feel The Noize;Qu_ozjAu_vM
+70;1973;Slade;Cum On Feel The Noize;78ezU7x3jfE
 70;1970;Stephen Stills;Black Queen;tee61YGheaA
 70;1970;Stephen Stills;Do For The Others;-OSaIUKi8p4
 70;1970;Stephen Stills;Go Back Home;Pd9VNlquFlE
@@ -935,7 +932,7 @@
 70;1972;Stevie Wonder;Superstition;0CFuCYNx-1g
 70;1979;Supertramp;Breakfast In America;PZahtmWhH5g
 70;1979;Supertramp;The Logical Song;ukKQw578Lm8
-70;1978;Suzi Quatro;If You Can't Give Me Love;SeI42SvFy7Y
+70;1978;Suzi Quatro;If You Can't Give Me Love;p_u1konquVU
 70;1979;Suzi Quatro;She's In Love With You;BZK28ue0Pc8
 70;1972;Sweet;Blockbuster;Y64211sjSko
 70;1974;Sweet;Fox On The Run;qBdFA6sI6-8
@@ -952,10 +949,10 @@
 70;1971;The Doors;L.A. Woman;JskztPPSJwY
 70;1971;The Doors;Riders On The Storm;iv8GW1GaoIc
 70;1970;The Doors;Roadhouse Blues;n2_X4VTCoEo
-70;1976;The Eagles;Life In The Fast Lane;4tcXblWojdM
+70;1976;The Eagles;Life In The Fast Lane;Ybg_uZxdE0c
 70;1975;The Eagles;One Of These Nights;ESc2Tq2HzhQ
-70;1972;The Eagles;Take It Easy;LfeNhwnO8hw
-70;1973;The Government;Bang Bang;m2vqE6M_ea8
+70;1972;The Eagles;Take It Easy;5igDtWadYms
+70;1973;The Government;Bang Bang;qj9VCFJ32tE
 70;1970;The Grateful Dead;Truckin';pafY6sZt0FE
 70;1974;The Hollies;Don't Let Me Down;vtIVJJsTxxo
 70;1971;The Hollies;Long Cool Woman;lP94PlEtsEQ
@@ -973,10 +970,10 @@
 70;1973;The Steve Miller Band;The Joker;F5N7qNid79s
 70;1971;The Who;Baba O'Riley;x2KRpRMSu4g
 70;1971;The Who;Behind Blue Eyes;dMrImMedYRo
-70;1978;The Who;Who Are You;r5kmCgVhADY
+70;1978;The Who;Who Are You;PNbBDrceCy8
 70;1971;The Who;Won't Get Fooled Again;NkWQEVFKr08
 70;1976;Thin Lizzy;The Boys Are Back In Town;hQo1HIcSVtg
-70;1970;Three Dog Night;Joy To The World;Dp7KfG9AjaY
+70;1970;Three Dog Night;Joy To The World;EVcpKjXYa5c
 70;1979;Tom Petty And The Heartbreakers;Refugee;fFnOfpIJL0M
 70;1978;Toto;Hold The Line;htgr3pvBr-I
 70;1974;UFO;Doctor Doctor;TDRHuVqO1dE
@@ -1039,7 +1036,7 @@
 80;1982;Asia;Only Time Will Tell;KFZ3Qhn5dW8
 80;1983;Billy Idol;Eyes Without A Face;9OFpfTd0EIs
 80;1980;Black Sabbath;Heaven And Hell;idn50Xj_CiY
-80;1989;Black Sabbath;Nightwing;Ifk08JOwd8E
+80;1989;Black Sabbath;Nightwing;4UrHfqmgycY
 80;1986;Black Sabbath;No Stranger To Love;lgaUxFC1qcM
 80;1987;Black Sabbath;The Shining;nLtJo30OGeM
 80;1980;Blondie;Call Me;y6QBaZHltJw
@@ -1050,7 +1047,7 @@
 80;1986;Bon Jovi;Wanted Dead Or Alive;SRvCvsRp5ho
 80;1986;Bon Jovi;You Give Love A Bad Name;KrZHPOeOxQQ
 80;1983;Bonnie Tyler;Total Eclipse Of The Heart;lcOxhH8N3Bo
-80;1986;Boston;Amanda;WOThAc2bNHs
+80;1986;Boston;Amanda;S4mCIsmiAWc
 80;1984;Bruce Springsteen;Dancing In The Dark;129kuDCQtHs
 80;1984;Bryan Adams;Heaven;s6TtwR2Dbjg
 80;1983;Bryan Adams;Straight From The Heart;-ebtjgK8NNU
@@ -1067,9 +1064,9 @@
 80;1984;Deep Purple;Knocking At Your Back Door;nFCRm68OF7I
 80;1984;Deep Purple;Perfect Strangers;gZ_kez7WVUU
 80;1984;Deep Purple;Wasted Sunsets;I5v-2hgRwgI
-80;1987;Def Leppard;Pour Some Sugar On Me;14iHRpk9qvQ
+80;1987;Def Leppard;Pour Some Sugar On Me;0UIB9Y4OFPs
 80;1983;Dio;Holy Diver;EhGEGIBGLu8
-80;1984;Dio;One Night In The City;ipLpdECjf9A
+80;1984;Dio;One Night In The City;QK0HmR8Ty04
 80;1983;Dio;Rainbow In The Dark;qcWKZTI9OC4
 80;1984;Dio;The Last In Line;vtEw8JLQBgg
 80;1985;Dire Straits;Brothers In Arms;jhdFe3evXpk
@@ -1080,7 +1077,7 @@
 80;1981;Electric Light Orchestra;Ticket To The Moon;ZXBiPY8wDT0
 80;1981;Electric Light Orchestra;Twilight;pJQyGbv0oZ8
 80;1985;Elton John;I'm Still Standing;ZHwVBirqD2s
-80;1989;Eric Clapton;Bad Love;tUbpwNWmjfI
+80;1989;Eric Clapton;Bad Love;QcmcAUQtcVM
 80;1986;Europe;Carrie;KmWE9UBFwtY
 80;1986;Europe;The Final Countdown;9jK-NcRmVcw
 80;1983;Eurythmics;Here Comes The Rain Again;TzFnYcIqj6I
@@ -1118,15 +1115,15 @@
 80;1980;Judas Priest;Breaking The Law;L397TWLwrUU
 80;1980;Judas Priest;Metal Gods;QcURhfhPJiM
 80;1982;Judas Priest;You've Got Another Thing Coming;_4javSsseS8
-80;1982;Kansas;Play The Game Tonight;tRP-B_VKGiw
+80;1982;Kansas;Play The Game Tonight;W2azO25JtFo
 80;1986;Kenni Loggins;Danger Zone;siwpn14IE7E
 80;1981;Kim Carnes;Bette Davis Eyes;EPOIS5taqA8
-80;1981;Kim Wilde;Kids In America;r_GH6M7cUq4
+80;1981;Kim Wilde;Kids In America;80TfG7C9azA
 80;1982;Kiss;Creatures Of The Night;AJEofi_eJ-A
 80;1989;Kiss;Forever;d_RKO5ozLVo
 80;1984;Kiss;Heaven's On Fire;EZjevnnkA20
 80;1982;Kiss;I Love It Loud;LMcDg2HwOnM
-80;1981;Lindsey Buckingham;Trouble;OyONfX5bpyQ
+80;1981;Lindsey Buckingham;Trouble;Kcm3dbuV8Z4
 80;1988;Lita Ford;Kiss Me Deadly;kIt3OGra3Lo
 80;1988;Living Colour;Cult Of Personality;7xxgRUyzgs0
 80;1988;Megadeth;In My Darkness Hour;S6LL5iA6y9o
@@ -1137,18 +1134,18 @@
 80;1985;Mick Jagger;Hard Woman;IcejzV-KGPI
 80;1987;Midnight Oil;Beds Are Burning;ejorQVy3m8E
 80;1987;Midnight Oil;The Dead Heart;16bFBzx7I_0
-80;1989;Motley Crue;Dr. Feelgood;1XHcPYorSJw
-80;1983;Motley Crue;Too Young To Fall In Love;4WU6DpFFWTM
-80;1980;Motorhead;Ace Of Spades;vcf7DnHi54g
-80;1982;Nazareth;Dream On;PNnqjbojqjE
+80;1989;Motley Crue;Dr. Feelgood;trGX3ET3jTQ
+80;1983;Motley Crue;Too Young To Fall In Love;d25tXdJSedE
+80;1980;Motorhead;Ace Of Spades;3mbvWn1EY6g
+80;1982;Nazareth;Dream On;AWwv7PGumAA
 80;1982;Nazareth;Love Leads To Madness;VbYtbRayMd4
 80;1981;Nazareth;Moonlight Eyes;2rOzKPUD9qE
-80;1983;Nazareth;Where Are You Now;bMuQSlPBWPM
+80;1983;Nazareth;Where Are You Now;faMKtFkorY8
 80;1989;Neil Young;Rockin' In The Free World;DvxxdZpMFHg
 80;1985;Oingo Boingo;Stay;DwRnW89EsxI
 80;1980;Orchestral Manoeuvres In The Dark;Electricity;Y43XLVqjytQ
 80;1985;Outfield;Your Love;4N1iwQxiHrs
-80;1980;Ozzy Osbourne;Crazy Train;vy1V5LHXWbg
+80;1980;Ozzy Osbourne;Crazy Train;FVovq9TGBw0
 80;1980;Ozzy Osbourne;Mr. Crowley;Kx7Qxjg5fSk
 80;1980;Pat Benatar;Hit Me With Your Best Shot;serV18MirGg
 80;1980;Paul McCartney;Coming Up;0d_Wv-gkHts
@@ -1169,9 +1166,9 @@
 80;1983;Rainbow;Can't Let You Go;IqUx84-ljPE
 80;1983;Rainbow;Street Of Dreams;rQvu5Eo7rKI
 80;1989;Ramones;Pet Sematery;F3J0iwwsq-w
-80;1985;Ratt;Lay It Down;o1PkQsOdfdc
+80;1985;Ratt;Lay It Down;27NMF6u14DU
 80;1984;Reo Speedwagon;Can't Fight This Feeling;zpOULjyy-n8
-80;1983;Rod Stewart;Baby Jane;H8aHyQcB5oc
+80;1983;Rod Stewart;Baby Jane;dxl2r6GuL2w
 80;1986;Rod Stewart;Every Beat Of My Heart;g61xLfDYn3I
 80;1980;Roger Daltrey;Without Your Love;ukqxLpNNdVM
 80;1988;Roxette;Listen To Your Heart;yCC_b5WHLX0
@@ -1187,7 +1184,7 @@
 80;1989;Skid Row;18 And Life;Ghd2bkIadG4
 80;1989;Skid Row;I Remember You;qjuEXKwnkLE
 80;1983;Slade;My Oh My;AlwA5GLBmJM
-80;1981;Slade;Rock 'N' Roll Preacher;ePDqbDWXuDQ
+80;1981;Slade;Rock 'N' Roll Preacher;nFpc3IwGk7w
 80;1981;Soft Cell;Tainted Love;XZVpR3Pk-r8
 80;1985;Starship;We Built This City;K1b8AhIsSYQ
 80;1982;Steve Miller Band;Abracadabra;7QyoRzZrF00
@@ -1198,11 +1195,11 @@
 80;1982;The Clash;Should I Stay Or Should I Go;BN1WwnEDWAM
 80;1987;The Cult;Love Removal Machine;k6PgftKbQnQ
 80;1985;The Cult;She Sells Sanctuary;ZCOSPtyZAPA
-80;1987;The Cult;Wild Flower;G_FxxRTiiKE
+80;1987;The Cult;Wild Flower;_NxrphVL7bQ
 80;1987;The Cure;Just Like Heaven;n3nPiBai66M
 80;1980;The Police;Don't Stand So Close To Me;KNIZofPB8ZM
 80;1983;The Police;Every Breath You Take;OMOGaugKpzs
-80;1981;The Police;Spirits In The Material World;cjBAJpTJlZc
+80;1981;The Police;Spirits In The Material World;BHOevX4DlGk
 80;1980;The Pretenders;Brass In Pocket;-7Hy7uAb_eU
 80;1984;The Pretenders;The Middle Of The Road;hONtmFgh3IQ
 80;1980;The Rolling Stones;She's So Cold;jo34VhfcetU
@@ -1213,7 +1210,7 @@
 80;1986;The Smiths;Bigmouth Strikes Again;tpbQSp82__0
 80;1988;The Traveling Wilburys;End Of The Line;UMVjToYOjbM
 80;1988;The Traveling Wilburys;Handle With Care;1o4s1KVJaVA
-80;1981;The Who;You Better You Bet;vXMWNhCmLUg
+80;1981;The Who;You Better You Bet;wqPlb5PLBvg
 80;1988;Tina Turner;The Best;GC5E8ie2pdM
 80;1982;Toto;Africa;FTQbiNvZqaY
 80;1984;Twisted Sister;The Price;UpfZcEjopYE
@@ -1221,16 +1218,15 @@
 80;1987;U2;I Still Haven't Found What I'm Looking For;e3-5YC_oHjE
 80;1983;U2;New Year's Day;vdLuk2Agamk
 80;1984;U2;Pride;LHcP4MWABGY
-80;1987;U2;With Or Without You;XmSdTa9kaiQ
-80;1986;Van Halen;Dreams;sZLKtjATZt0
+80;1987;U2;With Or Without You;ujNeHIo7oTE
 80;1986;Van Halen;Dreams;sZLKtjATZt0
 80;1984;Van Halen;Jump;SwYN7mTi6HM
 80;1984;Van Halen;Panama;fuKDBPw8wQA
 80;1988;Van Halen;When It's Love;OZGXRCI-JzQ
 80;1988;Vixen;Edge Of A Broken Heart;mQOmDUnt8Hs
-80;1987;Warlock;All We Are;P6iOXqZJQ7A
+80;1987;Warlock;All We Are;SX-_-4yBFIg
 80;1984;Wham! Feat. George Michael;Careless Whisper;izGwDsrQ1eQ
-80;1987;White Lion;When The Children Cry;3-0E2oFhPwQ
+80;1987;White Lion;When The Children Cry;6tatKFXlYiY
 80;1982;Whitesnake;Here I Go Again;WyF8RHM1OCg
 80;1987;Whitesnake;Is This Love;GOJk0HW_hJw
 80;1984;Whitesnake;Love Ain't No Stranger;unHzLEA6gvI
@@ -1256,7 +1252,7 @@
 90;1998;Alanis Morrissette;Uninvited;uvgi7P97lu0
 90;1990;Alice In Chains;Man In The Box;TAqZb52sgpU
 90;1990;Anthrax;Got The Time;be7iNHw8QoQ
-90;1990;Bad Company;Holy Water;4wGkZJ9JFII
+90;1990;Bad Company;Holy Water;rY6LjYUswfQ
 90;1990;Bad Religion;21st Century;TYApdmp6je8
 90;1993;Bad Religion;American Jesus;12kcpP-8jfM
 90;1994;Bad Religion;Infected;x40nZkkP8vw
@@ -1264,27 +1260,26 @@
 90;1994;Black Sabbath;Cardinal Sin;zWUS4-EP0oU
 90;1992;Black Sabbath;Computer God;HHUoXc2c1Bg
 90;1994;Black Sabbath;Cross Of Thorns;kkihaICItis
-90;1992;Black Sabbath;I;3HVqdtkC5l4
+90;1992;Black Sabbath;I;i7qPf894PP4
 90;1994;Black Sabbath;I Witness;_kAsE15izG0
 90;1994;Black Sabbath;Psychophobia;9hLBb4sKQfQ
-90;1992;Black Sabbath;Time Machine;frUq17Av6V8
+90;1992;Black Sabbath;Time Machine;DvBQxBlSIk4
 90;1993;Blind Melon;No Rain;qmVn6b7DdpA
 90;1997;Blink 182;Dammit;sT0g16_LQaQ
 90;1999;Blink 182;What's My Age Again;K7l5ZeVVoCA
 90;1997;Blur;Song 2;SSbBvKaM6sk
 90;1995;Bon Jovi;Always;9BMwcO6_hyA
-90;1990;Bon Jovi;Blaze Of Glory;G9W6qK3sGNQ
+90;1990;Bon Jovi;Blaze Of Glory;MfmYCM4CS8o
 90;1992;Bon Jovi;Keep The Faith;eZQyVUTcpM4
 90;1997;Bruce Dickinson;Accident Of Birth;92vvMEgDkA8
-90;1998;Bruce Dickinson;Chemical Wedding;qNv6nnN02XA
-90;1990;Bruce Dickinson;Tattoed Millionaire;R7apiYkLf0w
-90;1994;Bruce Dickinson;Tears Of The Dragon;vXClBjNxiOA
-90;1991;Bryan Adams;Everything I Do;mW95L6qpeFg
+90;1998;Bruce Dickinson;Chemical Wedding;4fcW_YVFTwk
+90;1990;Bruce Dickinson;Tattoed Millionaire;59gEq_qcQT4
+90;1994;Bruce Dickinson;Tears Of The Dragon;w2WIWtffuRA
+90;1991;Bryan Adams;Everything I Do;Y0pdQU87dc8
 90;1994;Bush;Glycerine;hOllF3TgAsM
 90;1995;Cardigans;Lovefool;NI6aOFI7hms
 90;1995;Collective Soul;December;6exsatE-DUk
 90;1999;Collective Soul;Heavy;46g8zDcziL0
-90;1993;Collective Soul;Shine;_m0bI82Rz_k
 90;1993;Collective Soul;Shine;_m0bI82Rz_k
 90;1995;Collective Soul;Where The River Flows;tX57jqetDGA
 90;1990;Concrete Blonde;Bloodletting;lQYTNNHc1cQ
@@ -1299,10 +1294,10 @@
 90;1996;Deep Purple;Sometimes I Feel Like Screaming;4fsbIbAt_mo
 90;1993;Deep Purple;The Battle Rages On;qMd7fRbMw9M
 90;1999;Def Leppard;Promises;vGTNEnOcGX0
-90;1990;Depeche Mode;Enjoy The Silence;Lc0YYit8XuQ
+90;1990;Depeche Mode;Enjoy The Silence;aGSKrC7dGcY
 90;1991;Dire Straits;Heavy Fuel;EExahMsBoWM
 90;1992;Dream Theater;Pull Me Under;SGRgAULYgWE
-90;1993;Duran Duran;Ordinary World;wUgLge_MPIM
+90;1993;Duran Duran;Ordinary World;FqIACCH20JU
 90;1992;Eric Clapton;Tears In Heaven;JxPj3GAYYZ0
 90;1990;Extreme;More Than Words;UrIiLvg58SY
 90;1992;Extreme;Rest In Peace;odz3c68JE1c
@@ -1323,7 +1318,7 @@
 90;1991;Guns N' Roses;Don't Cry;zRIbf6JqkNc
 90;1991;Guns N' Roses;Estranged;dpmAY059TTY
 90;1991;Guns N' Roses;November Rain;8SbUC-UaAxE
-90;1991;Guns N' Roses;You Could Be Mine;sEfYUG_9vYY
+90;1991;Guns N' Roses;You Could Be Mine;MXx9S2nDouY
 90;1996;Helloween;Forever And One;-Dl6CLWLMzk
 90;1998;Hole;Celebrity Skin;O3dWBLoU--E
 90;1998;Hole;Malibu;v0CYB5V9e64
@@ -1332,21 +1327,21 @@
 90;1999;Incubus;Drive;fgT9zGkiLig
 90;1990;INXS;By My Side;2CXUcihuVJc
 90;1990;INXS;Disappear;Xvo-bfaVsg0
-90;1990;INXS;Suicide Blonde;psDTiUV0PNI
-90;1992;Iron Maiden;Fear Of The Dark;J0N1yY937qg
+90;1990;INXS;Suicide Blonde;Ma4TOv2f_WY
+90;1992;Iron Maiden;Fear Of The Dark;bePCRKGUwAY
 90;1993;Jellyfish;Joining A Fan Club;JojV8kNfWK8
 90;1993;Jellyfish;New Mistake;eHvgQDRpA-s
 90;1990;Jellyfish;That Is Why;qQTj_2mMfSA
 90;1990;Jellyfish;The King Is Half-Undressed;AgdgptaBma8
 90;1990;Judas Priest;A Touch Of Evil;9gQH1IEMf4Q
 90;1990;Judas Priest;Hell Patrol;yZXZ2XRmfS4
-90;1990;Judas Priest;Nightcrawler;rp4VEV1fyjk
+90;1990;Judas Priest;Nightcrawler;5yyO_HozK0c
 90;1990;Judas Priest;Painkiller;nM__lPTWThU
 90;1998;Kiss;Psycho Circus;BWIW6Ti0PbE
 90;1993;Lenny Kravitz;Are You Gonna Go My Way;8LhCd1W2V0Q
 90;1998;Lenny Kravitz;Fly Away;EvuL5jyCHOw
 90;1990;Lita Ford;Hungry;NTeJK_SyPXg
-90;1995;Marillion;Beautiful;TqWZ_U6Or9I
+90;1995;Marillion;Beautiful;XgWz55phFKQ
 90;1998;Marilyn Manson;Rock Is Dead;vEc9nXErU-Y
 90;1994;Marilyn Manson;Sweet Dreams;QUvVdTlA23w
 90;1996;Marilyn Manson;The Beautiful People;Ypkv0HeUvTc
@@ -1361,14 +1356,14 @@
 90;1991;Metallica;The Unforgiven;Ckom3gf57Yw
 90;1996;Metallica;Until It Sleeps;eRV9uPr4Dz4
 90;1990;Midnight Oil;Blue Sky Mine;Ofrqm6-LCqs
-90;1992;Motorhead;I Ain't No Nice Guy;7lHqG3sj1Fw
+90;1992;Motorhead;I Ain't No Nice Guy;-xtbAuhhHjg
 90;1991;Mr. Big;Just Take My Heart;AyYoc5JGY7c
 90;1991;Mr. Big;To Be With You;L6-uJLteKek
 90;1997;Natalie Imbruglia;Torn;VV1XWJN3nJo
 90;1998;Nightwish;Sleeping Sun;UGfKMV5AbMI
 90;1998;Nightwish;Walking In The Air;_B90VnG6FR0
 90;1994;Nine Inch Nails;Closer;PTFwQP86BRs
-90;1994;Nine Inch Nails;Hurt;kPz21cDK7dg
+90;1994;Nine Inch Nails;Hurt;42V6ho11NSw
 90;1991;Nirvana;Come As You Are;vabnZ9-ex7o
 90;1993;Nirvana;Heart Shaped Box;n6P0SitRwy8
 90;1991;Nirvana;In Bloom;PbgKEjNBHqM
@@ -1418,7 +1413,7 @@
 90;1995;Rammstein;Du Riechst So Gut;rrmsJhf89MY
 90;1997;Rammstein;Engel;x2rQzv8OWEY
 90;1997;Rammstein;Sehnsucht;hkYhvHEC3d0
-90;1995;Ramones;I Don't Want To Grow Up;73NdmMYZsnM
+90;1995;Ramones;I Don't Want To Grow Up;JtKEvR3qspM
 90;1992;Ramones;Poison Heart;OfIfzVf8t6E
 90;1995;Red Hot Chili Peppers;Aeroplane;vV8IAOojoAA
 90;1999;Red Hot Chili Peppers;Californication;YlUKcNNmywk
@@ -1428,7 +1423,7 @@
 90;1998;Rob Zombie;Dragula;EqQuihD0hoI
 90;1993;Robert Plant;29 Palms;R80lm-GP0s4
 90;1990;Robert Plant;Hurting Kind;sr5ppGBwb1s
-90;1991;Rod Stewart;Dowtown Train;q6yk9wWNB08
+90;1991;Rod Stewart;Dowtown Train;7vPrtOFKPWY
 90;1992;Roxette;It Must Have Been Love;k2C5TjS2sh4
 90;1991;Roxette;Joyride;xCorJG9mubk
 90;1991;Roxette;Spending My Time;eG0IYV6G0I0
@@ -1446,7 +1441,7 @@
 90;1994;Seal;Kiss From A Rose;AMD2TwRvuoU
 90;1995;Silverchair;Tomorrow;PjsMnvqL7eY
 90;1990;Sinéad O'Connor;Nothing Compares 2 U;0-EF60neguk
-90;1991;Skid Row;In A Darkened Room;Pli1A4TcAi8
+90;1991;Skid Row;In A Darkened Room;3wl3Uo3q9Bs
 90;1991;Skid Row;Monkey Business;2pkpsxEyi-k
 90;1990;Slayer;Seasons In The Abyss;DECp8LKurKs
 90;1999;Slipknot;Wait And Bleed;B1zCN0YhW1s
@@ -1493,11 +1488,10 @@
 90;1996;Type O Negative;Wolf Moon;p9kbj_aeO2k
 90;1991;U2;Misterious Ways;TxcDTUMLQJI
 90;1991;U2;One;ftjEcrrf7r0
-90;1991;U2;One;ftjEcrrf7r0
 90;1992;Ugly Kid Joe;Cats In The Cradle;B32yjbCSVpU
 90;1992;Ugly Kid Joe;Everything About You;byEGjLU2egA
 90;1994;Urge Overkill;Girl You'll Be A Woman Soon;JAHA4Jh5jkw
-90;1995;Van Halen;Can't Stop Lovin' You;ggDNsTow3Vg
+90;1995;Van Halen;Can't Stop Lovin' You;_Kh_AGh3Gqs
 90;1991;Van Halen;Poundcake;S7lq9clC7bU
 90;1991;Van Halen;Right Now;rMV-fenGP1g
 90;1990;Vixen;Love Is A Killer;x4NZHqLBRTQ
@@ -1569,7 +1563,7 @@
 2000;2001;Creed;One Last Breath;qnkuBUAwfe0
 2000;2009;Creed;Rain;3k3jxi4JhXA
 2000;2015;David Bowie;Blackstar;kszLwBaC4Sw
-2000;2003;Deep Purple;Haunted;aQh9VD8bFOQ
+2000;2003;Deep Purple;Haunted;LotAru3vJIY
 2000;2013;Deep Purple;Vincent Price;BEWYRRaxFhU
 2000;2000;Disturbed;Down With The Sickness;09LTT0xwdfw
 2000;2008;Disturbed;Inside The Fire;rxujAPhxlo0
@@ -1640,10 +1634,10 @@
 2000;2001;Hoobastank;Crawling In The Dark;bOHxtOLfvIo
 2000;2003;Hoobastank;The Reason;fV4DiAyExN0
 2000;2000;Iron Maiden;Brave New World;4_FDjDwNygM
-2000;2006;Iron Maiden;Different World;IDMB_0mKMBE
+2000;2006;Iron Maiden;Different World;jvnfCfWnybY
 2000;2003;Iron Maiden;Rainmaker;OQS5G49w6Mg
 2000;2015;Iron Maiden;Speed Of Light;-F7A24f6gNc
-2000;2010;Iron Maiden;The Alchemist;OBUWweli1d4
+2000;2010;Iron Maiden;The Alchemist;YH8nCYZSlIc
 2000;2000;Iron Maiden;The Wicker Man;-sQ3Af3DpeM
 2000;2003;Jet;Are You Gonna Be My Girl;tuK6n2Lkza0
 2000;2006;Jet;Put Your Money Where Your Mouth Is;gX7bUXQsHLY
