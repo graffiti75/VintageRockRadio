@@ -93,7 +93,8 @@ fun VideoPlayerScreen(viewModel: VideoPlayerViewModel = hiltViewModel()) {
 	val configuration = LocalConfiguration.current
 	val screenLayout = configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
 	val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-	val isTabletAndLandscape = (screenLayout >= Configuration.SCREENLAYOUT_SIZE_LARGE) && isLandscape
+	val isTabletAndLandscape =
+		(screenLayout >= Configuration.SCREENLAYOUT_SIZE_LARGE) && isLandscape
 
 	LaunchedEffect(Unit) {
 		viewModel.checkIfIsTabletAndLandscape(isTabletAndLandscape)
@@ -295,39 +296,203 @@ private fun VideoPlayerContentUI(
 			.fillMaxSize()
 			.background(MaterialTheme.colorScheme.background)
 	) {
-		if (state.isLoading && state.songs.isEmpty()) {
-			CircularProgressIndicator(
-				modifier = Modifier.align(Alignment.Center),
-				color = MaterialTheme.colorScheme.primary
-			)
-		} else if (state.error != null) {
-			onAction(VideoPlayerAction.DismissError)
-		} else if (state.songs.isEmpty() && !state.isLoading) {
-			RetryState()
-		} else {
-			val currentSong = state.currentSong
-			Row(
-				modifier = Modifier
-					.fillMaxSize()
-					.padding(16.dp)
-			) {
-				YoutubePlayerContent(
-					state = state,
-					youTubePlayerView = youTubePlayerView,
-					currentSong = currentSong
-				)
-				MusicControls(
-					modifier = Modifier
-						.weight(0.6f)
-						.fillMaxHeight()
-						.padding(start = 8.dp),
-					state = state,
-					onAction = onAction,
-					currentSong = currentSong,
-					youtubePlayer = youtubePlayer
-				)
+		when {
+			state.isLoading && state.songs.isEmpty() -> {
+				LoadingIndicator()
+			}
+
+			state.error != null -> {
+				onAction(VideoPlayerAction.DismissError)
+			}
+
+			state.songs.isEmpty() -> {
+				RetryState()
+			}
+
+			else -> {
+				if (state.isTabletAndLandscape) {
+					PlayerContentInLandscape(
+						state = state,
+						onAction = onAction,
+						youTubePlayerView = youTubePlayerView,
+						youtubePlayer = youtubePlayer
+					)
+				} else {
+					PlayerContent(
+						state = state,
+						onAction = onAction,
+						youTubePlayerView = youTubePlayerView,
+						youtubePlayer = youtubePlayer
+					)
+				}
 			}
 		}
+	}
+}
+
+@Composable
+private fun LoadingIndicator() {
+	Box(modifier = Modifier.fillMaxSize()) {
+		CircularProgressIndicator(
+			modifier = Modifier.align(Alignment.Center),
+			color = MaterialTheme.colorScheme.primary
+		)
+	}
+}
+
+@Composable
+private fun PlayerContentInLandscape(
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit,
+	youTubePlayerView: YouTubePlayerView,
+	youtubePlayer: YouTubePlayer?
+) {
+	val currentSong = state.currentSong
+	Column(
+		modifier = Modifier
+			.fillMaxSize()
+			.padding(16.dp)
+	) {
+		// YoutubePlayerContent
+		Row(
+			verticalAlignment = Alignment.CenterVertically,
+			horizontalArrangement = Arrangement.Center,
+			modifier = Modifier
+				// This Column takes 40% or 60% of the width
+				.weight(0.5f)
+				.fillMaxHeight()
+				.padding(end = 8.dp)
+		) {
+			// Video Player takes a weighted portion of the vertical space
+			AndroidView(
+				factory = { youTubePlayerView },
+				modifier = Modifier
+//					.fillMaxWidth()
+					.aspectRatio(16 / 9f) // Maintain aspect ratio
+					.background(Color.Black)
+					.weight(1f)
+			)
+			SongDetails(
+				modifier = Modifier.weight(1f),
+				state = state,
+				currentSong = currentSong
+			)
+		}
+
+		// MusicControls
+		Column(
+			modifier = Modifier
+				.weight(0.5f)
+				.background(
+					MaterialTheme.colorScheme.surface.copy(alpha = 0.3f)
+				)
+				.padding(16.dp),
+			horizontalAlignment = Alignment.CenterHorizontally,
+			verticalArrangement = Arrangement.Center
+		) {
+			var sliderPosition by remember(state.currentPlaybackTimeSeconds) {
+				mutableFloatStateOf(
+					state.currentPlaybackTimeSeconds.toFloat()
+				)
+			}
+
+			Button(
+				onClick = {
+					onAction(VideoPlayerAction.PlayPause)
+				},
+				enabled = currentSong != null,
+				colors = ButtonDefaults.buttonColors(
+					containerColor = MaterialTheme.colorScheme.primary
+				)
+			) {
+				Text(
+					text = if (state.isPlaying) "Pause" else "Play",
+					style = MaterialTheme.typography.labelLarge
+				)
+			}
+			Box(
+				modifier = Modifier
+					.wrapContentHeight(),
+				contentAlignment = Alignment.Center
+			) {
+				DecadeSlider(
+					onAction = onAction,
+					state = state,
+					currentDecade = state.currentDecade,
+					modifier = Modifier
+						.fillMaxWidth()
+						.padding(bottom = 50.dp)
+						.height(150.dp)
+						.zIndex(1f)
+				)
+				Column(
+					horizontalAlignment = Alignment.CenterHorizontally,
+					verticalArrangement = Arrangement.Center
+				) {
+					Spacer(modifier = Modifier.height(24.dp))
+					DecadeButtons(onAction = onAction)
+					Spacer(modifier = Modifier.height(48.dp))
+					Slider(
+						value = sliderPosition,
+						onValueChange = { newValue -> sliderPosition = newValue },
+						onValueChangeFinished = {
+							youtubePlayer?.seekTo(sliderPosition)
+							onAction(VideoPlayerAction.SeekTo(sliderPosition.toInt()))
+						},
+						valueRange = 0f..(
+							state.totalDurationSeconds.toFloat().takeIf { it > 0f } ?: 100f
+							),
+						modifier = Modifier.fillMaxWidth(),
+						enabled = currentSong != null && state.totalDurationSeconds > 0,
+						colors = SliderDefaults.colors(
+							thumbColor = MaterialTheme.colorScheme.primary,
+							activeTrackColor = MaterialTheme.colorScheme.primary,
+							inactiveTrackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+						)
+					)
+					Text(
+						text = "${formatTime(sliderPosition.toInt())} / ${formatTime(state.totalDurationSeconds)}",
+						style = MaterialTheme.typography.labelSmall
+					)
+					Spacer(modifier = Modifier.height(32.dp))
+					NextPreviousButtons(
+						state = state,
+						onAction = onAction
+					)
+				}
+			}
+		}
+	}
+}
+
+@Composable
+private fun PlayerContent(
+	state: VideoPlayerState,
+	onAction: (VideoPlayerAction) -> Unit,
+	youTubePlayerView: YouTubePlayerView,
+	youtubePlayer: YouTubePlayer?
+) {
+	val currentSong = state.currentSong
+	Row(
+		modifier = Modifier
+			.fillMaxSize()
+			.padding(16.dp)
+	) {
+		YoutubePlayerContent(
+			state = state,
+			youTubePlayerView = youTubePlayerView,
+			currentSong = currentSong
+		)
+		MusicControls(
+			modifier = Modifier
+				.weight(0.6f)
+				.fillMaxHeight()
+				.padding(start = 8.dp),
+			state = state,
+			onAction = onAction,
+			currentSong = currentSong,
+			youtubePlayer = youtubePlayer
+		)
 	}
 }
 
@@ -394,12 +559,13 @@ private fun RowScope.YoutubePlayerContent(
 
 @Composable
 private fun SongDetails(
+	modifier: Modifier = Modifier,
 	state: VideoPlayerState,
 	currentSong: Song? = null
 ) {
 	Column(
 		verticalArrangement = Arrangement.Top,
-		modifier = Modifier
+		modifier = modifier
 			.fillMaxWidth()
 			.padding(horizontal = 8.dp)
 	) {
