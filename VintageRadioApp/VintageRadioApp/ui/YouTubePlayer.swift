@@ -16,8 +16,13 @@ struct YouTubePlayer: UIViewRepresentable {
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.navigationDelegate = context.coordinator
 
-        if let url = Bundle.main.url(forResource: "youtube_player", withExtension: "html") {
-            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+        do {
+            if let url = Bundle.main.url(forResource: "youtube_player", withExtension: "html") {
+                let htmlString = try String(contentsOf: url)
+                webView.loadHTMLString(htmlString, baseURL: URL(string: "https://www.youtube.com"))
+            }
+        } catch {
+            print("Error loading youtube_player.html: \(error)")
         }
 
         return webView
