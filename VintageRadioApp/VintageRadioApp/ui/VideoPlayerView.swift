@@ -18,47 +18,62 @@ struct VideoPlayerView: View {
                 // A dark, vintage-style background image would work best.
                 Color.black.edgesIgnoringSafeArea(.all) // Placeholder background
 
-                ScrollView {
-                    VStack {
-                    if let song = viewModel.state.currentSong {
-                        DecadeSlider(selectedDecade: decadeBinding)
-                        .frame(height: 50)
-                        .padding()
-
+                VStack(spacing: 0) {
+                    // Top Section
+                    HStack(spacing: 0) {
+                        // Left Side: Player
                         ZStack {
-                            YouTubePlayer(videoID: song.youtubeID,
-                                          isPlaying: viewModel.state.isPlaying,
-                                          seekTo: viewModel.state.currentPlaybackTimeSeconds,
-                                          viewModel: viewModel)
-                                .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.4)
-                                .cornerRadius(10)
-                                .padding()
+                            if let song = viewModel.state.currentSong {
+                                YouTubePlayer(videoID: song.youtubeID,
+                                              isPlaying: viewModel.state.isPlaying,
+                                              seekTo: viewModel.state.currentPlaybackTimeSeconds,
+                                              viewModel: viewModel)
 
-                            if let error = viewModel.state.error {
-                                Text(error)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color.black.opacity(0.7))
-                                    .cornerRadius(10)
+                                if let error = viewModel.state.error {
+                                    Text(error)
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(Color.black.opacity(0.7))
+                                        .cornerRadius(10)
+                                }
+                            } else if viewModel.state.isLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                    .scaleEffect(2)
                             }
                         }
+                        .frame(width: geometry.size.width * 0.6)
+                        .padding()
 
-                        Text(song.song)
-                            .font(.custom("HelveticaNeue-Bold", size: 36))
-                            .foregroundColor(.white)
-                        Text(song.band)
-                            .font(.custom("HelveticaNeue-Medium", size: 24))
-                            .foregroundColor(.gray)
-                        Text("\(song.year) (\(song.decade)s)")
-                            .font(.custom("HelveticaNeue-Light", size: 18))
-                            .foregroundColor(.gray)
+                        // Right Side: Song Info
+                        if let song = viewModel.state.currentSong {
+                            SongDetailsView(song: song)
+                        }
+                    }
+                    .frame(height: geometry.size.height * 0.7)
 
-                        // Playback controls
+                    // Bottom Section
+                    VStack {
+                        DecadeSlider(selectedDecade: decadeBinding)
+                            .frame(height: 50)
+                            .padding(.horizontal)
+
+                        Slider(value: $sliderValue, in: 0...viewModel.state.totalDurationSeconds, onEditingChanged: { editing in
+                            if !editing {
+                                viewModel.onAction(.seekTo(sliderValue))
+                            }
+                        })
+                        .accentColor(.orange)
+                        .padding(.horizontal)
+                        .onReceive(viewModel.$state) { state in
+                            sliderValue = state.currentPlaybackTimeSeconds
+                        }
+
                         HStack(spacing: 40) {
                             Button(action: { viewModel.onAction(.previousSong) }) {
                                 Image(systemName: "backward.fill")
                                     .resizable()
-                                    .frame(width: 40, height: 40)
+                                    .frame(width: 30, height: 30)
                                     .foregroundColor(.white)
                             }
                             .disabled(!viewModel.state.isPrevButtonEnabled)
@@ -66,41 +81,21 @@ struct VideoPlayerView: View {
                             Button(action: { viewModel.onAction(.playPause) }) {
                                 Image(systemName: viewModel.state.isPlaying ? "pause.fill" : "play.fill")
                                     .resizable()
-                                    .frame(width: 60, height: 60)
+                                    .frame(width: 40, height: 40)
                                     .foregroundColor(.orange)
                             }
 
                             Button(action: { viewModel.onAction(.nextSong) }) {
                                 Image(systemName: "forward.fill")
                                     .resizable()
-                                    .frame(width: 40, height: 40)
+                                    .frame(width: 30, height: 30)
                                     .foregroundColor(.white)
                             }
                         }
-                        .padding()
-
-                        // Slider
-                        Slider(value: $sliderValue, in: 0...viewModel.state.totalDurationSeconds, onEditingChanged: { editing in
-                            if !editing {
-                                viewModel.onAction(.seekTo(sliderValue))
-                            }
-                        })
-                        .accentColor(.orange)
-                        .padding()
-                        .onReceive(viewModel.$state) { state in
-                            sliderValue = state.currentPlaybackTimeSeconds
-                        }
-
-
-                    } else {
-                        if viewModel.state.isLoading {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                .scaleEffect(2)
-                        }
                     }
-                } // VStack
-                } // ScrollView
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding()
+                }
             }
         }
     }
