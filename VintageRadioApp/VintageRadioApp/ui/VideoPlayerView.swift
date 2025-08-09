@@ -11,9 +11,10 @@ struct VideoPlayerView: View {
                 // A dark, vintage-style background image would work best.
                 Color.black.edgesIgnoringSafeArea(.all) // Placeholder background
 
-                VStack {
-                    // Decade buttons
-                    HStack(spacing: 20) {
+                ScrollView {
+                    VStack {
+                        // Decade buttons
+                        HStack(spacing: 20) {
                         DecadeButton(title: "50s", action: { viewModel.onAction(.changeDecade("50")) })
                         DecadeButton(title: "60s", action: { viewModel.onAction(.changeDecade("60")) })
                         DecadeButton(title: "70s", action: { viewModel.onAction(.changeDecade("70")) })
@@ -96,7 +97,8 @@ struct VideoPlayerView: View {
                             .foregroundColor(.orange)
                         }
                     }
-                }
+                } // VStack
+                } // ScrollView
             }
         }
     }
