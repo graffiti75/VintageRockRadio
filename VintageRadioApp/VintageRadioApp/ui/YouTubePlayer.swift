@@ -67,6 +67,10 @@ struct YouTubePlayer: UIViewRepresentable {
                             self.viewModel.onAction(.updatePlaybackTime(currentTime))
                             self.viewModel.onAction(.updateTotalDuration(duration))
                         }
+                    } else if type == "error", let errorCode = dict["errorCode"] as? Int {
+                        DispatchQueue.main.async {
+                            self.viewModel.onAction(.onPlayerError(errorCode))
+                        }
                     }
                 }
             }
