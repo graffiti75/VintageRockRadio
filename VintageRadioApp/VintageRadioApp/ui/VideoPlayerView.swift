@@ -97,13 +97,6 @@ struct VideoPlayerView: View {
                         }
                     }
                 }
-                .onAppear {
-                    viewModel.onAction(.checkIfIsTabletAndLandscape(UIDevice.current.userInterfaceIdiom == .pad &&
-                        (UIDevice.current.orientation.isLandscape ||
-                            (UIScreen.main.bounds.width > UIScreen.main.bounds.height)
-                        )
-                    ))
-                }
             }
         }
     }

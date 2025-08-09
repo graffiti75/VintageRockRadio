@@ -43,24 +43,30 @@ class VideoPlayerViewModel: ObservableObject {
             goToNextSong()
         case .changeDecade(let decade):
             handleChangeDecade(decade: decade)
-        case .checkIfIsTabletAndLandscape(let isTabletAndLandscape):
-            state.isTabletAndLandscape = isTabletAndLandscape
         }
     }
 
     private func loadSongs(decade: String) {
         state.isLoading = true
-        let songs = songParser.parseSongs(decade: decade).shuffled()
-        if songs.isNotEmpty {
-            state.songs = songs
-            state.isLoading = false
-            state.currentSongIndex = 0
-            state.currentPlaybackTimeSeconds = 0
-            state.totalDurationSeconds = 0
-            state.error = nil
-        } else {
-            state.isLoading = false
-            state.error = "No songs found for decade \(decade) in ids.txt."
+        songParser.parseSongs(decade: decade) { [weak self] songs in
+            guard let self = self else { return }
+
+            let shuffledSongs = songs.shuffled()
+            if !shuffledSongs.isEmpty {
+                var newState = self.state
+                newState.songs = shuffledSongs
+                newState.isLoading = false
+                newState.currentSongIndex = 0
+                newState.currentPlaybackTimeSeconds = 0
+                newState.totalDurationSeconds = 0
+                newState.error = nil
+                self.state = newState
+            } else {
+                var newState = self.state
+                newState.isLoading = false
+                newState.error = "No songs found for decade \(decade) in ids.txt."
+                self.state = newState
+            }
         }
     }
 

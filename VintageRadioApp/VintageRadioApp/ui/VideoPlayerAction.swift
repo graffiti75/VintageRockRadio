@@ -11,5 +11,4 @@ enum VideoPlayerAction {
     case onError(String)
     case dismissError
     case changeDecade(String)
-    case checkIfIsTabletAndLandscape(Bool)
 }
