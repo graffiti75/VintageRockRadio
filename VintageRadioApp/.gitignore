@@ -1,0 +1,34 @@
+# Xcode
+.DS_Store
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcscmblueprint
+*.xcscheme
+*.moved-aside
+DerivedData/
+Build/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+Packages/
+*.swiftdeps
+*.swiftmodule
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/
+
+# Fastlane
+fastlane/report.xml
+fastlane/test_output
+fastlane/screenshots
+
+# User-specific
+*.xcuserdatad

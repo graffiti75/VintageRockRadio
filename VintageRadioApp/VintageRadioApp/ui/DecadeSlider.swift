@@ -3,7 +3,6 @@ import SwiftUI
 struct DecadeSlider: View {
     let decades = ["50", "60", "70", "80", "90", "2000"]
     @Binding var selectedDecade: String
-    var onDecadeChanged: (String) -> Void
 
     @State private var offset: CGFloat = 0
     @State private var lastOffset: CGFloat = 0
@@ -40,7 +39,7 @@ struct DecadeSlider: View {
 
                                     let newDecade = decades[index]
                                     if newDecade != selectedDecade {
-                                        onDecadeChanged(newDecade)
+                                        selectedDecade = newDecade
                                     }
                                 }
                         )

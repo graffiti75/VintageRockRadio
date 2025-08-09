@@ -4,6 +4,13 @@ struct VideoPlayerView: View {
     @StateObject private var viewModel = VideoPlayerViewModel()
     @State private var sliderValue: Double = 0
 
+    private var decadeBinding: Binding<String> {
+        Binding(
+            get: { viewModel.state.currentDecade },
+            set: { newDecade in viewModel.onAction(.changeDecade(newDecade)) }
+        )
+    }
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -14,9 +21,7 @@ struct VideoPlayerView: View {
                 ScrollView {
                     VStack {
                     if let song = viewModel.state.currentSong {
-                        DecadeSlider(selectedDecade: $viewModel.state.currentDecade) { newDecade in
-                            viewModel.onAction(.changeDecade(newDecade))
-                        }
+                        DecadeSlider(selectedDecade: decadeBinding)
                         .frame(height: 50)
                         .padding()
 
