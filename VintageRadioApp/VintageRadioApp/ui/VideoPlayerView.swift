@@ -46,8 +46,37 @@ struct VideoPlayerView: View {
                         .padding()
 
                         // Right Side: Song Info
-                        if let song = viewModel.state.currentSong {
-                            SongDetailsView(song: song)
+                        VStack {
+                            if let song = viewModel.state.currentSong {
+                                SongDetailsView(song: song)
+                            }
+
+                            Spacer()
+
+                            HStack(spacing: 40) {
+                                Button(action: { viewModel.onAction(.previousSong) }) {
+                                    Image(systemName: "backward.fill")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .foregroundColor(.white)
+                                }
+                                .disabled(!viewModel.state.isPrevButtonEnabled)
+
+                                Button(action: { viewModel.onAction(.playPause) }) {
+                                    Image(systemName: viewModel.state.isPlaying ? "pause.fill" : "play.fill")
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(.orange)
+                                }
+
+                                Button(action: { viewModel.onAction(.nextSong) }) {
+                                    Image(systemName: "forward.fill")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .padding(.bottom, 20)
                         }
                     }
                     .frame(height: geometry.size.height * 0.7)
@@ -67,30 +96,6 @@ struct VideoPlayerView: View {
                         .padding(.horizontal)
                         .onReceive(viewModel.$state) { state in
                             sliderValue = state.currentPlaybackTimeSeconds
-                        }
-
-                        HStack(spacing: 40) {
-                            Button(action: { viewModel.onAction(.previousSong) }) {
-                                Image(systemName: "backward.fill")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.white)
-                            }
-                            .disabled(!viewModel.state.isPrevButtonEnabled)
-
-                            Button(action: { viewModel.onAction(.playPause) }) {
-                                Image(systemName: viewModel.state.isPlaying ? "pause.fill" : "play.fill")
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                    .foregroundColor(.orange)
-                            }
-
-                            Button(action: { viewModel.onAction(.nextSong) }) {
-                                Image(systemName: "forward.fill")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.white)
-                            }
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
