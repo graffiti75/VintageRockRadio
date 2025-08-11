@@ -87,16 +87,17 @@ struct VideoPlayerView: View {
                             .frame(height: 50)
                             .padding(.horizontal)
 
-                        Slider(value: $sliderValue, in: 0...viewModel.state.totalDurationSeconds, onEditingChanged: { editing in
-                            if !editing {
-                                viewModel.onAction(.seekTo(sliderValue))
+                        CustomProgressSlider(
+                            value: $sliderValue,
+                            range: 0...(viewModel.state.totalDurationSeconds > 0 ? viewModel.state.totalDurationSeconds : 1),
+                            onSeek: { newValue in
+                                viewModel.onAction(.seekTo(newValue))
                             }
-                        })
-                        .accentColor(.orange)
-                        .padding(.horizontal)
+                        )
                         .onReceive(viewModel.$state) { state in
                             sliderValue = state.currentPlaybackTimeSeconds
                         }
+                        .padding(.horizontal)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding()
