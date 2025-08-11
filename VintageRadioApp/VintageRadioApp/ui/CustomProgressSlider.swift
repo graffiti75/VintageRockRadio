@@ -3,7 +3,10 @@ import SwiftUI
 struct CustomProgressSlider: View {
     @Binding var value: Double
     let range: ClosedRange<Double>
+    var onEditingChanged: (Bool) -> Void = { _ in }
     let onSeek: (Double) -> Void
+
+    @State private var isDragging = false
 
     var body: some View {
         GeometryReader { geometry in
@@ -31,10 +34,16 @@ struct CustomProgressSlider: View {
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { gesture in
+                        if !isDragging {
+                            isDragging = true
+                            onEditingChanged(true)
+                        }
                         updateValue(for: gesture.location, in: totalWidth)
                     }
                     .onEnded { gesture in
+                        isDragging = false
                         onSeek(value)
+                        onEditingChanged(false)
                     }
             )
         }

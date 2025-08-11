@@ -3,6 +3,7 @@ import SwiftUI
 struct VideoPlayerView: View {
     @StateObject private var viewModel = VideoPlayerViewModel()
     @State private var sliderValue: Double = 0
+    @State private var isInteractingWithSlider = false
 
     private var decadeBinding: Binding<String> {
         Binding(
@@ -90,12 +91,17 @@ struct VideoPlayerView: View {
                         CustomProgressSlider(
                             value: $sliderValue,
                             range: 0...(viewModel.state.totalDurationSeconds > 0 ? viewModel.state.totalDurationSeconds : 1),
+                            onEditingChanged: { isEditing in
+                                isInteractingWithSlider = isEditing
+                            },
                             onSeek: { newValue in
                                 viewModel.onAction(.seekTo(newValue))
                             }
                         )
                         .onReceive(viewModel.$state) { state in
-                            sliderValue = state.currentPlaybackTimeSeconds
+                            if !isInteractingWithSlider {
+                                sliderValue = state.currentPlaybackTimeSeconds
+                            }
                         }
                         .padding(.horizontal)
                     }
