@@ -27,6 +27,9 @@
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
+                playerVars: {
+                    'playsinline': 1
+                },
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange,
