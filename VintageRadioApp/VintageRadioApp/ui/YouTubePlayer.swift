@@ -1,5 +1,6 @@
 import SwiftUI
 import WebKit
+import Combine
 
 enum YTPlayerState: Int {
     case unstarted = -1
@@ -72,9 +73,7 @@ struct YouTubePlayer: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             self.webView = webView
             // When the webview is ready, load the initial video.
-            if let videoID = parent.videoID {
-                handle(.load(videoID: videoID))
-            }
+            handle(.load(videoID: parent.videoID))
         }
 
         private func handle(_ command: PlayerCommand) {
