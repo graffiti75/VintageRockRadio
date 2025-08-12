@@ -12,6 +12,7 @@ class VideoPlayerViewModel: ObservableObject {
     @Published private(set) var state = VideoPlayerState()
     let commandPublisher = PassthroughSubject<PlayerCommand, Never>()
 
+    private var pendingCommand: PlayerCommand?
     private let songParser = SongParser()
 
     init() {
@@ -24,9 +25,9 @@ class VideoPlayerViewModel: ObservableObject {
             if state.songs.isEmpty { return }
             state.isPlaying.toggle()
             if state.isPlaying {
-                commandPublisher.send(.play)
+                sendCommand(.play)
             } else {
-                commandPublisher.send(.pause)
+                sendCommand(.pause)
             }
         case .setPlaying(let playing):
             if state.songs.isEmpty { return }
@@ -42,13 +43,19 @@ class VideoPlayerViewModel: ObservableObject {
         case .seekTo(let positionSeconds):
             if state.songs.isEmpty { return }
             state.currentPlaybackTimeSeconds = positionSeconds
-            commandPublisher.send(.seek(to: positionSeconds))
+            sendCommand(.seek(to: positionSeconds))
         case .updatePlaybackTime(let timeSeconds):
             if state.songs.isEmpty { return }
             state.currentPlaybackTimeSeconds = timeSeconds
         case .updateTotalDuration(let durationSeconds):
             if state.songs.isEmpty { return }
             state.totalDurationSeconds = durationSeconds
+        case .playerReady:
+            state.isPlayerReady = true
+            if let command = pendingCommand {
+                sendCommand(command)
+                pendingCommand = nil
+            }
         case .onPlayerError(let errorCode):
             handlePlayerError(errorCode)
         case .onError(let error):
@@ -80,7 +87,7 @@ class VideoPlayerViewModel: ObservableObject {
                 newState.isPrevButtonEnabled = false
                 self.state = newState
                 if let firstSong = shuffledSongs.first {
-                    commandPublisher.send(.load(videoID: firstSong.youtubeID))
+                    sendCommand(.load(videoID: firstSong.youtubeID))
                 }
             } else {
                 var newState = self.state
@@ -100,7 +107,7 @@ class VideoPlayerViewModel: ObservableObject {
         state.error = nil
         state.isPrevButtonEnabled = true
         if let newSong = state.currentSong {
-            commandPublisher.send(.load(videoID: newSong.youtubeID))
+            sendCommand(.load(videoID: newSong.youtubeID))
         }
     }
 
@@ -117,13 +124,23 @@ class VideoPlayerViewModel: ObservableObject {
         state.isPrevButtonEnabled = (prevIndex > 0)
 
         if let newSong = state.currentSong {
-            commandPublisher.send(.load(videoID: newSong.youtubeID))
+            sendCommand(.load(videoID: newSong.youtubeID))
         }
     }
 
     private func handleChangeDecade(decade: String) {
         state.currentDecade = decade
+        state.isPlayerReady = false // Player will need to be ready again for the new page
+        pendingCommand = nil // Clear any pending commands
         loadSongs(decade: decade)
+    }
+
+    private func sendCommand(_ command: PlayerCommand) {
+        if state.isPlayerReady {
+            commandPublisher.send(command)
+        } else {
+            pendingCommand = command
+        }
     }
 
     private func handlePlayerError(_ errorCode: Int) {

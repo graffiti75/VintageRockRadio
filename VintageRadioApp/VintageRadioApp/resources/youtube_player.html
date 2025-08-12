@@ -40,7 +40,7 @@
         }
 
         function onPlayerReady(event) {
-            // The player is ready
+            window.webkit.messageHandlers.playbackHandler.postMessage({ type: 'ready' });
         }
 
         function onPlayerStateChange(event) {

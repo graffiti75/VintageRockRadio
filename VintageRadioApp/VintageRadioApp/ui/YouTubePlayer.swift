@@ -115,6 +115,8 @@ struct YouTubePlayer: UIViewRepresentable {
                     if let errorCode = dict["errorCode"] as? Int {
                         self.viewModel.onAction(.onPlayerError(errorCode))
                     }
+                case "ready":
+                    self.viewModel.onAction(.playerReady)
                 case "stateChange":
                     if let stateCode = dict["stateCode"] as? Int,
                        let state = YTPlayerState(rawValue: stateCode) {

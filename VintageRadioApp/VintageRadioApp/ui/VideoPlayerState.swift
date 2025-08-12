@@ -11,6 +11,7 @@ struct VideoPlayerState {
     var currentDecade: String = "70"
     var isTabletAndLandscape: Bool = false
     var isPrevButtonEnabled: Bool = false
+    var isPlayerReady: Bool = false
 
     var currentSong: Song? {
         guard !songs.isEmpty, songs.indices.contains(currentSongIndex) else {
