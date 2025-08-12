@@ -18,6 +18,13 @@ struct YouTubePlayer: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.allowsInlineMediaPlayback = true
+
+        // Set a mobile User-Agent to prevent YouTube from loading the desktop player on iPad
+        webConfiguration.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
+
+        // Allow videos to be played programmatically
+        webConfiguration.mediaTypesRequiringUserActionForPlayback = []
+
         let userContentController = WKUserContentController()
         userContentController.add(context.coordinator, name: "playbackHandler")
         webConfiguration.userContentController = userContentController
