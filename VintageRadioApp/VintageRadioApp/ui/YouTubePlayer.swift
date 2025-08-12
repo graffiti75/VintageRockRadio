@@ -12,8 +12,6 @@ enum YTPlayerState: Int {
 
 struct YouTubePlayer: UIViewRepresentable {
     let videoID: String
-    let isPlaying: Bool
-    let seekTo: Double
     let viewModel: VideoPlayerViewModel
 
     func makeUIView(context: Context) -> WKWebView {
@@ -39,21 +37,11 @@ struct YouTubePlayer: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
+        // The view is now command-driven, so updateUIView should be minimal.
+        // We might still need to load the initial video if it's not handled by a command.
         if context.coordinator.lastVideoID != videoID {
             uiView.evaluateJavaScript("loadVideo('\(videoID)');", completionHandler: nil)
             context.coordinator.lastVideoID = videoID
-        }
-
-        // Only send play/pause commands if the player's state is different from the desired state
-        if isPlaying && context.coordinator.lastPlayerState != .playing {
-            uiView.evaluateJavaScript("playVideo();", completionHandler: nil)
-        } else if !isPlaying && context.coordinator.lastPlayerState != .paused {
-            uiView.evaluateJavaScript("pauseVideo();", completionHandler: nil)
-        }
-
-        if abs(seekTo - context.coordinator.lastSeekTo) > 1 {
-            uiView.evaluateJavaScript("seekTo(\(seekTo));", completionHandler: nil)
-            context.coordinator.lastSeekTo = seekTo
         }
     }
 
@@ -65,12 +53,43 @@ struct YouTubePlayer: UIViewRepresentable {
         var parent: YouTubePlayer
         var viewModel: VideoPlayerViewModel
         var lastVideoID: String?
-        var lastSeekTo: Double = 0
         var lastPlayerState: YTPlayerState? = nil
+        private var webView: WKWebView?
+        private var cancellables = Set<AnyCancellable>()
 
         init(_ parent: YouTubePlayer, viewModel: VideoPlayerViewModel) {
             self.parent = parent
             self.viewModel = viewModel
+            super.init()
+
+            viewModel.commandPublisher
+                .sink { [weak self] command in
+                    self?.handle(command)
+                }
+                .store(in: &cancellables)
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            self.webView = webView
+            // When the webview is ready, load the initial video.
+            if let videoID = parent.videoID {
+                handle(.load(videoID: videoID))
+            }
+        }
+
+        private func handle(_ command: PlayerCommand) {
+            guard let webView = webView else { return }
+            switch command {
+            case .load(let videoID):
+                webView.evaluateJavaScript("loadVideo('\(videoID)');", completionHandler: nil)
+                lastVideoID = videoID
+            case .play:
+                webView.evaluateJavaScript("playVideo();", completionHandler: nil)
+            case .pause:
+                webView.evaluateJavaScript("pauseVideo();", completionHandler: nil)
+            case .seek(let to):
+                webView.evaluateJavaScript("seekTo(\(to));", completionHandler: nil)
+            }
         }
 
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
