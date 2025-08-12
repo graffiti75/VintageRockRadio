@@ -28,6 +28,10 @@ struct VideoPlayerView: View {
                                               seekTo: viewModel.state.currentPlaybackTimeSeconds,
                                               viewModel: viewModel)
 
+                                // Transparent overlay to block user interaction
+                                Color.clear
+                                    .contentShape(Rectangle())
+
                                 if let error = viewModel.state.error {
                                     Text(error)
                                         .foregroundColor(.white)
