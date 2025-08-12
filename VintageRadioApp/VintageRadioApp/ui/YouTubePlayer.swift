@@ -29,8 +29,12 @@ struct YouTubePlayer: UIViewRepresentable {
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.navigationDelegate = context.coordinator
 
-        // Set a mobile User-Agent to prevent YouTube from loading the desktop player on iPad
-        webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
+        // Set a mobile User-Agent for iPhone to ensure correct player behavior
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
+        }
+        // For iPad, we don't set a custom user agent, allowing WKWebView to use the default,
+        // which is better for compatibility with the modern YouTube player.
 
         let html = createPlayerHTML()
         webView.loadHTMLString(html, baseURL: URL(string: "https://www.youtube.com"))
