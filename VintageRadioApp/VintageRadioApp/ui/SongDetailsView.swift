@@ -8,6 +8,8 @@ struct SongDetailsView: View {
             Text(song.song)
                 .font(.custom("HelveticaNeue-Bold", size: 36))
                 .foregroundColor(.white)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
             Text(song.band)
                 .font(.custom("HelveticaNeue-Medium", size: 24))
                 .foregroundColor(.gray)
