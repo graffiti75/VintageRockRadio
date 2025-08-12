@@ -32,16 +32,81 @@ struct YouTubePlayer: UIViewRepresentable {
         // Set a mobile User-Agent to prevent YouTube from loading the desktop player on iPad
         webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
 
-        do {
-            if let url = Bundle.main.url(forResource: "youtube_player", withExtension: "html") {
-                let htmlString = try String(contentsOf: url)
-                webView.loadHTMLString(htmlString, baseURL: URL(string: "https://www.youtube.com"))
-            }
-        } catch {
-            print("Error loading youtube_player.html: \(error)")
-        }
+        let html = createPlayerHTML()
+        webView.loadHTMLString(html, baseURL: URL(string: "https://www.youtube.com"))
 
         return webView
+    }
+
+    private func createPlayerHTML() -> String {
+        return """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: black; overflow: hidden; }
+                #player { width: 100%; height: 100%; }
+            </style>
+        </head>
+        <body>
+            <div id="player"></div>
+            <script>
+                var tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                var player;
+                function onYouTubeIframeAPIReady() {
+                    player = new YT.Player('player', {
+                        playerVars: { 'playsinline': 1, 'controls': 0 },
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange,
+                            'onError': onPlayerError
+                        }
+                    });
+                }
+
+                function onPlayerReady(event) {
+                    window.webkit.messageHandlers.playbackHandler.postMessage({ type: 'ready' });
+                }
+
+                function onPlayerStateChange(event) {
+                    window.webkit.messageHandlers.playbackHandler.postMessage({ type: 'stateChange', stateCode: event.data });
+                    if (event.data == YT.PlayerState.PLAYING) { start_time_updater(); } else { stop_time_updater(); }
+                }
+
+                function onPlayerError(event) {
+                    window.webkit.messageHandlers.playbackHandler.postMessage({ type: 'error', errorCode: event.data });
+                }
+
+                var time_updater = null;
+                function start_time_updater() {
+                    if (time_updater !== null) { return; }
+                    time_updater = setInterval(function() {
+                        var currentTime = player.getCurrentTime();
+                        var duration = player.getDuration();
+                        window.webkit.messageHandlers.playbackHandler.postMessage({
+                            type: 'timeUpdate',
+                            currentTime: currentTime,
+                            duration: duration
+                        });
+                    }, 1000);
+                }
+
+                function stop_time_updater() {
+                    if (time_updater !== null) { clearInterval(time_updater); time_updater = null; }
+                }
+
+                function loadVideo(videoId) { player.loadVideoById(videoId); }
+                function playVideo() { player.playVideo(); }
+                function pauseVideo() { player.pauseVideo(); }
+                function seekTo(seconds) { player.seekTo(seconds, true); }
+            </script>
+        </body>
+        </html>
+        """
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
