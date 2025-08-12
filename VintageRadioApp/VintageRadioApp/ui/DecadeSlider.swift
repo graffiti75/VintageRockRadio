@@ -30,7 +30,8 @@ struct DecadeSlider: View {
                                 }
                                 .onEnded { value in
                                     let segmentWidth = geometry.size.width / CGFloat(decades.count)
-                                    let index = Int(round(offset / segmentWidth))
+                                    // By adding segmentWidth / 2, we ensure that the snapping point is in the middle of the segment, not at the edge.
+                                    let index = Int((offset + segmentWidth / 2) / segmentWidth)
                                         .clamped(to: 0...decades.count - 1)
 
                                     let newOffset = segmentWidth * CGFloat(index) + segmentWidth / 2
@@ -69,7 +70,7 @@ struct DecadeSlider: View {
     private func updateOffset(width: CGFloat) {
         let segmentWidth = width / CGFloat(decades.count)
         if let index = decades.firstIndex(of: selectedDecade) {
-            let newOffset = segmentWidth * CGFloat(index) + segmentWidth / 2
+            let newOffset = segmentWidth * CGFloat(index) + (segmentWidth / 2)
             offset = newOffset
             lastOffset = newOffset
         }
