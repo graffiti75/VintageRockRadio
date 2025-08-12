@@ -1,6 +1,15 @@
 import SwiftUI
 import WebKit
 
+enum YTPlayerState: Int {
+    case unstarted = -1
+    case ended = 0
+    case playing = 1
+    case paused = 2
+    case buffering = 3
+    case cued = 5
+}
+
 struct YouTubePlayer: UIViewRepresentable {
     let videoID: String
     let isPlaying: Bool
@@ -35,9 +44,10 @@ struct YouTubePlayer: UIViewRepresentable {
             context.coordinator.lastVideoID = videoID
         }
 
-        if isPlaying {
+        // Only send play/pause commands if the player's state is different from the desired state
+        if isPlaying && context.coordinator.lastPlayerState != .playing {
             uiView.evaluateJavaScript("playVideo();", completionHandler: nil)
-        } else {
+        } else if !isPlaying && context.coordinator.lastPlayerState != .paused {
             uiView.evaluateJavaScript("pauseVideo();", completionHandler: nil)
         }
 
@@ -56,6 +66,7 @@ struct YouTubePlayer: UIViewRepresentable {
         var viewModel: VideoPlayerViewModel
         var lastVideoID: String?
         var lastSeekTo: Double = 0
+        var lastPlayerState: YTPlayerState? = nil
 
         init(_ parent: YouTubePlayer, viewModel: VideoPlayerViewModel) {
             self.parent = parent
@@ -63,21 +74,38 @@ struct YouTubePlayer: UIViewRepresentable {
         }
 
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            if message.name == "playbackHandler" {
-                if let dict = message.body as? [String: Any],
-                   let type = dict["type"] as? String {
-                    if type == "timeUpdate",
-                       let currentTime = dict["currentTime"] as? Double,
+            guard message.name == "playbackHandler",
+                  let dict = message.body as? [String: Any],
+                  let type = dict["type"] as? String else { return }
+
+            DispatchQueue.main.async {
+                switch type {
+                case "timeUpdate":
+                    if let currentTime = dict["currentTime"] as? Double,
                        let duration = dict["duration"] as? Double {
-                        DispatchQueue.main.async {
-                            self.viewModel.onAction(.updatePlaybackTime(currentTime))
-                            self.viewModel.onAction(.updateTotalDuration(duration))
-                        }
-                    } else if type == "error", let errorCode = dict["errorCode"] as? Int {
-                        DispatchQueue.main.async {
-                            self.viewModel.onAction(.onPlayerError(errorCode))
+                        self.viewModel.onAction(.updatePlaybackTime(currentTime))
+                        self.viewModel.onAction(.updateTotalDuration(duration))
+                    }
+                case "error":
+                    if let errorCode = dict["errorCode"] as? Int {
+                        self.viewModel.onAction(.onPlayerError(errorCode))
+                    }
+                case "stateChange":
+                    if let stateCode = dict["stateCode"] as? Int,
+                       let state = YTPlayerState(rawValue: stateCode) {
+                        self.lastPlayerState = state
+                        // Also update the ViewModel's state based on the player's actual state
+                        switch state {
+                        case .playing:
+                            self.viewModel.onAction(.setPlaying(true))
+                        case .paused, .ended:
+                            self.viewModel.onAction(.setPlaying(false))
+                        default:
+                            break // Do nothing for buffering, cued, etc.
                         }
                     }
+                default:
+                    break
                 }
             }
         }

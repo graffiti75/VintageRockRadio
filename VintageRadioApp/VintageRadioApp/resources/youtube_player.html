@@ -44,16 +44,40 @@
         }
 
         function onPlayerStateChange(event) {
+            window.webkit.messageHandlers.playbackHandler.postMessage({
+                type: 'stateChange',
+                stateCode: event.data
+            });
+
             if (event.data == YT.PlayerState.PLAYING) {
-                setInterval(function() {
-                    var currentTime = player.getCurrentTime();
-                    var duration = player.getDuration();
-                    window.webkit.messageHandlers.playbackHandler.postMessage({
-                        type: 'timeUpdate',
-                        currentTime: currentTime,
-                        duration: duration
-                    });
-                }, 1000);
+                // Start sending time updates
+                start_time_updater();
+            } else {
+                // Stop sending time updates
+                stop_time_updater();
+            }
+        }
+
+        var time_updater = null;
+        function start_time_updater() {
+            if (time_updater !== null) {
+                return; // Already running
+            }
+            time_updater = setInterval(function() {
+                var currentTime = player.getCurrentTime();
+                var duration = player.getDuration();
+                window.webkit.messageHandlers.playbackHandler.postMessage({
+                    type: 'timeUpdate',
+                    currentTime: currentTime,
+                    duration: duration
+                });
+            }, 1000);
+        }
+
+        function stop_time_updater() {
+            if (time_updater !== null) {
+                clearInterval(time_updater);
+                time_updater = null;
             }
         }
 
