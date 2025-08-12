@@ -77,6 +77,7 @@ class VideoPlayerViewModel: ObservableObject {
                 newState.totalDurationSeconds = 0
                 newState.error = nil
                 newState.isPlaying = true
+                newState.isPrevButtonEnabled = false
                 self.state = newState
                 if let firstSong = shuffledSongs.first {
                     commandPublisher.send(.load(videoID: firstSong.youtubeID))
@@ -118,7 +119,6 @@ class VideoPlayerViewModel: ObservableObject {
     private func handleChangeDecade(decade: String) {
         state.currentDecade = decade
         loadSongs(decade: decade)
-        state.isPrevButtonEnabled = false
     }
 
     private func handlePlayerError(_ errorCode: Int) {
